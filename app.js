@@ -57,6 +57,7 @@ const cartCount = document.querySelector("#cartCount");
 const itemDialog = document.querySelector("#itemDialog");
 const invoiceView = document.querySelector("#invoiceView");
 const invoiceContent = document.querySelector("#invoiceContent");
+let lastFocusedElement = null;
 
 function item(id, category, name, price, quantity, image, description, ingredients, nutrition) {
   return { id, category, name, price, quantity, image, description, ingredients, nutrition };
@@ -148,17 +149,17 @@ function renderMenu() {
 function renderFoodCard(food) {
   return `
     <article class="food-card">
-      <img src="${food.image}" alt="${food.name}">
+      <img src="${food.image}" alt="Prepared catering dish: ${food.name}">
       <div class="food-body">
         <h3>${food.name}</h3>
         <div class="food-meta">
           <span>${money(food.price)}</span>
-          <span aria-hidden="true">.</span>
+          <span aria-hidden="true">-</span>
           <span>${food.quantity}</span>
         </div>
         <div class="food-actions">
-          <button class="small-button" type="button" data-details="${food.id}">Details</button>
-          <button class="small-button add" type="button" data-add="${food.id}">Add</button>
+          <button class="small-button" type="button" data-details="${food.id}" aria-label="View details for ${food.name}">Details</button>
+          <button class="small-button add" type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add</button>
         </div>
       </div>
     </article>
@@ -174,11 +175,11 @@ function openDetails(id) {
   if (!food) return;
   itemDialog.querySelector("#dialogContent").innerHTML = `
     <div class="dialog-layout">
-      <img src="${food.image}" alt="${food.name}">
+      <img src="${food.image}" alt="Prepared catering dish: ${food.name}">
       <div class="dialog-body">
         <p class="eyebrow">${food.category}</p>
         <h2 id="dialogTitle">${food.name}</h2>
-        <p><strong>${money(food.price)}</strong> / ${food.quantity}</p>
+        <p><strong>${money(food.price)}</strong> per ${food.quantity}</p>
         <p>${food.description}</p>
         <h3>Ingredients</h3>
         <p>${food.ingredients.join(", ")}</p>
@@ -191,11 +192,13 @@ function openDetails(id) {
             <tr><td>${food.nutrition[0]}</td><td>${food.nutrition[1]}</td><td>${food.nutrition[2]}</td><td>${food.nutrition[3]}</td></tr>
           </tbody>
         </table>
-        <button class="button primary full" type="button" data-add="${food.id}">Add to cart</button>
+        <button class="button primary full" type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add to cart</button>
       </div>
     </div>
   `;
+  lastFocusedElement = document.activeElement;
   itemDialog.showModal();
+  itemDialog.querySelector("[data-add]")?.focus();
 }
 
 function addToCart(id) {
@@ -240,13 +243,13 @@ function renderCart() {
       <img src="${entry.image}" alt="">
       <div>
         <h3>${entry.name}</h3>
-        <p>${formatDate(entry.pickupDate)} . ${money(entry.price)} per 6 people</p>
+        <p>${formatDate(entry.pickupDate)} - ${money(entry.price)} per 6 people</p>
         <div class="quantity-row">
           <label>
             <span class="sr-only">Portions for ${entry.name}</span>
-            <input type="number" min="6" max="30" step="1" value="${entry.portions}" data-portion="${entry.key}">
+            <input type="number" inputmode="numeric" min="6" max="30" step="1" value="${entry.portions}" data-portion="${entry.key}" aria-label="Portions for ${entry.name}" aria-describedby="checkoutInstructions">
           </label>
-          <button class="remove-button" type="button" data-remove="${entry.key}">Remove</button>
+          <button class="remove-button" type="button" data-remove="${entry.key}" aria-label="Remove ${entry.name} from cart">Remove</button>
         </div>
       </div>
     </article>
@@ -261,13 +264,70 @@ function renderCart() {
 }
 
 function openCart() {
+  lastFocusedElement = document.activeElement;
   cartDrawer.classList.add("open");
   cartDrawer.setAttribute("aria-hidden", "false");
+  cartDrawer.querySelector(".cart-panel").focus();
 }
 
 function closeCart() {
   cartDrawer.classList.remove("open");
   cartDrawer.setAttribute("aria-hidden", "true");
+  restoreFocus();
+}
+
+function showInvoice(invoice) {
+  invoiceContent.innerHTML = `
+    <p class="eyebrow">Invoice generated locally</p>
+    <h2 id="invoiceTitle">Invoice ${invoice.id}</h2>
+    <p><strong>${invoice.customer.customerName}</strong><br>${invoice.customer.phone}<br>${invoice.customer.email}</p>
+    <p>Pickup time: ${invoice.customer.pickupTime}<br>Payment: ${invoice.customer.payment}</p>
+    <table class="invoice-table">
+      <caption class="sr-only">Invoice line items</caption>
+      <thead><tr><th scope="col">Item</th><th scope="col">Pickup date</th><th scope="col">Portions</th><th scope="col">Line total</th></tr></thead>
+      <tbody>
+        ${invoice.items.map((entry) => `
+          <tr>
+            <td>${entry.name}</td>
+            <td>${formatDate(entry.pickupDate)}</td>
+            <td>${entry.portions}</td>
+            <td>${money(entry.price * (entry.portions / 6))}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+    <p>${invoice.customer.instructions ? `<strong>Instructions:</strong> ${invoice.customer.instructions}` : "No special instructions."}</p>
+    <p><strong>Total due:</strong> ${money(invoice.totals.total)}</p>
+    <p class="form-status">Saved to localStorage as hl-invoices for the business owner.</p>
+  `;
+  lastFocusedElement = document.activeElement;
+  invoiceView.hidden = false;
+  invoiceView.querySelector(".invoice-card").focus();
+}
+
+function restoreFocus() {
+  if (lastFocusedElement && typeof lastFocusedElement.focus === "function" && document.contains(lastFocusedElement)) {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
+}
+
+function trapFocus(event, container) {
+  if (event.key !== "Tab") return;
+  const focusable = Array.from(container.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )).filter((element) => element.offsetParent !== null);
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
 }
 
 function placeOrder(form) {
@@ -302,37 +362,12 @@ function placeOrder(form) {
   showInvoice(invoice);
 }
 
-function showInvoice(invoice) {
-  invoiceContent.innerHTML = `
-    <p class="eyebrow">Invoice generated locally</p>
-    <h2 id="invoiceTitle">Invoice ${invoice.id}</h2>
-    <p><strong>${invoice.customer.customerName}</strong><br>${invoice.customer.phone}<br>${invoice.customer.email}</p>
-    <p>Pickup time: ${invoice.customer.pickupTime}<br>Payment: ${invoice.customer.payment}</p>
-    <table class="invoice-table">
-      <thead><tr><th scope="col">Item</th><th scope="col">Pickup date</th><th scope="col">Portions</th><th scope="col">Line total</th></tr></thead>
-      <tbody>
-        ${invoice.items.map((entry) => `
-          <tr>
-            <td>${entry.name}</td>
-            <td>${formatDate(entry.pickupDate)}</td>
-            <td>${entry.portions}</td>
-            <td>${money(entry.price * (entry.portions / 6))}</td>
-          </tr>
-        `).join("")}
-      </tbody>
-    </table>
-    <p>${invoice.customer.instructions ? `<strong>Instructions:</strong> ${invoice.customer.instructions}` : "No special instructions."}</p>
-    <p><strong>Total due:</strong> ${money(invoice.totals.total)}</p>
-    <p class="form-status">Saved to localStorage as hl-invoices for the business owner.</p>
-  `;
-  invoiceView.hidden = false;
-}
-
 function bindEvents() {
   document.querySelector(".nav-toggle").addEventListener("click", (event) => {
     const links = document.querySelector("#navLinks");
     const isOpen = links.classList.toggle("open");
     event.currentTarget.setAttribute("aria-expanded", String(isOpen));
+    event.currentTarget.setAttribute("aria-label", isOpen ? "Close main menu" : "Open main menu");
   });
 
   dateInput.addEventListener("change", () => {
@@ -347,7 +382,11 @@ function bindEvents() {
   document.querySelectorAll("[data-filter]").forEach((button) => {
     button.addEventListener("click", () => {
       state.activeFilter = button.dataset.filter;
-      document.querySelectorAll("[data-filter]").forEach((chip) => chip.classList.toggle("active", chip === button));
+      document.querySelectorAll("[data-filter]").forEach((chip) => {
+        const isActive = chip === button;
+        chip.classList.toggle("active", isActive);
+        chip.setAttribute("aria-pressed", String(isActive));
+      });
       renderMenu();
     });
   });
@@ -359,6 +398,7 @@ function bindEvents() {
     if (add) addToCart(add.dataset.add);
   });
 
+  itemDialog.addEventListener("close", restoreFocus);
   document.querySelector("[data-close-dialog]").addEventListener("click", () => itemDialog.close());
   document.querySelectorAll("[data-open-cart]").forEach((button) => button.addEventListener("click", openCart));
   document.querySelector("[data-close-cart]").addEventListener("click", closeCart);
@@ -398,6 +438,23 @@ function bindEvents() {
 
   document.querySelector("[data-close-invoice]").addEventListener("click", () => {
     invoiceView.hidden = true;
+    restoreFocus();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!invoiceView.hidden) {
+      trapFocus(event, invoiceView);
+    } else if (cartDrawer.classList.contains("open")) {
+      trapFocus(event, cartDrawer);
+    }
+
+    if (event.key !== "Escape") return;
+    if (!invoiceView.hidden) {
+      invoiceView.hidden = true;
+      restoreFocus();
+    } else if (cartDrawer.classList.contains("open")) {
+      closeCart();
+    }
   });
 }
 
