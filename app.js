@@ -100,6 +100,7 @@ const hasDOM = typeof document !== "undefined";
 
 const els = hasDOM ? {
   dateInput: document.querySelector("#cateringDate"),
+  viewMenuButton: document.querySelector("#viewMenuButton"),
   dateHelp: document.querySelector("#dateHelp"),
   selectedDay: document.querySelector("#selectedDay"),
   menuTitle: document.querySelector("#menuTitle"),
@@ -122,7 +123,9 @@ const els = hasDOM ? {
   dialogClose: document.querySelector("#dialogClose"),
   itemDetails: document.querySelector("#itemDetails"),
   contactForm: document.querySelector("#contactForm"),
-  contactStatus: document.querySelector("#contactStatus")
+  contactStatus: document.querySelector("#contactStatus"),
+  pageLocation: document.querySelector("#pageLocation"),
+  navLinks: document.querySelectorAll(".site-nav a, .site-footer a")
 } : {};
 
 function addDays(date, days) {
@@ -140,6 +143,10 @@ function toDateValue(date) {
 
 function money(value) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+}
+
+function scrollBehavior() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 }
 
 function prettyDate(value) {
@@ -236,17 +243,18 @@ function renderMenu() {
     items.forEach((item) => {
       const card = document.createElement("article");
       card.className = "menu-item";
+      card.setAttribute("aria-labelledby", `${item.id}-title`);
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.name}">
+        <img src="${item.image}" alt="${item.name} catering tray">
         <div class="item-body">
           <div class="item-title-row">
-            <h4>${item.name}</h4>
+            <h4 id="${item.id}-title">${item.name}</h4>
             <span class="price">${money(item.price)}</span>
           </div>
-          <p class="item-meta">${item.quantity} · ${item.description}</p>
+          <p class="item-meta">${item.quantity} | ${item.description}</p>
           <div class="item-actions">
-            <button class="detail-button" type="button" data-details="${item.id}">Details</button>
-            <button class="add-button" type="button" data-add="${item.id}">Add</button>
+            <button class="detail-button" type="button" data-details="${item.id}" aria-label="Details for ${item.name}">Details</button>
+            <button class="add-button" type="button" data-add="${item.id}" aria-label="Add ${item.name} to cart">Add</button>
           </div>
         </div>
       `;
@@ -259,22 +267,23 @@ function renderMenu() {
 
 function renderCart() {
   els.cartCount.textContent = state.cart.reduce((sum, line) => sum + line.portions, 0);
+  els.cartButton.setAttribute("aria-label", `Open cart, ${els.cartCount.textContent} portions`);
   els.cartDate.textContent = state.cart.length ? `Pickup on ${prettyDate(state.selectedDate)}` : "Your cart is empty.";
   els.cartItems.innerHTML = "";
 
   state.cart.forEach((line) => {
     const row = document.createElement("article");
     row.className = "cart-line";
+    row.setAttribute("aria-labelledby", `${line.id}-cart-title`);
     row.innerHTML = `
       <div class="cart-line-top">
-        <h3>${line.name}</h3>
+        <h3 id="${line.id}-cart-title">${line.name}</h3>
         <span class="price">${money(line.price * line.portions)}</span>
       </div>
       <div class="cart-controls">
-        <label>Portions
-          <input type="number" min="6" max="30" value="${line.portions}" data-qty="${line.id}">
-        </label>
-        <button class="remove-button" type="button" data-remove="${line.id}">Remove</button>
+        <label for="${line.id}-qty">Portions for ${line.name}</label>
+        <input id="${line.id}-qty" type="number" min="6" max="30" value="${line.portions}" data-qty="${line.id}">
+        <button class="remove-button" type="button" data-remove="${line.id}" aria-label="Remove ${line.name} from cart">Remove</button>
       </div>
     `;
     els.cartItems.append(row);
@@ -297,17 +306,17 @@ function addToCart(id) {
   }
 
   renderCart();
-  els.cartPanel.classList.add("is-open");
+  openCart();
 }
 
 function showDetails(id) {
   const item = getMenuForSelectedDate().find((menuItem) => menuItem.id === id);
   els.itemDetails.innerHTML = `
     <div class="detail-hero">
-      <img src="${item.image}" alt="${item.name}">
+      <img src="${item.image}" alt="${item.name} catering tray">
       <div class="detail-copy">
         <p class="eyebrow">${CATEGORY_LABELS[item.category]}</p>
-        <h2>${item.name}</h2>
+        <h2 id="detailTitle">${item.name}</h2>
         <p>${item.description} Prepared for pickup in labeled trays with reheating notes available on request.</p>
         <div>
           <h3>Ingredients</h3>
@@ -316,16 +325,17 @@ function showDetails(id) {
         <div>
           <h3>Nutrition Facts</h3>
           <table class="nutrition-table">
+            <caption>Nutrition facts for ${item.name}</caption>
             <tbody>
-              <tr><th>Calories</th><td>${item.nutrition.calories}</td></tr>
-              <tr><th>Protein</th><td>${item.nutrition.protein}</td></tr>
-              <tr><th>Carbs</th><td>${item.nutrition.carbs}</td></tr>
-              <tr><th>Fat</th><td>${item.nutrition.fat}</td></tr>
-              <tr><th>Sodium</th><td>${item.nutrition.sodium}</td></tr>
+              <tr><th scope="row">Calories</th><td>${item.nutrition.calories}</td></tr>
+              <tr><th scope="row">Protein</th><td>${item.nutrition.protein}</td></tr>
+              <tr><th scope="row">Carbs</th><td>${item.nutrition.carbs}</td></tr>
+              <tr><th scope="row">Fat</th><td>${item.nutrition.fat}</td></tr>
+              <tr><th scope="row">Sodium</th><td>${item.nutrition.sodium}</td></tr>
             </tbody>
           </table>
         </div>
-        <button class="add-button" type="button" data-add="${item.id}">Add to cart</button>
+        <button class="add-button" type="button" data-add="${item.id}" aria-label="Add ${item.name} to cart">Add to cart</button>
       </div>
     </div>
   `;
@@ -366,9 +376,10 @@ function renderInvoice(invoice) {
     <h3>Invoice ${invoice.id}</h3>
     <p><strong>Pickup:</strong> ${prettyDate(invoice.pickupDate)} at ${invoice.pickupTime}</p>
     <p><strong>Guest count:</strong> ${invoice.guestCount} people</p>
-    <p><strong>Customer:</strong> ${invoice.customer.name} · ${invoice.customer.email} · ${invoice.customer.phone}</p>
+    <p><strong>Customer:</strong> ${invoice.customer.name} | ${invoice.customer.email} | ${invoice.customer.phone}</p>
     <table>
-      <thead><tr><th>Item</th><th>Portions</th><th>Unit</th><th>Line total</th></tr></thead>
+      <caption>Invoice line items</caption>
+      <thead><tr><th scope="col">Item</th><th scope="col">Portions</th><th scope="col">Unit</th><th scope="col">Line total</th></tr></thead>
       <tbody>
         ${invoice.items.map((item) => `
           <tr>
@@ -385,15 +396,18 @@ function renderInvoice(invoice) {
     <p><strong>Special instructions:</strong> ${invoice.instructions || "None"}</p>
     <p>This invoice has been saved locally in this browser for the business owner to review later.</p>
   `;
-  els.invoiceSection.scrollIntoView({ behavior: "smooth" });
+  els.invoiceSection.scrollIntoView({ behavior: scrollBehavior() });
+  els.invoiceSection.focus({ preventScroll: true });
 }
 
 function bindEvents() {
-  els.dateInput.addEventListener("change", () => {
+  els.viewMenuButton.addEventListener("click", () => {
+    if (!els.dateInput.reportValidity()) return;
     state.selectedDate = els.dateInput.value;
     state.cart = [];
     renderMenu();
     renderCart();
+    els.menuTitle.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
   });
 
   els.defaultPortions.addEventListener("change", () => {
@@ -422,13 +436,20 @@ function bindEvents() {
     renderCart();
   });
 
-  els.cartButton.addEventListener("click", () => els.cartPanel.classList.toggle("is-open"));
-  els.closeCart.addEventListener("click", () => els.cartPanel.classList.remove("is-open"));
+  els.cartButton.addEventListener("click", () => {
+    if (els.cartPanel.classList.contains("is-open")) {
+      closeCart();
+    } else {
+      openCart();
+    }
+  });
+  els.closeCart.addEventListener("click", closeCart);
 
   els.checkoutButton.addEventListener("click", () => {
     if (!state.cart.length) return;
     els.checkoutSection.hidden = false;
-    els.checkoutSection.scrollIntoView({ behavior: "smooth" });
+    els.checkoutSection.scrollIntoView({ behavior: scrollBehavior() });
+    els.checkoutSection.focus({ preventScroll: true });
   });
 
   els.checkoutForm.addEventListener("submit", (event) => {
@@ -444,6 +465,44 @@ function bindEvents() {
     els.contactForm.reset();
     els.contactStatus.textContent = "Thanks. Your message has been saved as a demo inquiry.";
   });
+
+  window.addEventListener("hashchange", updateCurrentLocation);
+  els.navLinks.forEach((link) => {
+    link.addEventListener("click", () => setTimeout(updateCurrentLocation, 0));
+  });
+}
+
+function openCart() {
+  els.cartPanel.classList.add("is-open");
+  els.cartButton.setAttribute("aria-expanded", "true");
+}
+
+function closeCart() {
+  els.cartPanel.classList.remove("is-open");
+  els.cartButton.setAttribute("aria-expanded", "false");
+}
+
+function updateCurrentLocation() {
+  const currentHash = window.location.hash || "#home";
+  const labels = {
+    "#home": "Home",
+    "#menu": "Menu",
+    "#checkout": "Checkout",
+    "#about": "About",
+    "#contact": "Contact"
+  };
+
+  els.navLinks.forEach((link) => {
+    if (link.getAttribute("href") === currentHash) {
+      link.setAttribute("aria-current", "location");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+
+  if (els.pageLocation) {
+    els.pageLocation.textContent = `Current section: ${labels[currentHash] || "Home"}`;
+  }
 }
 
 function init() {
@@ -451,6 +510,7 @@ function init() {
   renderMenu();
   renderCart();
   bindEvents();
+  updateCurrentLocation();
 }
 
 if (hasDOM) {

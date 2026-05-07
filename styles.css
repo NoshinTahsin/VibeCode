@@ -1,13 +1,14 @@
 :root {
   --ink: #25211d;
-  --muted: #6b6258;
-  --line: #ded6ca;
+  --muted: #514a43;
+  --line: #8d8278;
   --paper: #fffdf8;
   --panel: #f6f1e8;
-  --herb: #2f6b4f;
-  --tomato: #a8402d;
+  --herb: #245a43;
+  --tomato: #84291f;
   --gold: #d29a2e;
   --sky: #d8edf0;
+  --focus: #0b57d0;
   --shadow: 0 16px 45px rgba(37, 33, 29, 0.12);
 }
 
@@ -36,6 +37,30 @@ textarea {
 
 a {
   color: inherit;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  min-height: 44px;
+  padding: 10px 16px;
+  color: white;
+  background: var(--ink);
+  border-radius: 8px;
+  transform: translateY(-140%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .site-header {
@@ -88,7 +113,15 @@ a {
 }
 
 .site-nav a {
-  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.site-nav a[aria-current="location"] {
+  color: var(--tomato);
+  box-shadow: inset 0 -3px currentColor;
 }
 
 .cart-button,
@@ -101,6 +134,18 @@ a {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 800;
+}
+
+.cart-button,
+.primary-button,
+.secondary-button,
+.primary-link,
+.icon-button,
+.detail-button,
+.add-button,
+.remove-button {
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .cart-button,
@@ -158,7 +203,7 @@ a {
   padding: clamp(72px, 10vw, 130px) clamp(18px, 5vw, 72px) 52px;
   color: white;
   background:
-    linear-gradient(90deg, rgba(20, 26, 21, 0.76), rgba(20, 26, 21, 0.24)),
+    linear-gradient(90deg, rgba(13, 16, 14, 0.86), rgba(13, 16, 14, 0.5)),
     url("https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1800&q=80") center / cover;
 }
 
@@ -189,7 +234,7 @@ a {
 }
 
 .hero .eyebrow {
-  color: var(--gold);
+  color: #f3c86c;
 }
 
 section {
@@ -233,6 +278,13 @@ label {
   font-weight: 800;
 }
 
+#portionHelp,
+#guestHelp,
+#contactStatus {
+  margin: 0;
+  color: var(--muted);
+}
+
 input,
 select,
 textarea {
@@ -243,6 +295,14 @@ textarea {
   background: white;
   border: 1px solid var(--line);
   border-radius: 8px;
+}
+
+input:disabled,
+button:disabled,
+select:disabled,
+textarea:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
 }
 
 textarea {
@@ -352,7 +412,6 @@ textarea {
 .detail-button,
 .add-button,
 .remove-button {
-  min-height: 40px;
   padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -404,7 +463,7 @@ textarea {
 
 .cart-controls {
   display: grid;
-  grid-template-columns: 1fr 92px;
+  grid-template-columns: 1fr;
   gap: 8px;
 }
 
@@ -446,6 +505,10 @@ fieldset,
   border-radius: 8px;
 }
 
+fieldset p {
+  margin-top: -4px;
+}
+
 legend {
   padding: 0 8px;
   font-weight: 900;
@@ -470,6 +533,12 @@ legend {
   border-bottom: 1px solid var(--line);
 }
 
+caption {
+  padding: 0 0 10px;
+  text-align: left;
+  font-weight: 900;
+}
+
 .about-section {
   display: grid;
   grid-template-columns: minmax(220px, 420px) minmax(0, 1fr) minmax(0, 1fr);
@@ -484,6 +553,12 @@ legend {
 
 .contact-card p {
   margin: 0;
+}
+
+.contact-card a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .item-dialog {
@@ -504,6 +579,8 @@ legend {
   top: 12px;
   right: 12px;
   z-index: 1;
+  width: auto;
+  padding: 0 12px;
 }
 
 .detail-hero {
@@ -539,6 +616,42 @@ legend {
   border-radius: 999px;
   font-size: 0.88rem;
   font-weight: 800;
+}
+
+.site-footer {
+  display: grid;
+  gap: 16px;
+  padding: 32px clamp(18px, 5vw, 72px);
+  color: white;
+  background: var(--ink);
+}
+
+.site-footer h2,
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+.site-footer a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 @media (max-width: 920px) {
@@ -601,5 +714,32 @@ legend {
   .item-actions,
   .cart-controls {
     grid-template-columns: 1fr;
+  }
+
+  .section-heading h2,
+  .menu-toolbar h2,
+  .cart-panel h2,
+  .about-section h2 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-header,
+  section,
+  .site-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+    line-height: 1.08;
+  }
+
+  .invoice,
+  .nutrition-table {
+    overflow-wrap: anywhere;
   }
 }
