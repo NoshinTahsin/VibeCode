@@ -202,15 +202,17 @@ function openDetails(id) {
         <ul class="ingredient-list">
           ${food.ingredients.map((ingredient) => `<li>${ingredient}</li>`).join("")}
         </ul>
-        <table class="nutrition">
-          <caption class="sr-only">Nutrition facts for ${food.name}</caption>
-          <thead>
-            <tr><th scope="col">Calories</th><th scope="col">Protein</th><th scope="col">Fat</th><th scope="col">Carbs</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>${food.nutrition[0]}</td><td>${food.nutrition[1]}</td><td>${food.nutrition[2]}</td><td>${food.nutrition[3]}</td></tr>
-          </tbody>
-        </table>
+        <div class="table-wrap" tabindex="0" aria-label="Scrollable nutrition facts table">
+          <table class="nutrition">
+            <caption class="sr-only">Nutrition facts for ${food.name}</caption>
+            <thead>
+              <tr><th scope="col">Calories</th><th scope="col">Protein</th><th scope="col">Fat</th><th scope="col">Carbs</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>${food.nutrition[0]}</td><td>${food.nutrition[1]}</td><td>${food.nutrition[2]}</td><td>${food.nutrition[3]}</td></tr>
+            </tbody>
+          </table>
+        </div>
         <button class="button primary full" type="button" data-add="${food.id}">Add to cart</button>
       </div>
     </div>
@@ -339,19 +341,21 @@ function showInvoice(invoice) {
     <h2 id="invoiceTitle">Invoice ${invoice.id}</h2>
     <p><strong>${invoice.customer.customerName}</strong><br>${invoice.customer.phone}<br>${invoice.customer.email}</p>
     <p>Pickup time: ${invoice.customer.pickupTime}<br>Payment: ${invoice.customer.payment}</p>
-    <table class="invoice-table">
-      <thead><tr><th scope="col">Item</th><th scope="col">Pickup date</th><th scope="col">Portions</th><th scope="col">Line total</th></tr></thead>
-      <tbody>
-        ${invoice.items.map((entry) => `
-          <tr>
-            <td>${entry.name}</td>
-            <td>${formatDate(entry.pickupDate)}</td>
-            <td>${entry.portions}</td>
-            <td>${money(entry.price * (entry.portions / 6))}</td>
-          </tr>
-        `).join("")}
-      </tbody>
-    </table>
+    <div class="table-wrap" tabindex="0" aria-label="Scrollable invoice items table">
+      <table class="invoice-table">
+        <thead><tr><th scope="col">Item</th><th scope="col">Pickup date</th><th scope="col">Portions</th><th scope="col">Line total</th></tr></thead>
+        <tbody>
+          ${invoice.items.map((entry) => `
+            <tr>
+              <td>${entry.name}</td>
+              <td>${formatDate(entry.pickupDate)}</td>
+              <td>${entry.portions}</td>
+              <td>${money(entry.price * (entry.portions / 6))}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
     <p>${invoice.customer.instructions ? `<strong>Instructions:</strong> ${invoice.customer.instructions}` : "No special instructions."}</p>
     <p><strong>Total due:</strong> ${money(invoice.totals.total)}</p>
     <p class="form-status">Saved to localStorage as hl-invoices for the business owner.</p>

@@ -3,6 +3,7 @@ const assert = require("assert");
 
 const html = fs.readFileSync("index.html", "utf8");
 const js = fs.readFileSync("app.js", "utf8");
+const css = fs.readFileSync("styles.css", "utf8");
 
 assert(html.includes('id="dateInput"'), "date picker should exist");
 assert(html.includes('id="cartDrawer"'), "cart drawer should exist");
@@ -24,6 +25,13 @@ assert(js.includes('<ul class="ingredient-list">'), "ingredients should be expos
 assert(js.includes('<dl class="cart-item-meta">'), "cart item metadata should use description list semantics");
 assert(js.includes("<dt>Subtotal</dt>"), "cart summary labels and values should be associated");
 assert(js.includes('chip.setAttribute("aria-pressed", String(isActive))'), "filter state should update programmatically");
+assert(css.includes("grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr))"), "menu cards should reflow without horizontal scrolling");
+assert(css.includes("@media (max-width: 720px)"), "narrow viewport layout rules should exist");
+assert(css.includes("overflow-wrap: anywhere"), "long text should wrap in narrow viewports");
+assert(css.includes(".table-wrap"), "wide tables should be contained in scrollable wrappers");
+assert(css.includes("overflow-x: auto"), "table scrolling should be isolated to table containers");
+assert(js.includes('aria-label="Scrollable nutrition facts table"'), "nutrition table wrapper should be named");
+assert(js.includes('aria-label="Scrollable invoice items table"'), "invoice table wrapper should be named");
 assert((js.match(/protein/g) || []).length >= 5, "protein category should be present");
 assert((js.match(/vegetarian/g) || []).length >= 3, "vegetarian category should be present");
 assert((js.match(/sides/g) || []).length >= 2, "sides category should be present");
