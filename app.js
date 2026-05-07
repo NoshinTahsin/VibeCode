@@ -218,10 +218,12 @@ function showItemDetail(id) {
     <p>${food.description}</p>
     <p><strong>Ingredients:</strong> ${food.ingredients}</p>
     <h3>Nutrition facts per serving</h3>
-    <table>
-      <caption>Nutrition facts for ${food.name} per serving</caption>
-      <tbody>${nutritionRows}</tbody>
-    </table>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Nutrition facts table">
+      <table>
+        <caption>Nutrition facts for ${food.name} per serving</caption>
+        <tbody>${nutritionRows}</tbody>
+      </table>
+    </div>
     <button class="button primary full" type="button" data-add-detail="${food.id}">Add to cart</button>
   `;
   itemDetail.querySelector("[data-close-detail]").addEventListener("click", () => itemDialog.close());
@@ -369,13 +371,15 @@ function showInvoice(invoice) {
     </div>
     <p><strong>Customer:</strong> ${invoice.customer.customerName} | ${invoice.customer.phone} | ${invoice.customer.email}</p>
     <p><strong>Pickup time:</strong> ${invoice.customer.pickupTime}</p>
-    <table>
-      <caption>Invoice line items</caption>
-      <thead><tr><th scope="col">Item</th><th scope="col">Date</th><th scope="col">Portions</th><th scope="col">Total</th></tr></thead>
-      <tbody>
-        ${invoice.lines.map((line) => `<tr><td>${line.name}</td><td>${formatDisplayDate(line.date)}</td><td>${line.portions}</td><td>$${line.total.toFixed(2)}</td></tr>`).join("")}
-      </tbody>
-    </table>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Invoice line items table">
+      <table>
+        <caption>Invoice line items</caption>
+        <thead><tr><th scope="col">Item</th><th scope="col">Date</th><th scope="col">Portions</th><th scope="col">Total</th></tr></thead>
+        <tbody>
+          ${invoice.lines.map((line) => `<tr><td>${line.name}</td><td>${formatDisplayDate(line.date)}</td><td>${line.portions}</td><td>$${line.total.toFixed(2)}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
     <p><strong>Subtotal:</strong> $${invoice.subtotal.toFixed(2)}</p>
     <p><strong>Packaging/service:</strong> $${invoice.service.toFixed(2)}</p>
     <p><strong>Total:</strong> $${invoice.total.toFixed(2)}</p>

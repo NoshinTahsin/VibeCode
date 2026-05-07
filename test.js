@@ -53,4 +53,18 @@ if (missingDays.length) {
   }
 });
 
+[
+  "overflow-x: clip",
+  "flex-wrap: wrap",
+  "minmax(min(240px, 100%), 1fr)",
+  ".table-scroll",
+  'aria-label="Invoice line items table"',
+  "@media (max-width: 360px)",
+  "overflow-wrap: anywhere"
+].forEach((snippet) => {
+  if (!html.includes(snippet) && !app.includes(snippet) && !fs.readFileSync("styles.css", "utf8").includes(snippet)) {
+    throw new Error(`Missing reflow snippet: ${snippet}`);
+  }
+});
+
 console.log("Static catering site checks passed.");
