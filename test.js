@@ -67,4 +67,25 @@ if (missingDays.length) {
   }
 });
 
+[
+  'aria-controls="cart-drawer"',
+  'aria-expanded="false"',
+  'aria-label="Cart, 0 items"',
+  'role="dialog"',
+  'aria-modal="true"',
+  "openCartButton.setAttribute(\"aria-expanded\"",
+  'aria-haspopup="dialog"',
+  "Details for ${food.name}",
+  "Add to cart: ${food.name}",
+  "Portions for ${food.name}",
+  "Remove ${food.name} from cart",
+  "Close invoice ${invoice.id}",
+  "event.key === \"Escape\"",
+  "lastFocusedElement.isConnected"
+].forEach((snippet) => {
+  if (!html.includes(snippet) && !app.includes(snippet)) {
+    throw new Error(`Missing name role value snippet: ${snippet}`);
+  }
+});
+
 console.log("Static catering site checks passed.");

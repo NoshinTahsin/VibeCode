@@ -67,10 +67,12 @@ const cartDrawer = document.querySelector("#cart-drawer");
 const cartItems = document.querySelector("#cart-items");
 const cartSummary = document.querySelector("#cart-summary");
 const cartCount = document.querySelector("#cart-count");
+const openCartButton = document.querySelector("[data-open-cart]");
 const itemDialog = document.querySelector("#item-dialog");
 const itemDetail = document.querySelector("#item-detail");
 const invoiceDialog = document.querySelector("#invoice-dialog");
 const invoiceDetail = document.querySelector("#invoice-detail");
+let lastFocusedElement = null;
 
 init();
 
@@ -110,10 +112,13 @@ function init() {
     });
   });
 
-  document.querySelector("[data-open-cart]").addEventListener("click", openCart);
+  openCartButton.addEventListener("click", openCart);
   document.querySelector("[data-close-cart]").addEventListener("click", closeCart);
   cartDrawer.addEventListener("click", (event) => {
     if (event.target === cartDrawer) closeCart();
+  });
+  cartDrawer.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeCart();
   });
 
   document.querySelector("#checkout-form").addEventListener("submit", placeOrder);
@@ -193,8 +198,8 @@ function foodCard(food) {
             <span>${food.quantity}</span>
           </div>
           <div class="card-actions">
-            <button class="button secondary" type="button" data-detail="${food.id}">Details</button>
-            <button class="button primary" type="button" data-add="${food.id}">Add to cart</button>
+            <button class="button secondary" type="button" data-detail="${food.id}" aria-haspopup="dialog" aria-label="Details for ${food.name}">Details</button>
+            <button class="button primary" type="button" data-add="${food.id}" aria-label="Add to cart: ${food.name}">Add to cart</button>
           </div>
         </div>
       </article>
@@ -213,7 +218,7 @@ function showItemDetail(id) {
         <span class="tag">${food.category}</span>
         <h2 id="item-detail-title">${food.name}</h2>
       </div>
-      <button class="icon-button" type="button" data-close-detail aria-label="Close details">x</button>
+      <button class="icon-button" type="button" data-close-detail aria-label="Close details for ${food.name}">x</button>
     </div>
     <p>${food.description}</p>
     <p><strong>Ingredients:</strong> ${food.ingredients}</p>
@@ -224,7 +229,7 @@ function showItemDetail(id) {
         <tbody>${nutritionRows}</tbody>
       </table>
     </div>
-    <button class="button primary full" type="button" data-add-detail="${food.id}">Add to cart</button>
+    <button class="button primary full" type="button" data-add-detail="${food.id}" aria-label="Add to cart: ${food.name}">Add to cart</button>
   `;
   itemDetail.querySelector("[data-close-detail]").addEventListener("click", () => itemDialog.close());
   itemDetail.querySelector("[data-add-detail]").addEventListener("click", () => {
@@ -253,6 +258,7 @@ function renderCart() {
   state.cart = state.cart.filter((cartItem) => findFood(cartItem.id, cartItem.date));
   saveCart();
   cartCount.textContent = state.cart.length;
+  openCartButton.setAttribute("aria-label", `Cart, ${state.cart.length} ${state.cart.length === 1 ? "item" : "items"}`);
   if (!state.cart.length) {
     cartItems.innerHTML = `<li><p class="form-note">Your cart is empty. Add items from the menu to begin an order.</p></li>`;
     cartSummary.innerHTML = "";
@@ -273,10 +279,10 @@ function renderCart() {
           <div class="cart-controls">
             <label>
               Portions
-              <input type="number" min="6" max="30" step="1" value="${cartItem.portions}" data-portion="${cartItem.key}" />
+              <input type="number" min="6" max="30" step="1" value="${cartItem.portions}" data-portion="${cartItem.key}" aria-label="Portions for ${food.name}" />
             </label>
             <strong>$${lineTotal.toFixed(2)}</strong>
-            <button class="text-button" type="button" data-remove="${cartItem.key}">Remove</button>
+            <button class="text-button" type="button" data-remove="${cartItem.key}" aria-label="Remove ${food.name} from cart">Remove</button>
           </div>
         </div>
       </article>
@@ -367,7 +373,7 @@ function showInvoice(invoice) {
         <p class="eyebrow">Invoice</p>
         <h2 class="invoice-number" id="invoice-title">${invoice.id}</h2>
       </div>
-      <button class="icon-button" type="button" data-close-invoice aria-label="Close invoice">x</button>
+      <button class="icon-button" type="button" data-close-invoice aria-label="Close invoice ${invoice.id}">x</button>
     </div>
     <p><strong>Customer:</strong> ${invoice.customer.customerName} | ${invoice.customer.phone} | ${invoice.customer.email}</p>
     <p><strong>Pickup time:</strong> ${invoice.customer.pickupTime}</p>
@@ -412,13 +418,20 @@ function cartSubtotal() {
 }
 
 function openCart() {
+  lastFocusedElement = document.activeElement;
   cartDrawer.classList.add("open");
   cartDrawer.setAttribute("aria-hidden", "false");
+  openCartButton.setAttribute("aria-expanded", "true");
+  cartDrawer.querySelector("[data-close-cart]").focus();
 }
 
 function closeCart() {
   cartDrawer.classList.remove("open");
   cartDrawer.setAttribute("aria-hidden", "true");
+  openCartButton.setAttribute("aria-expanded", "false");
+  if (lastFocusedElement && lastFocusedElement.isConnected && typeof lastFocusedElement.focus === "function") {
+    lastFocusedElement.focus();
+  }
 }
 
 function addDays(date, days) {
