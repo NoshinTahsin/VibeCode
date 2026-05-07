@@ -32,6 +32,16 @@ assert(css.includes(".table-wrap"), "wide tables should be contained in scrollab
 assert(css.includes("overflow-x: auto"), "table scrolling should be isolated to table containers");
 assert(js.includes('aria-label="Scrollable nutrition facts table"'), "nutrition table wrapper should be named");
 assert(js.includes('aria-label="Scrollable invoice items table"'), "invoice table wrapper should be named");
+assert(html.includes('aria-label="Open navigation menu"'), "navigation toggle should expose a clear name");
+assert(js.includes('aria-label", isOpen ? "Close navigation menu" : "Open navigation menu"'), "navigation toggle name should update with state");
+assert(html.includes('data-open-cart aria-expanded="false" aria-controls="cartDrawer"'), "cart open controls should expose controlled state");
+assert(html.includes('role="dialog" aria-modal="true" aria-labelledby="cartTitle"'), "cart dialog should expose name, role, and modal state");
+assert(html.includes('role="dialog" aria-modal="true" aria-labelledby="invoiceTitle"'), "invoice dialog should expose name, role, and modal state");
+assert(js.includes('aria-label="View details for ${food.name}"'), "generated details buttons should have unique accessible names");
+assert(js.includes('aria-label="Add ${food.name} to cart"'), "generated add buttons should have unique accessible names");
+assert(js.includes('aria-label="Remove ${entry.name} from cart"'), "generated remove buttons should have unique accessible names");
+assert(js.includes('button.setAttribute("aria-expanded", "true")'), "cart open controls should update expanded state when opened");
+assert(js.includes('button.setAttribute("aria-expanded", "false")'), "cart open controls should update expanded state when closed");
 assert((js.match(/protein/g) || []).length >= 5, "protein category should be present");
 assert((js.match(/vegetarian/g) || []).length >= 3, "vegetarian category should be present");
 assert((js.match(/sides/g) || []).length >= 2, "sides category should be present");

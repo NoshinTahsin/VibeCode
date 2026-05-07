@@ -166,8 +166,8 @@ function renderFoodCard(food) {
           </div>
         </dl>
         <div class="food-actions">
-          <button class="small-button" type="button" data-details="${food.id}">Details</button>
-          <button class="small-button add" type="button" data-add="${food.id}">Add</button>
+          <button class="small-button" type="button" data-details="${food.id}" aria-label="View details for ${food.name}">Details</button>
+          <button class="small-button add" type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add</button>
         </div>
       </div>
     </article>
@@ -213,7 +213,7 @@ function openDetails(id) {
             </tbody>
           </table>
         </div>
-        <button class="button primary full" type="button" data-add="${food.id}">Add to cart</button>
+        <button class="button primary full" type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add to cart</button>
       </div>
     </div>
   `;
@@ -277,7 +277,7 @@ function renderCart() {
             <span class="sr-only">Portions for ${entry.name}</span>
             <input type="number" min="6" max="30" step="1" value="${entry.portions}" data-portion="${entry.key}">
           </label>
-          <button class="remove-button" type="button" data-remove="${entry.key}">Remove</button>
+          <button class="remove-button" type="button" data-remove="${entry.key}" aria-label="Remove ${entry.name} from cart">Remove</button>
         </div>
       </div>
     </article>
@@ -296,11 +296,17 @@ function renderCart() {
 function openCart() {
   cartDrawer.classList.add("open");
   cartDrawer.setAttribute("aria-hidden", "false");
+  document.querySelectorAll("[data-open-cart]").forEach((button) => {
+    button.setAttribute("aria-expanded", "true");
+  });
 }
 
 function closeCart() {
   cartDrawer.classList.remove("open");
   cartDrawer.setAttribute("aria-hidden", "true");
+  document.querySelectorAll("[data-open-cart]").forEach((button) => {
+    button.setAttribute("aria-expanded", "false");
+  });
 }
 
 function placeOrder(form) {
@@ -368,6 +374,7 @@ function bindEvents() {
     const links = document.querySelector("#navLinks");
     const isOpen = links.classList.toggle("open");
     event.currentTarget.setAttribute("aria-expanded", String(isOpen));
+    event.currentTarget.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
   });
 
   dateInput.addEventListener("change", () => {
