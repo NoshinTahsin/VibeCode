@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gather & Ladle Catering</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Gather & Ladle home">
+      <span class="brand-mark">G&L</span>
+      <span>
+        <strong>Gather & Ladle</strong>
+        <small>Homemade catering for pickup</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="cart-button" id="cartButton" type="button" aria-label="Open cart">
+        Cart <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">Fresh weekly menus</p>
+        <h1>Gather & Ladle Catering</h1>
+        <p>Small-batch family meals, packed hot or chilled, ready for your scheduled pickup.</p>
+        <a class="primary-link" href="#menu">Start an order</a>
+      </div>
+    </section>
+
+    <section class="order-panel" id="menu">
+      <div class="section-heading">
+        <p class="eyebrow">Order window: 2 to 14 days ahead</p>
+        <h2>Choose Your Pickup Date</h2>
+        <p id="dateHelp"></p>
+      </div>
+      <div class="date-bar">
+        <label for="cateringDate">Pickup date</label>
+        <input id="cateringDate" type="date">
+        <p id="selectedDay"></p>
+      </div>
+    </section>
+
+    <section class="menu-layout" aria-label="Menu and cart">
+      <div class="menu-area">
+        <div class="menu-toolbar">
+          <div>
+            <h2 id="menuTitle">Menu</h2>
+            <p id="menuSummary"></p>
+          </div>
+          <div class="portion-control">
+            <label for="defaultPortions">Default portions</label>
+            <input id="defaultPortions" type="number" min="6" max="30" value="6">
+          </div>
+        </div>
+        <div id="menuGroups" class="menu-groups"></div>
+      </div>
+
+      <aside class="cart-panel" id="cartPanel" aria-label="Cart">
+        <div class="cart-header">
+          <h2>Your Cart</h2>
+          <button class="icon-button" id="closeCart" type="button" aria-label="Close cart">x</button>
+        </div>
+        <p id="cartDate"></p>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="primary-button" id="checkoutButton" type="button">Checkout</button>
+      </aside>
+    </section>
+
+    <section class="checkout-section" id="checkout" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">Pickup details</p>
+        <h2>Checkout</h2>
+      </div>
+      <form id="checkoutForm" class="checkout-form">
+        <fieldset>
+          <legend>Contact</legend>
+          <label>Name<input name="name" required autocomplete="name"></label>
+          <label>Email<input name="email" type="email" required autocomplete="email"></label>
+          <label>Phone<input name="phone" required autocomplete="tel"></label>
+        </fieldset>
+        <fieldset>
+          <legend>Pickup</legend>
+          <label>Guest count
+            <input name="guestCount" type="number" min="6" max="30" value="6" required>
+          </label>
+          <label>Pickup time
+            <select name="pickupTime" required>
+              <option value="">Select a time</option>
+              <option>10:00 AM</option>
+              <option>11:30 AM</option>
+              <option>1:00 PM</option>
+              <option>3:30 PM</option>
+              <option>5:00 PM</option>
+            </select>
+          </label>
+          <label>Special instructions<textarea name="instructions" rows="4" placeholder="Allergies, packaging notes, curbside pickup details"></textarea></label>
+        </fieldset>
+        <fieldset>
+          <legend>Payment</legend>
+          <label>Payment method
+            <select name="paymentMethod" required>
+              <option value="">Select a method</option>
+              <option>Pay at pickup</option>
+              <option>Card on file later</option>
+              <option>Venmo request</option>
+            </select>
+          </label>
+          <label>Payment note<input name="paymentNote" placeholder="No real payment is processed"></label>
+        </fieldset>
+        <button class="primary-button" type="submit">Place order</button>
+      </form>
+    </section>
+
+    <section class="invoice-section" id="invoiceSection" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">Order placed</p>
+        <h2>Invoice</h2>
+      </div>
+      <div id="invoiceOutput" class="invoice"></div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Homemade meals for gatherings that need care.</h2>
+      </div>
+      <p>Gather & Ladle is a neighborhood catering kitchen focused on comforting food, clear pickup windows, and generous portions. Our dummy story for now: founder Maya cooks rotating menus inspired by weeknight family dinners, market produce, and dishes that travel beautifully.</p>
+      <p>Orders are prepared in small batches and packed by pickup time. Content, policies, and menu names are placeholders so you can replace them with the real business details later.</p>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2>Talk With The Kitchen</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Owner</h3>
+          <p>Maya Chen</p>
+          <p><a href="tel:+15550143027">(555) 014-3027</a></p>
+          <p><a href="mailto:hello@gatherladle.example">hello@gatherladle.example</a></p>
+          <p><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a> · <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a></p>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <label>Name<input name="contactName" required></label>
+          <label>Email<input name="contactEmail" type="email" required></label>
+          <label>Message<textarea name="contactMessage" rows="5" required></textarea></label>
+          <button class="secondary-button" type="submit">Send message</button>
+          <p id="contactStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="itemDialog" class="item-dialog">
+    <button class="icon-button dialog-close" id="dialogClose" type="button" aria-label="Close details">x</button>
+    <div id="itemDetails"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
