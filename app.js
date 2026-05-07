@@ -111,6 +111,10 @@ function money(value) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
 }
 
+function foodImageAlt(food) {
+  return `Prepared catering dish: ${food.name}.`;
+}
+
 function initDate() {
   const min = toDateInputValue(addDays(2));
   const max = toDateInputValue(addDays(14));
@@ -148,7 +152,7 @@ function renderMenu() {
 function renderFoodCard(food) {
   return `
     <article class="food-card">
-      <img src="${food.image}" alt="${food.name}">
+      <img src="${food.image}" alt="${foodImageAlt(food)}">
       <div class="food-body">
         <h3>${food.name}</h3>
         <div class="food-meta">
@@ -174,7 +178,7 @@ function openDetails(id) {
   if (!food) return;
   itemDialog.querySelector("#dialogContent").innerHTML = `
     <div class="dialog-layout">
-      <img src="${food.image}" alt="${food.name}">
+      <img src="${food.image}" alt="${foodImageAlt(food)}">
       <div class="dialog-body">
         <p class="eyebrow">${food.category}</p>
         <h2 id="dialogTitle">${food.name}</h2>

@@ -11,6 +11,11 @@ assert(js.includes("localStorage.setItem(\"hl-invoices\""), "orders should be sa
 assert(js.includes("dateInput.min"), "minimum order date should be enforced");
 assert(js.includes("dateInput.max"), "maximum order date should be enforced");
 assert(js.includes("Math.max(6, Math.min(30"), "portion limits should be enforced");
+assert(html.includes('id="heroImageAlt"'), "hero background image should have a text alternative");
+assert(html.includes('aria-describedby="heroImageAlt"'), "hero should reference the background image text alternative");
+assert(js.includes("function foodImageAlt"), "menu images should use intentional alt text");
+assert(js.includes('alt="${foodImageAlt(food)}"'), "food images should render descriptive alt attributes");
+assert(js.includes('<img src="${entry.image}" alt="">'), "cart thumbnails should be ignored by assistive technology");
 assert((js.match(/protein/g) || []).length >= 5, "protein category should be present");
 assert((js.match(/vegetarian/g) || []).length >= 3, "vegetarian category should be present");
 assert((js.match(/sides/g) || []).length >= 2, "sides category should be present");
