@@ -61,11 +61,11 @@
 
         <div class="notice" id="dateNotice" role="status" aria-live="polite"></div>
 
-        <div class="menu-toolbar" aria-label="Menu category filters">
-          <button class="chip active" type="button" data-filter="all">All</button>
-          <button class="chip" type="button" data-filter="protein">Protein</button>
-          <button class="chip" type="button" data-filter="vegetarian">Vegetarian</button>
-          <button class="chip" type="button" data-filter="sides">Sides</button>
+        <div class="menu-toolbar" role="group" aria-label="Menu category filters">
+          <button class="chip active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="protein" aria-pressed="false">Protein</button>
+          <button class="chip" type="button" data-filter="vegetarian" aria-pressed="false">Vegetarian</button>
+          <button class="chip" type="button" data-filter="sides" aria-pressed="false">Sides</button>
         </div>
 
         <div class="menu-groups" id="menuGroups"></div>
@@ -78,11 +78,11 @@
           <p>Hearth & Ladle is a fictional neighborhood catering service built around homestyle meals, careful prep, and simple pickup logistics. Menus rotate daily so regular customers can plan weekday lunches, celebrations, and family gatherings without starting from scratch.</p>
           <p>Every order is cooked in family-style trays and packed with reheating notes. Dummy content is used for now so the layout and order flow are ready for real dishes later.</p>
         </div>
-        <div class="about-stats" aria-label="Business highlights">
-          <div><strong>7</strong><span>Daily menus</span></div>
-          <div><strong>10</strong><span>Items per day</span></div>
-          <div><strong>6-30</strong><span>Guest portions</span></div>
-        </div>
+        <dl class="about-stats" aria-label="Business highlights">
+          <div><dt><strong>7</strong></dt><dd>Daily menus</dd></div>
+          <div><dt><strong>10</strong></dt><dd>Items per day</dd></div>
+          <div><dt><strong>6-30</strong></dt><dd>Guest portions</dd></div>
+        </dl>
       </section>
 
       <section class="section contact-section" id="contact" aria-labelledby="contactTitle">

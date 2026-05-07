@@ -155,11 +155,16 @@ function renderFoodCard(food) {
       <img src="${food.image}" alt="${foodImageAlt(food)}">
       <div class="food-body">
         <h3>${food.name}</h3>
-        <div class="food-meta">
-          <span>${money(food.price)}</span>
-          <span aria-hidden="true">.</span>
-          <span>${food.quantity}</span>
-        </div>
+        <dl class="food-meta">
+          <div>
+            <dt class="sr-only">Price</dt>
+            <dd>${money(food.price)}</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Serving size</dt>
+            <dd>${food.quantity}</dd>
+          </div>
+        </dl>
         <div class="food-actions">
           <button class="small-button" type="button" data-details="${food.id}">Details</button>
           <button class="small-button add" type="button" data-add="${food.id}">Add</button>
@@ -182,10 +187,21 @@ function openDetails(id) {
       <div class="dialog-body">
         <p class="eyebrow">${food.category}</p>
         <h2 id="dialogTitle">${food.name}</h2>
-        <p><strong>${money(food.price)}</strong> / ${food.quantity}</p>
+        <dl class="food-meta detail-meta">
+          <div>
+            <dt>Price</dt>
+            <dd>${money(food.price)}</dd>
+          </div>
+          <div>
+            <dt>Serving size</dt>
+            <dd>${food.quantity}</dd>
+          </div>
+        </dl>
         <p>${food.description}</p>
         <h3>Ingredients</h3>
-        <p>${food.ingredients.join(", ")}</p>
+        <ul class="ingredient-list">
+          ${food.ingredients.map((ingredient) => `<li>${ingredient}</li>`).join("")}
+        </ul>
         <table class="nutrition">
           <caption class="sr-only">Nutrition facts for ${food.name}</caption>
           <thead>
@@ -244,7 +260,16 @@ function renderCart() {
       <img src="${entry.image}" alt="">
       <div>
         <h3>${entry.name}</h3>
-        <p>${formatDate(entry.pickupDate)} . ${money(entry.price)} per 6 people</p>
+        <dl class="cart-item-meta">
+          <div>
+            <dt class="sr-only">Pickup date</dt>
+            <dd>${formatDate(entry.pickupDate)}</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Price</dt>
+            <dd>${money(entry.price)} per 6 people</dd>
+          </div>
+        </dl>
         <div class="quantity-row">
           <label>
             <span class="sr-only">Portions for ${entry.name}</span>
@@ -258,9 +283,11 @@ function renderCart() {
 
   const totals = cartTotals();
   cartSummary.innerHTML = `
-    <div><span>Subtotal</span><span>${money(totals.subtotal)}</span></div>
-    <div><span>Service estimate</span><span>${money(totals.service)}</span></div>
-    <div><span>Total</span><span>${money(totals.total)}</span></div>
+    <dl>
+      <div><dt>Subtotal</dt><dd>${money(totals.subtotal)}</dd></div>
+      <div><dt>Service estimate</dt><dd>${money(totals.service)}</dd></div>
+      <div><dt>Total</dt><dd>${money(totals.total)}</dd></div>
+    </dl>
   `;
 }
 
@@ -351,7 +378,11 @@ function bindEvents() {
   document.querySelectorAll("[data-filter]").forEach((button) => {
     button.addEventListener("click", () => {
       state.activeFilter = button.dataset.filter;
-      document.querySelectorAll("[data-filter]").forEach((chip) => chip.classList.toggle("active", chip === button));
+      document.querySelectorAll("[data-filter]").forEach((chip) => {
+        const isActive = chip === button;
+        chip.classList.toggle("active", isActive);
+        chip.setAttribute("aria-pressed", String(isActive));
+      });
       renderMenu();
     });
   });
