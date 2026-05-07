@@ -118,6 +118,7 @@ function item(id, category, name, price, quantity, image) {
     price,
     quantity,
     image,
+    altText: `${name} prepared as a pickup catering tray`,
     description: `${name} is prepared in small batches with balanced seasoning and packed for easy pickup service.`,
     ingredients: buildIngredients(category, name),
     nutrition: {
@@ -156,8 +157,8 @@ function renderMenu() {
 
 function foodCard(food) {
   return `
-    <article class="food-card">
-      <img src="${food.image}" alt="${food.name}" />
+      <article class="food-card">
+      <img src="${food.image}" alt="${food.altText}" />
       <div class="food-card-body">
         <span class="tag">${food.category}</span>
         <h3>${food.name}</h3>
@@ -179,7 +180,7 @@ function showItemDetail(id) {
   if (!food) return;
   const nutritionRows = Object.entries(food.nutrition).map(([label, value]) => `<tr><th>${label}</th><td>${value}</td></tr>`).join("");
   itemDetail.innerHTML = `
-    <img class="detail-image" src="${food.image}" alt="${food.name}" />
+    <img class="detail-image" src="${food.image}" alt="${food.altText}" />
     <div class="detail-heading">
       <div>
         <span class="tag">${food.category}</span>
@@ -231,7 +232,7 @@ function renderCart() {
     const lineTotal = food.price * (cartItem.portions / 6);
     return `
       <article class="cart-item">
-        <img src="${food.image}" alt="${food.name}" />
+        <img src="${food.image}" alt="" aria-hidden="true" />
         <div>
           <h3>${food.name}</h3>
           <p class="form-note">${formatDisplayDate(cartItem.date)} pickup, $${food.price.toFixed(2)} per 6 portions</p>

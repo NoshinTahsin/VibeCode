@@ -21,4 +21,15 @@ if (missingDays.length) {
   }
 });
 
+[
+  'alt="Prepared catering dishes arranged on a kitchen table"',
+  'aria-hidden="true">G&G',
+  'alt="" aria-hidden="true"',
+  "altText:"
+].forEach((snippet) => {
+  if (!html.includes(snippet) && !app.includes(snippet)) {
+    throw new Error(`Missing non-text content accessibility snippet: ${snippet}`);
+  }
+});
+
 console.log("Static catering site checks passed.");
