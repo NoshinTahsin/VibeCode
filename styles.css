@@ -263,6 +263,9 @@ textarea {
 }
 
 .menu-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
@@ -339,6 +342,9 @@ textarea {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .contact-methods a {
@@ -354,6 +360,22 @@ textarea {
   display: grid;
   max-width: 780px;
   gap: 14px;
+}
+
+fieldset {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  padding: 0 0 8px;
+  color: var(--ink);
+  font-weight: 900;
+  grid-column: 1 / -1;
 }
 
 .cart-drawer {
@@ -390,6 +412,8 @@ textarea {
   display: grid;
   gap: 12px;
   margin: 20px 0;
+  padding: 0;
+  list-style: none;
 }
 
 .cart-item {
@@ -445,6 +469,13 @@ textarea {
 .summary-row {
   display: flex;
   justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+}
+
+.summary-row dt,
+.summary-row dd {
+  margin: 0;
 }
 
 .checkout-form {
@@ -506,6 +537,12 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 12px 0 18px;
+}
+
+caption {
+  padding: 0 0 8px;
+  text-align: left;
+  font-weight: 900;
 }
 
 th,

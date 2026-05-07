@@ -32,4 +32,25 @@ if (missingDays.length) {
   }
 });
 
+[
+  'role="tab"',
+  'role="tabpanel"',
+  'aria-controls="menu-panel"',
+  'tabindex="-1"',
+  "selectCategoryTab",
+  "<fieldset",
+  "<legend>",
+  'aria-label="Cart items"',
+  'aria-label="Cart totals"',
+  "<caption>",
+  'scope="row"',
+  'scope="col"',
+  "<dt>",
+  "<dd>"
+].forEach((snippet) => {
+  if (!html.includes(snippet) && !app.includes(snippet)) {
+    throw new Error(`Missing info and relationships snippet: ${snippet}`);
+  }
+});
+
 console.log("Static catering site checks passed.");

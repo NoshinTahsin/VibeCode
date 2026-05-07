@@ -61,6 +61,7 @@ const state = {
 
 const dateInput = document.querySelector("#pickup-date");
 const menuGrid = document.querySelector("#menu-grid");
+const menuPanel = document.querySelector("#menu-panel");
 const menuStatus = document.querySelector("#menu-status");
 const cartDrawer = document.querySelector("#cart-drawer");
 const cartItems = document.querySelector("#cart-items");
@@ -89,11 +90,23 @@ function init() {
     renderCart();
   });
 
-  document.querySelectorAll("[data-category]").forEach((button) => {
+  const categoryTabs = Array.from(document.querySelectorAll("[data-category]"));
+  categoryTabs.forEach((button) => {
     button.addEventListener("click", () => {
-      state.category = button.dataset.category;
-      document.querySelectorAll("[data-category]").forEach((tab) => tab.classList.toggle("active", tab === button));
-      renderMenu();
+      selectCategoryTab(button);
+    });
+    button.addEventListener("keydown", (event) => {
+      const currentIndex = categoryTabs.indexOf(button);
+      let nextIndex = currentIndex;
+      if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % categoryTabs.length;
+      if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + categoryTabs.length) % categoryTabs.length;
+      if (event.key === "Home") nextIndex = 0;
+      if (event.key === "End") nextIndex = categoryTabs.length - 1;
+      if (nextIndex !== currentIndex) {
+        event.preventDefault();
+        categoryTabs[nextIndex].focus();
+        selectCategoryTab(categoryTabs[nextIndex]);
+      }
     });
   });
 
@@ -108,6 +121,18 @@ function init() {
 
   renderMenu();
   renderCart();
+}
+
+function selectCategoryTab(button) {
+  state.category = button.dataset.category;
+  document.querySelectorAll("[data-category]").forEach((tab) => {
+    const active = tab === button;
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-selected", active.toString());
+    tab.setAttribute("tabindex", active ? "0" : "-1");
+  });
+  menuPanel.setAttribute("aria-labelledby", button.id);
+  renderMenu();
 }
 
 function item(id, category, name, price, quantity, image) {
@@ -157,41 +182,46 @@ function renderMenu() {
 
 function foodCard(food) {
   return `
-      <article class="food-card">
-      <img src="${food.image}" alt="${food.altText}" />
-      <div class="food-card-body">
-        <span class="tag">${food.category}</span>
-        <h3>${food.name}</h3>
-        <div class="food-meta">
-          <span>$${food.price.toFixed(2)}</span>
-          <span>${food.quantity}</span>
+    <li>
+      <article class="food-card" aria-labelledby="food-${food.id}-title">
+        <img src="${food.image}" alt="${food.altText}" />
+        <div class="food-card-body">
+          <span class="tag">${food.category}</span>
+          <h3 id="food-${food.id}-title">${food.name}</h3>
+          <div class="food-meta">
+            <span>$${food.price.toFixed(2)}</span>
+            <span>${food.quantity}</span>
+          </div>
+          <div class="card-actions">
+            <button class="button secondary" type="button" data-detail="${food.id}">Details</button>
+            <button class="button primary" type="button" data-add="${food.id}">Add to cart</button>
+          </div>
         </div>
-        <div class="card-actions">
-          <button class="button secondary" type="button" data-detail="${food.id}">Details</button>
-          <button class="button primary" type="button" data-add="${food.id}">Add to cart</button>
-        </div>
-      </div>
-    </article>
+      </article>
+    </li>
   `;
 }
 
 function showItemDetail(id) {
   const food = findFood(id);
   if (!food) return;
-  const nutritionRows = Object.entries(food.nutrition).map(([label, value]) => `<tr><th>${label}</th><td>${value}</td></tr>`).join("");
+  const nutritionRows = Object.entries(food.nutrition).map(([label, value]) => `<tr><th scope="row">${label}</th><td>${value}</td></tr>`).join("");
   itemDetail.innerHTML = `
     <img class="detail-image" src="${food.image}" alt="${food.altText}" />
     <div class="detail-heading">
       <div>
         <span class="tag">${food.category}</span>
-        <h2>${food.name}</h2>
+        <h2 id="item-detail-title">${food.name}</h2>
       </div>
       <button class="icon-button" type="button" data-close-detail aria-label="Close details">x</button>
     </div>
     <p>${food.description}</p>
     <p><strong>Ingredients:</strong> ${food.ingredients}</p>
     <h3>Nutrition facts per serving</h3>
-    <table>${nutritionRows}</table>
+    <table>
+      <caption>Nutrition facts for ${food.name} per serving</caption>
+      <tbody>${nutritionRows}</tbody>
+    </table>
     <button class="button primary full" type="button" data-add-detail="${food.id}">Add to cart</button>
   `;
   itemDetail.querySelector("[data-close-detail]").addEventListener("click", () => itemDialog.close());
@@ -222,7 +252,7 @@ function renderCart() {
   saveCart();
   cartCount.textContent = state.cart.length;
   if (!state.cart.length) {
-    cartItems.innerHTML = `<p class="form-note">Your cart is empty. Add items from the menu to begin an order.</p>`;
+    cartItems.innerHTML = `<li><p class="form-note">Your cart is empty. Add items from the menu to begin an order.</p></li>`;
     cartSummary.innerHTML = "";
     return;
   }
@@ -230,11 +260,13 @@ function renderCart() {
   cartItems.innerHTML = state.cart.map((cartItem) => {
     const food = findFood(cartItem.id, cartItem.date);
     const lineTotal = food.price * (cartItem.portions / 6);
+    const cartTitleId = `cart-${cartItem.key.replace(/[^a-zA-Z0-9]/g, "-")}-title`;
     return `
-      <article class="cart-item">
+      <li>
+      <article class="cart-item" aria-labelledby="${cartTitleId}">
         <img src="${food.image}" alt="" aria-hidden="true" />
         <div>
-          <h3>${food.name}</h3>
+          <h3 id="${cartTitleId}">${food.name}</h3>
           <p class="form-note">${formatDisplayDate(cartItem.date)} pickup, $${food.price.toFixed(2)} per 6 portions</p>
           <div class="cart-controls">
             <label>
@@ -246,6 +278,7 @@ function renderCart() {
           </div>
         </div>
       </article>
+      </li>
     `;
   }).join("");
 
@@ -260,9 +293,9 @@ function renderCart() {
   const service = subtotal * 0.08;
   const total = subtotal + service;
   cartSummary.innerHTML = `
-    <div class="summary-row"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
-    <div class="summary-row"><span>Packaging/service estimate</span><span>$${service.toFixed(2)}</span></div>
-    <div class="summary-row"><span>Total</span><span>$${total.toFixed(2)}</span></div>
+    <div class="summary-row"><dt>Subtotal</dt><dd>$${subtotal.toFixed(2)}</dd></div>
+    <div class="summary-row"><dt>Packaging/service estimate</dt><dd>$${service.toFixed(2)}</dd></div>
+    <div class="summary-row"><dt>Total</dt><dd>$${total.toFixed(2)}</dd></div>
   `;
 }
 
@@ -330,14 +363,15 @@ function showInvoice(invoice) {
     <div class="detail-heading">
       <div>
         <p class="eyebrow">Invoice</p>
-        <h2 class="invoice-number">${invoice.id}</h2>
+        <h2 class="invoice-number" id="invoice-title">${invoice.id}</h2>
       </div>
       <button class="icon-button" type="button" data-close-invoice aria-label="Close invoice">x</button>
     </div>
     <p><strong>Customer:</strong> ${invoice.customer.customerName} | ${invoice.customer.phone} | ${invoice.customer.email}</p>
     <p><strong>Pickup time:</strong> ${invoice.customer.pickupTime}</p>
     <table>
-      <thead><tr><th>Item</th><th>Date</th><th>Portions</th><th>Total</th></tr></thead>
+      <caption>Invoice line items</caption>
+      <thead><tr><th scope="col">Item</th><th scope="col">Date</th><th scope="col">Portions</th><th scope="col">Total</th></tr></thead>
       <tbody>
         ${invoice.lines.map((line) => `<tr><td>${line.name}</td><td>${formatDisplayDate(line.date)}</td><td>${line.portions}</td><td>$${line.total.toFixed(2)}</td></tr>`).join("")}
       </tbody>

@@ -56,12 +56,14 @@
 
         <div class="menu-status" id="menu-status" role="status"></div>
         <div class="category-tabs" role="tablist" aria-label="Menu categories">
-          <button class="active" type="button" data-category="all">All</button>
-          <button type="button" data-category="protein">Protein</button>
-          <button type="button" data-category="vegetarian">Vegetarian</button>
-          <button type="button" data-category="sides">Sides</button>
+          <button class="active" id="tab-all" type="button" role="tab" aria-selected="true" aria-controls="menu-panel" tabindex="0" data-category="all">All</button>
+          <button id="tab-protein" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" tabindex="-1" data-category="protein">Protein</button>
+          <button id="tab-vegetarian" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" tabindex="-1" data-category="vegetarian">Vegetarian</button>
+          <button id="tab-sides" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" tabindex="-1" data-category="sides">Sides</button>
         </div>
-        <div class="menu-grid" id="menu-grid"></div>
+        <div id="menu-panel" role="tabpanel" aria-labelledby="tab-all">
+          <ul class="menu-grid" id="menu-grid"></ul>
+        </div>
       </section>
 
       <section class="about-section" id="about" aria-labelledby="about-title">
@@ -91,25 +93,28 @@
             <p class="eyebrow">Contact</p>
             <h2 id="contact-title">Ask about pickup, allergies, or custom trays.</h2>
           </div>
-          <div class="contact-methods">
-            <a href="tel:+15550142684">(555) 014-2684</a>
-            <a href="mailto:hello@gathergarnish.example">hello@gathergarnish.example</a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-          </div>
+          <ul class="contact-methods" aria-label="Owner contact methods">
+            <li><a href="tel:+15550142684">(555) 014-2684</a></li>
+            <li><a href="mailto:hello@gathergarnish.example">hello@gathergarnish.example</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></li>
+          </ul>
         </div>
         <form class="contact-form" id="contact-form">
-          <label>
-            Name
-            <input name="name" autocomplete="name" required />
-          </label>
-          <label>
-            Email
-            <input name="email" type="email" autocomplete="email" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows="5" required></textarea>
-          </label>
+          <fieldset>
+            <legend>Contact form</legend>
+            <label>
+              Name
+              <input name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+          </fieldset>
           <button class="button primary" type="submit">Send message</button>
           <p class="form-note" id="contact-note" role="status"></p>
         </form>
@@ -125,11 +130,12 @@
           </div>
           <button class="icon-button" type="button" data-close-cart aria-label="Close cart">x</button>
         </div>
-        <div id="cart-items" class="cart-items"></div>
-        <div class="cart-summary" id="cart-summary"></div>
+        <ul id="cart-items" class="cart-items" aria-label="Cart items"></ul>
+        <dl class="cart-summary" id="cart-summary" aria-label="Cart totals"></dl>
         <form class="checkout-form" id="checkout-form">
           <h3>Checkout</h3>
-          <div class="form-grid">
+          <fieldset class="form-grid">
+            <legend>Pickup and customer information</legend>
             <label>
               Pickup time
               <select name="pickupTime" required>
@@ -166,22 +172,25 @@
               Payment note
               <input name="paymentInfo" placeholder="No real payment is processed" />
             </label>
-          </div>
-          <label>
-            Special instructions
-            <textarea name="instructions" rows="3" placeholder="Allergies, pickup notes, packaging preferences"></textarea>
-          </label>
+          </fieldset>
+          <fieldset>
+            <legend>Order notes</legend>
+            <label>
+              Special instructions
+              <textarea name="instructions" rows="3" placeholder="Allergies, pickup notes, packaging preferences"></textarea>
+            </label>
+          </fieldset>
           <button class="button primary full" type="submit">Place order</button>
           <p class="form-note" id="checkout-note" role="status"></p>
         </form>
       </div>
     </aside>
 
-    <dialog id="item-dialog">
+    <dialog id="item-dialog" aria-labelledby="item-detail-title">
       <div class="dialog-body" id="item-detail"></div>
     </dialog>
 
-    <dialog id="invoice-dialog">
+    <dialog id="invoice-dialog" aria-labelledby="invoice-title">
       <div class="dialog-body invoice" id="invoice-detail"></div>
     </dialog>
 
