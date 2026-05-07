@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hearth & Ladle Catering</title>
+    <meta name="description" content="Mobile-friendly pickup catering menu and ordering for Hearth & Ladle Catering.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#menu" aria-label="Hearth and Ladle Catering home">
+          <span class="brand-mark" aria-hidden="true">H&L</span>
+          <span>Hearth &amp; Ladle</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+          <span class="menu-icon" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#cart">Cart <span id="cart-count" aria-label="0 items in cart">0</span></a></li>
+          <li><a href="#checkout">Checkout</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="menu" class="hero-section" aria-labelledby="menu-title">
+        <img class="hero-image" src="assets/catering-hero.png" alt="Prepared trays of homemade catering dishes arranged on a kitchen counter.">
+        <div class="hero-content">
+          <p class="eyebrow">Pickup catering made in small batches</p>
+          <h1 id="menu-title">Hearth &amp; Ladle Catering</h1>
+          <p>Choose a pickup date, browse that day&apos;s menu, and place a catering order for 6 to 30 people.</p>
+          <a class="button primary" href="#menu-browser">Browse menu</a>
+        </div>
+      </section>
+
+      <section id="menu-browser" class="section" aria-labelledby="browser-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Daily menu</p>
+            <h2 id="browser-title">Choose your pickup date</h2>
+          </div>
+          <p class="section-note">Orders open 2 days ahead and close 14 days ahead. Each weekday has a different menu.</p>
+        </div>
+
+        <form class="date-panel" aria-describedby="date-help">
+          <label for="pickup-date">Pickup date</label>
+          <div class="date-row">
+            <input id="pickup-date" name="pickup-date" type="date" autocomplete="off" required>
+            <button class="button" id="today-plus-two" type="button">Earliest date</button>
+          </div>
+          <p id="date-help" class="help-text">Select a date from the available range to update the menu.</p>
+          <p id="date-status" class="status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="menu-tools" aria-label="Menu view controls">
+          <a class="button quiet" href="#protein">Protein</a>
+          <a class="button quiet" href="#vegetarian">Vegetarian</a>
+          <a class="button quiet" href="#sides">Sides</a>
+        </div>
+
+        <div id="menu-list" class="menu-list"></div>
+      </section>
+
+      <section id="cart" class="section alt" aria-labelledby="cart-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Your order</p>
+            <h2 id="cart-title">Cart</h2>
+          </div>
+          <p class="section-note">Adjust serving quantities before checkout. Each item can serve 6 to 30 people.</p>
+        </div>
+        <div id="cart-panel" class="cart-panel" aria-live="polite"></div>
+      </section>
+
+      <section id="checkout" class="section" aria-labelledby="checkout-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Pickup details</p>
+            <h2 id="checkout-title">Checkout</h2>
+          </div>
+          <p class="section-note">Payment is collected at pickup. This demo records invoice details locally only.</p>
+        </div>
+
+        <form id="checkout-form" class="checkout-form">
+          <fieldset>
+            <legend>Contact information</legend>
+            <div class="form-grid">
+              <label for="customer-name">Full name
+                <input id="customer-name" name="name" type="text" autocomplete="name" required>
+              </label>
+              <label for="customer-email">Email
+                <input id="customer-email" name="email" type="email" autocomplete="email" required>
+              </label>
+              <label for="customer-phone">Phone
+                <input id="customer-phone" name="phone" type="tel" autocomplete="tel" required>
+              </label>
+              <label for="pickup-time">Pickup time
+                <select id="pickup-time" name="pickupTime" required>
+                  <option value="">Select a time</option>
+                  <option>10:00 AM</option>
+                  <option>11:30 AM</option>
+                  <option>1:00 PM</option>
+                  <option>3:30 PM</option>
+                  <option>5:00 PM</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment at pickup</legend>
+            <div class="radio-group" role="radiogroup" aria-label="Payment method">
+              <label><input type="radio" name="payment" value="Card at pickup" required> Card at pickup</label>
+              <label><input type="radio" name="payment" value="Cash at pickup"> Cash at pickup</label>
+              <label><input type="radio" name="payment" value="Digital invoice"> Digital invoice</label>
+            </div>
+            <label for="billing-note">Payment note
+              <input id="billing-note" name="billingNote" type="text" autocomplete="off" placeholder="Optional purchase order or billing note">
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Special instructions</legend>
+            <label for="instructions">Allergies, pickup notes, or packaging requests
+              <textarea id="instructions" name="instructions" rows="4" autocomplete="off"></textarea>
+            </label>
+          </fieldset>
+
+          <div class="checkout-actions">
+            <p id="checkout-status" class="status" role="status" aria-live="polite"></p>
+            <button class="button primary" type="submit">Place order</button>
+          </div>
+        </form>
+
+        <div id="invoice-output" class="invoice-output" aria-live="polite"></div>
+        <section class="saved-invoices" aria-labelledby="saved-title">
+          <div class="section-heading compact">
+            <h3 id="saved-title">Saved invoices on this device</h3>
+            <button id="clear-invoices" class="button quiet" type="button">Clear saved invoices</button>
+          </div>
+          <div id="invoice-list"></div>
+        </section>
+      </section>
+
+      <section id="about" class="section alt" aria-labelledby="about-title">
+        <div class="two-column">
+          <div>
+            <p class="eyebrow">About</p>
+            <h2 id="about-title">Homemade food, organized for easy pickup</h2>
+            <p>Hearth &amp; Ladle is a small neighborhood catering kitchen focused on comforting meals, clear ordering, and reliable pickup windows. Our dummy menu blends family-style proteins, vegetarian mains, and practical sides that travel well.</p>
+            <p>Actual recipes, sourcing notes, and owner story can replace this sample copy later without changing the ordering flow.</p>
+          </div>
+          <ul class="about-list" aria-label="Business highlights">
+            <li><strong>Pickup model:</strong> prepared meals packed by scheduled pickup time.</li>
+            <li><strong>Order window:</strong> 2 to 14 days before pickup.</li>
+            <li><strong>Serving range:</strong> 6 to 30 people per menu item.</li>
+            <li><strong>Menu rhythm:</strong> unique food lineup every day of the week.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="section" aria-labelledby="contact-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">Reach the kitchen</h2>
+          </div>
+          <p class="section-note">Use the sample contact channels or send an in-site message.</p>
+        </div>
+        <div class="contact-grid">
+          <address class="contact-card">
+            <strong>Hearth &amp; Ladle Catering</strong><br>
+            <a href="tel:+15550101234">(555) 010-1234</a><br>
+            <a href="mailto:orders@example.com">orders@example.com</a><br>
+            <a href="https://www.instagram.com/" rel="noreferrer">Instagram catering updates</a><br>
+            <a href="https://www.facebook.com/" rel="noreferrer">Facebook community page</a>
+          </address>
+          <form id="contact-form" class="contact-form">
+            <label for="contact-name">Name
+              <input id="contact-name" name="name" type="text" autocomplete="name" required>
+            </label>
+            <label for="contact-email">Email
+              <input id="contact-email" name="email" type="email" autocomplete="email" required>
+            </label>
+            <label for="contact-message">Message
+              <textarea id="contact-message" name="message" rows="5" required></textarea>
+            </label>
+            <div class="checkout-actions">
+              <p id="contact-status" class="status" role="status" aria-live="polite"></p>
+              <button class="button primary" type="submit">Send message</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="item-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-header">
+        <h2 id="dialog-title"></h2>
+        <button class="icon-button" type="button" id="close-dialog">Close</button>
+      </div>
+      <div id="dialog-content"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
