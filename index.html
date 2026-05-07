@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hearth & Ladle Catering</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#menu" aria-label="Hearth and Ladle home">
+          <span class="brand-mark" aria-hidden="true">H&L</span>
+          <span>
+            <strong>Hearth & Ladle</strong>
+            <small>Homemade pickup catering</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navLinks">
+          <span aria-hidden="true"></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="#menu">Menu</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <button class="cart-link" type="button" data-open-cart>
+            Cart <span id="cartCount" aria-label="0 items in cart">0</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-content">
+          <p class="eyebrow">Fresh family-style catering in small batches</p>
+          <h1 id="heroTitle">Hearth & Ladle Catering</h1>
+          <p>Choose a pickup date, build an order for 6 to 30 people, and get a local invoice the moment you place it.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#menu">Browse weekly menus</a>
+            <button class="button secondary" type="button" data-open-cart>View cart</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section menu-section" id="menu" aria-labelledby="menuTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Order window: 2 to 14 days ahead</p>
+            <h2 id="menuTitle">Menu by pickup date</h2>
+          </div>
+          <label class="date-picker">
+            <span>Pickup date</span>
+            <input id="dateInput" type="date" required>
+          </label>
+        </div>
+
+        <div class="notice" id="dateNotice" role="status" aria-live="polite"></div>
+
+        <div class="menu-toolbar" aria-label="Menu category filters">
+          <button class="chip active" type="button" data-filter="all">All</button>
+          <button class="chip" type="button" data-filter="protein">Protein</button>
+          <button class="chip" type="button" data-filter="vegetarian">Vegetarian</button>
+          <button class="chip" type="button" data-filter="sides">Sides</button>
+        </div>
+
+        <div class="menu-groups" id="menuGroups"></div>
+      </section>
+
+      <section class="section about-section" id="about" aria-labelledby="aboutTitle">
+        <div class="about-copy">
+          <p class="eyebrow">About the kitchen</p>
+          <h2 id="aboutTitle">Comfort food prepared with market-fresh ingredients.</h2>
+          <p>Hearth & Ladle is a fictional neighborhood catering service built around homestyle meals, careful prep, and simple pickup logistics. Menus rotate daily so regular customers can plan weekday lunches, celebrations, and family gatherings without starting from scratch.</p>
+          <p>Every order is cooked in family-style trays and packed with reheating notes. Dummy content is used for now so the layout and order flow are ready for real dishes later.</p>
+        </div>
+        <div class="about-stats" aria-label="Business highlights">
+          <div><strong>7</strong><span>Daily menus</span></div>
+          <div><strong>10</strong><span>Items per day</span></div>
+          <div><strong>6-30</strong><span>Guest portions</span></div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact" aria-labelledby="contactTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Questions and custom notes</p>
+            <h2 id="contactTitle">Contact the owner</h2>
+          </div>
+        </div>
+        <div class="contact-grid">
+          <address class="contact-card">
+            <strong>Hearth & Ladle Catering</strong>
+            <a href="tel:+15550148327">(555) 014-8327</a>
+            <a href="mailto:hello@hearthandladle.example">hello@hearthandladle.example</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
+          </address>
+          <form class="contact-form" id="contactForm">
+            <label>
+              <span>Name</span>
+              <input name="name" autocomplete="name" required>
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+            <button class="button primary" type="submit">Send message</button>
+            <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="item-dialog" id="itemDialog" aria-labelledby="dialogTitle">
+      <button class="icon-close" type="button" data-close-dialog aria-label="Close item details">x</button>
+      <div id="dialogContent"></div>
+    </dialog>
+
+    <aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-hidden="true">
+      <div class="cart-panel" role="dialog" aria-modal="true">
+        <div class="cart-header">
+          <div>
+            <p class="eyebrow">Your order</p>
+            <h2 id="cartTitle">Cart</h2>
+          </div>
+          <button class="icon-close" type="button" data-close-cart aria-label="Close cart">x</button>
+        </div>
+
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-summary" id="cartSummary"></div>
+
+        <form class="checkout-form" id="checkoutForm">
+          <h3>Checkout details</h3>
+          <label>
+            <span>Pickup time</span>
+            <select name="pickupTime" required>
+              <option value="">Choose a time</option>
+              <option>10:00 AM</option>
+              <option>11:30 AM</option>
+              <option>1:00 PM</option>
+              <option>3:30 PM</option>
+              <option>5:00 PM</option>
+            </select>
+          </label>
+          <label>
+            <span>Name</span>
+            <input name="customerName" autocomplete="name" required>
+          </label>
+          <label>
+            <span>Phone</span>
+            <input name="phone" type="tel" autocomplete="tel" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <fieldset>
+            <legend>Payment method</legend>
+            <label><input type="radio" name="payment" value="Pay at pickup" required> Pay at pickup</label>
+            <label><input type="radio" name="payment" value="Card on file"> Card on file</label>
+            <label><input type="radio" name="payment" value="Invoice later"> Invoice later</label>
+          </fieldset>
+          <label>
+            <span>Payment notes</span>
+            <input name="paymentInfo" placeholder="Optional dummy card note or billing name">
+          </label>
+          <label>
+            <span>Special instructions</span>
+            <textarea name="instructions" rows="3" placeholder="Allergies, pickup notes, packaging requests"></textarea>
+          </label>
+          <button class="button primary full" type="submit">Place order</button>
+          <p class="form-status" id="checkoutStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </aside>
+
+    <section class="invoice-view" id="invoiceView" aria-labelledby="invoiceTitle" hidden>
+      <div class="invoice-card">
+        <button class="icon-close" type="button" data-close-invoice aria-label="Close invoice">x</button>
+        <div id="invoiceContent"></div>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
