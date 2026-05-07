@@ -94,6 +94,7 @@ const grandTotalNode = document.querySelector("#grandTotal");
 const itemDialog = document.querySelector("#itemDialog");
 const itemDetail = document.querySelector("#itemDetail");
 const checkoutForm = document.querySelector("#checkoutForm");
+const checkoutStatus = document.querySelector("#checkoutStatus");
 const invoiceSection = document.querySelector("#invoiceSection");
 const invoiceOutput = document.querySelector("#invoiceOutput");
 const invoiceArchive = document.querySelector("#invoiceArchive");
@@ -111,13 +112,16 @@ function init() {
   dateInput.addEventListener("change", () => {
     state.selectedDate = dateInput.value;
     renderMenu();
+    announceCheckout("");
   });
 
   document.querySelector("#clearCartBtn").addEventListener("click", clearCart);
   document.querySelector("#closeDialogBtn").addEventListener("click", () => itemDialog.close());
   document.querySelector("#printInvoiceBtn").addEventListener("click", () => window.print());
   checkoutForm.addEventListener("submit", placeOrder);
+  checkoutForm.addEventListener("invalid", handleCheckoutInvalid, true);
   contactForm.addEventListener("submit", submitContact);
+  contactForm.addEventListener("invalid", handleContactInvalid, true);
 }
 
 function item(id, category, name, price, quantity, image, description, ingredients, nutrition) {
@@ -139,6 +143,7 @@ function renderMenu() {
   const menu = menuTemplates[day] || [];
   const groups = ["Protein", "Vegetarian", "Sides"];
 
+  menuGrid.setAttribute("aria-busy", "true");
   menuGrid.innerHTML = groups
     .map((category) => {
       const items = menu.filter((food) => food.category === category);
@@ -152,6 +157,7 @@ function renderMenu() {
       `;
     })
     .join("");
+  menuGrid.setAttribute("aria-busy", "false");
 
   menuGrid.querySelectorAll("[data-add]").forEach((button) => {
     button.addEventListener("click", () => addToCart(button.dataset.add));
@@ -172,8 +178,8 @@ function renderFoodCard(food) {
           <span>${food.quantity}</span>
         </div>
         <div class="card-actions">
-          <button class="button ghost" type="button" data-detail="${food.id}">Details</button>
-          <button class="button primary" type="button" data-add="${food.id}">Add</button>
+          <button class="button ghost" type="button" data-detail="${food.id}" aria-label="View details for ${food.name}">Details</button>
+          <button class="button primary" type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add</button>
         </div>
       </div>
     </article>
@@ -189,7 +195,7 @@ function openDetails(id) {
       <img src="${food.image}" alt="${food.name}" />
       <div class="detail-copy">
         <p class="eyebrow">${food.category} - ${food.quantity}</p>
-        <h3>${food.name}</h3>
+        <h3 id="detailTitle">${food.name}</h3>
         <strong>${currency(food.price)}</strong>
         <p>${food.description}</p>
         <div>
@@ -199,6 +205,7 @@ function openDetails(id) {
         <div>
           <h4>Nutrition Facts</h4>
           <table>
+            <caption class="sr-only">Nutrition facts per serving for ${food.name}</caption>
             <tbody>
               <tr><th scope="row">Calories</th><td>${food.nutrition[0]}</td></tr>
               <tr><th scope="row">Protein</th><td>${food.nutrition[1]}</td></tr>
@@ -207,11 +214,12 @@ function openDetails(id) {
             </tbody>
           </table>
         </div>
-        <button class="button primary full" type="button" data-add="${food.id}">Add to Cart</button>
+        <button class="button primary full" type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add to Cart</button>
       </div>
     </div>
   `;
 
+  itemDialog.setAttribute("aria-labelledby", "detailTitle");
   itemDetail.querySelector("[data-add]").addEventListener("click", () => {
     addToCart(food.id);
     itemDialog.close();
@@ -238,6 +246,7 @@ function addToCart(id) {
   }
   saveCart();
   renderCart();
+  announceCheckout(`${food.name} added to cart.`);
 }
 
 function renderCart() {
@@ -258,7 +267,9 @@ function renderCart() {
   });
 
   const totals = calculateTotals();
-  cartCount.textContent = state.cart.reduce((sum, entry) => sum + entry.count, 0);
+  const itemCount = state.cart.reduce((sum, entry) => sum + entry.count, 0);
+  cartCount.textContent = itemCount;
+  cartCount.setAttribute("aria-label", `${itemCount} items in cart`);
   subtotalNode.textContent = currency(totals.subtotal);
   serviceFeeNode.textContent = currency(totals.fee);
   grandTotalNode.textContent = currency(totals.total);
@@ -276,11 +287,11 @@ function renderCartRow(entry, index) {
         <strong>${currency(food.price * entry.count)}</strong>
       </div>
       <div class="quantity-control" aria-label="Quantity for ${food.name}">
-        <button type="button" data-decrease="${index}" aria-label="Decrease quantity">-</button>
-        <span>${entry.count}</span>
-        <button type="button" data-increase="${index}" aria-label="Increase quantity">+</button>
+        <button type="button" data-decrease="${index}" aria-label="Decrease quantity of ${food.name}">-</button>
+        <span aria-live="polite" aria-label="Current quantity">${entry.count}</span>
+        <button type="button" data-increase="${index}" aria-label="Increase quantity of ${food.name}">+</button>
       </div>
-      <button class="button ghost" type="button" data-remove="${index}">Remove</button>
+      <button class="button ghost" type="button" data-remove="${index}" aria-label="Remove ${food.name} from cart">Remove</button>
     </article>
   `;
 }
@@ -288,35 +299,43 @@ function renderCartRow(entry, index) {
 function updateCart(index, change) {
   const entry = state.cart[Number(index)];
   if (!entry) return;
+  const food = findFood(entry.id, entry.date);
   entry.count += change;
   if (entry.count <= 0) state.cart.splice(Number(index), 1);
   saveCart();
   renderCart();
+  if (food) announceCheckout(`${food.name} quantity ${change > 0 ? "increased" : "decreased"}.`);
 }
 
 function removeCartItem(index) {
+  const entry = state.cart[Number(index)];
+  const food = entry ? findFood(entry.id, entry.date) : null;
   state.cart.splice(Number(index), 1);
   saveCart();
   renderCart();
+  if (food) announceCheckout(`${food.name} removed from cart.`);
 }
 
 function clearCart() {
   state.cart = [];
   saveCart();
   renderCart();
+  announceCheckout("Cart cleared.");
 }
 
 function placeOrder(event) {
   event.preventDefault();
   if (!state.cart.length) {
-    alert("Add at least one menu item before placing an order.");
+    announceCheckout("Add at least one menu item before placing an order.");
+    scrollToElement(document.querySelector("#menuTitle"));
     return;
   }
 
   const formData = new FormData(checkoutForm);
   const portions = Number(formData.get("portionSize"));
   if (portions < 6 || portions > 30) {
-    alert("Portions must be between 6 and 30 people.");
+    announceCheckout("Portions must be between 6 and 30 people.");
+    checkoutForm.elements.portionSize.focus();
     return;
   }
 
@@ -345,7 +364,9 @@ function placeOrder(event) {
   clearCart();
   checkoutForm.reset();
   invoiceSection.hidden = false;
-  invoiceSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  scrollToElement(invoiceSection);
+  invoiceSection.focus({ preventScroll: true });
+  announceCheckout(`Order placed. Invoice ${invoice.id} is ready.`);
 }
 
 function renderInvoice(invoice) {
@@ -396,7 +417,7 @@ function renderInvoiceArchive() {
             <strong>${invoice.id} - ${invoice.customer.name}</strong>
             <p>${formatDate(new Date(`${invoice.pickupDate}T00:00:00`))} at ${invoice.pickupTime} - ${currency(invoice.totals.total)}</p>
           </div>
-          <button class="button ghost" type="button" data-invoice="${index}">View</button>
+          <button class="button ghost" type="button" data-invoice="${index}" aria-label="View invoice ${invoice.id}">View</button>
         </article>
       `
     )
@@ -406,9 +427,20 @@ function renderInvoiceArchive() {
     button.addEventListener("click", () => {
       renderInvoice(state.invoices[Number(button.dataset.invoice)]);
       invoiceSection.hidden = false;
-      invoiceSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      scrollToElement(invoiceSection);
+      invoiceSection.focus({ preventScroll: true });
     });
   });
+}
+
+function announceCheckout(message) {
+  checkoutStatus.textContent = message;
+}
+
+function scrollToElement(element) {
+  if (!element) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  element.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 }
 
 function submitContact(event) {
@@ -422,6 +454,20 @@ function submitContact(event) {
   localStorage.setItem("harvestTableMessages", JSON.stringify(messages));
   contactForm.reset();
   contactStatus.textContent = "Message saved locally. Replace this with email delivery when a backend is added.";
+}
+
+function handleCheckoutInvalid(event) {
+  announceCheckout(`Please complete ${fieldName(event.target)} before placing the order.`);
+}
+
+function handleContactInvalid(event) {
+  contactStatus.textContent = `Please complete ${fieldName(event.target)} before sending your message.`;
+}
+
+function fieldName(field) {
+  const label = field.closest("label");
+  if (!label) return "the highlighted field";
+  return label.childNodes[0].textContent.trim().replace(" (required)", "").toLowerCase();
 }
 
 function calculateTotals() {

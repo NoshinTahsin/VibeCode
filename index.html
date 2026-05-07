@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Harvest Table Catering</title>
     <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=wcag-20260507" />
   </head>
   <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <header class="site-header">
       <a class="brand" href="#menu" aria-label="Harvest Table Catering home">
         <span class="brand-mark">HT</span>
@@ -24,7 +25,7 @@
       </nav>
     </header>
 
-    <main>
+    <main id="mainContent" tabindex="-1">
       <section class="hero" aria-labelledby="heroTitle">
         <img src="assets/catering-hero.png" alt="Prepared catering trays arranged in a bright kitchen" />
         <div class="hero-copy">
@@ -43,7 +44,7 @@
           </div>
           <div class="date-card">
             <label for="cateringDate">Pickup date</label>
-            <input id="cateringDate" type="date" />
+            <input id="cateringDate" type="date" aria-describedby="dateHelp" required />
             <span id="dateHelp"></span>
           </div>
         </div>
@@ -54,7 +55,7 @@
           <span>Each menu: 5 proteins, 3 vegetarian, 2 sides</span>
         </div>
 
-        <div id="menuGrid" class="menu-grid"></div>
+        <div id="menuGrid" class="menu-grid" aria-live="polite" aria-busy="false"></div>
       </section>
 
       <section id="cart" class="section cart-section" aria-labelledby="cartTitle">
@@ -63,42 +64,45 @@
             <p class="eyebrow">Review and adjust</p>
             <h2 id="cartTitle">Cart</h2>
           </div>
-          <button id="clearCartBtn" class="button ghost" type="button">Clear Cart</button>
+          <button id="clearCartBtn" class="button ghost" type="button" aria-describedby="cartTitle">Clear Cart</button>
         </div>
         <div class="cart-layout">
-          <div id="cartItems" class="cart-items"></div>
+          <div id="cartItems" class="cart-items" aria-live="polite"></div>
           <aside class="checkout-panel" aria-labelledby="checkoutTitle">
             <h3 id="checkoutTitle">Checkout</h3>
-            <div class="totals">
+            <div class="totals" aria-live="polite">
               <div><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
               <div><span>Service fee</span><strong id="serviceFee">$0.00</strong></div>
               <div><span>Total</span><strong id="grandTotal">$0.00</strong></div>
             </div>
             <form id="checkoutForm">
-              <div class="field-row">
+              <p id="checkoutStatus" class="form-status" aria-live="assertive"></p>
+              <fieldset class="field-row">
+                <legend>Pickup details</legend>
                 <label>
-                  Pickup time
+                  Pickup time (required)
                   <input name="pickupTime" type="time" min="09:00" max="18:00" required />
                 </label>
                 <label>
-                  Portions
-                  <input name="portionSize" type="number" min="6" max="30" value="6" required />
+                  Portions (required)
+                  <input name="portionSize" type="number" min="6" max="30" value="6" aria-describedby="portionHelp" required />
                 </label>
-              </div>
+                <span id="portionHelp" class="field-help">Enter a number from 6 to 30.</span>
+              </fieldset>
               <label>
-                Full name
+                Full name (required)
                 <input name="customerName" autocomplete="name" required />
               </label>
               <label>
-                Phone
+                Phone (required)
                 <input name="phone" type="tel" autocomplete="tel" required />
               </label>
               <label>
-                Email
+                Email (required)
                 <input name="email" type="email" autocomplete="email" required />
               </label>
               <label>
-                Payment method
+                Payment method (required)
                 <select name="paymentMethod" required>
                   <option value="">Select method</option>
                   <option>Pay at pickup</option>
@@ -108,11 +112,13 @@
               </label>
               <label>
                 Payment notes
-                <input name="paymentInfo" placeholder="Last 4, Venmo handle, or pay-on-pickup note" />
+                <span class="field-help">Last 4, Venmo handle, or pay-on-pickup note.</span>
+                <input name="paymentInfo" />
               </label>
               <label>
                 Special instructions
-                <textarea name="instructions" rows="4" placeholder="Allergies, timing notes, packaging requests"></textarea>
+                <span class="field-help">Allergies, timing notes, or packaging requests.</span>
+                <textarea name="instructions" rows="4"></textarea>
               </label>
               <button class="button primary full" type="submit">Place Order</button>
             </form>
@@ -120,7 +126,7 @@
         </div>
       </section>
 
-      <section id="invoiceSection" class="section invoice-section" aria-labelledby="invoiceTitle" hidden>
+      <section id="invoiceSection" class="section invoice-section" aria-labelledby="invoiceTitle" tabindex="-1" hidden>
         <div class="section-heading">
           <div>
             <p class="eyebrow">Order placed</p>
@@ -128,7 +134,7 @@
           </div>
           <button id="printInvoiceBtn" class="button ghost" type="button">Print Invoice</button>
         </div>
-        <div id="invoiceOutput" class="invoice"></div>
+        <div id="invoiceOutput" class="invoice" aria-live="polite"></div>
       </section>
 
       <section class="section archive-section" aria-labelledby="archiveTitle">
@@ -138,7 +144,7 @@
             <h2 id="archiveTitle">Saved Invoices</h2>
           </div>
         </div>
-        <div id="invoiceArchive" class="archive-list"></div>
+        <div id="invoiceArchive" class="archive-list" aria-live="polite"></div>
       </section>
 
       <section id="about" class="section about-section" aria-labelledby="aboutTitle">
@@ -170,23 +176,23 @@
           </div>
         </div>
         <div class="contact-layout">
-          <div class="contact-list">
+          <address class="contact-list">
             <a href="tel:+15550193742">Phone: (555) 019-3742</a>
             <a href="mailto:hello@harvesttable.example">hello@harvesttable.example</a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
-          </div>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram <span class="sr-only">(opens in a new tab)</span></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook <span class="sr-only">(opens in a new tab)</span></a>
+          </address>
           <form id="contactForm" class="contact-form">
             <label>
-              Name
+              Name (required)
               <input name="name" required />
             </label>
             <label>
-              Email
+              Email (required)
               <input name="email" type="email" required />
             </label>
             <label>
-              Message
+              Message (required)
               <textarea name="message" rows="5" required></textarea>
             </label>
             <button class="button primary" type="submit">Send Message</button>
@@ -196,8 +202,8 @@
       </section>
     </main>
 
-    <dialog id="itemDialog" class="item-dialog">
-      <button id="closeDialogBtn" class="icon-close" type="button" aria-label="Close item details">x</button>
+    <dialog id="itemDialog" class="item-dialog" aria-label="Food item details">
+      <button id="closeDialogBtn" class="icon-close" type="button">Close</button>
       <div id="itemDetail"></div>
     </dialog>
 
@@ -206,6 +212,6 @@
       <span>Invoices are saved locally in this browser for later owner review.</span>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=wcag-20260507"></script>
   </body>
 </html>
