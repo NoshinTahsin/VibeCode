@@ -1,0 +1,24 @@
+const fs = require("fs");
+const app = fs.readFileSync("app.js", "utf8");
+const html = fs.readFileSync("index.html", "utf8");
+
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const missingDays = days.filter((day) => !app.includes(`${day}:`));
+
+if (missingDays.length) {
+  throw new Error(`Missing weekday menus: ${missingDays.join(", ")}`);
+}
+
+["pickup-date", "menu-grid", "cart-drawer", "checkout-form", "invoice-dialog", "contact-form"].forEach((id) => {
+  if (!html.includes(`id="${id}"`)) {
+    throw new Error(`Missing required element #${id}`);
+  }
+});
+
+["min=\"6\"", "max=\"30\"", "localStorage.setItem(\"ggInvoices\"", "dateInput.min", "dateInput.max"].forEach((snippet) => {
+  if (!app.includes(snippet)) {
+    throw new Error(`Missing required logic snippet: ${snippet}`);
+  }
+});
+
+console.log("Static catering site checks passed.");
