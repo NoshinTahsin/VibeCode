@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gather & Ladle Catering | Pickup Orders</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Gather & Ladle home">
+      <span class="brand-mark" aria-hidden="true">G&L</span>
+      <span>
+        <strong>Gather & Ladle</strong>
+        <small>Homemade catering for pickup</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="cart-button" id="cartButton" type="button" aria-label="Open cart, 0 portions" aria-controls="cartPanel" aria-expanded="false">
+        Cart <span id="cartCount" aria-hidden="true">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="mainContent" tabindex="-1">
+    <section class="hero" id="home" aria-labelledby="homeTitle">
+      <div class="hero-content">
+        <p class="eyebrow">Fresh weekly menus</p>
+        <h1 id="homeTitle">Gather & Ladle Catering</h1>
+        <p>Small-batch family meals, packed hot or chilled, ready for your scheduled pickup.</p>
+        <a class="primary-link" href="#menu">Start an order</a>
+      </div>
+    </section>
+
+    <section class="order-panel" id="menu" aria-labelledby="dateTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Order window: 2 to 14 days ahead</p>
+        <h2 id="dateTitle">Choose Your Pickup Date</h2>
+        <p id="dateHelp"></p>
+      </div>
+      <div class="date-bar">
+        <label for="cateringDate">Pickup date</label>
+        <input id="cateringDate" type="date" required aria-describedby="dateHelp selectedDay">
+        <button class="secondary-button" id="viewMenuButton" type="button">View menu for selected date</button>
+        <p id="selectedDay" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="menu-layout" aria-labelledby="menuTitle">
+      <div class="menu-area">
+        <div class="menu-toolbar">
+          <div>
+            <h2 id="menuTitle">Menu</h2>
+            <p id="menuSummary"></p>
+          </div>
+          <div class="portion-control">
+            <label for="defaultPortions">Default portions</label>
+            <input id="defaultPortions" type="number" min="6" max="30" value="6" aria-describedby="portionHelp">
+            <p id="portionHelp">Choose 6 to 30 portions per item.</p>
+          </div>
+        </div>
+        <div id="menuGroups" class="menu-groups"></div>
+      </div>
+
+      <aside class="cart-panel" id="cartPanel" aria-labelledby="cartTitle">
+        <div class="cart-header">
+          <h2 id="cartTitle">Your Cart</h2>
+          <button class="icon-button" id="closeCart" type="button" aria-label="Close cart">Close</button>
+        </div>
+        <p id="cartDate" role="status" aria-live="polite"></p>
+        <div id="cartItems" class="cart-items" aria-live="polite"></div>
+        <div class="cart-total" aria-live="polite">
+          <span>Total</span>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="primary-button" id="checkoutButton" type="button">Checkout</button>
+      </aside>
+    </section>
+
+    <section class="checkout-section" id="checkout" hidden aria-labelledby="checkoutTitle" tabindex="-1">
+      <div class="section-heading">
+        <p class="eyebrow">Pickup details</p>
+        <h2 id="checkoutTitle">Checkout</h2>
+        <p>Required fields are marked with "required." No real payment is processed.</p>
+      </div>
+      <form id="checkoutForm" class="checkout-form">
+        <fieldset>
+          <legend>Contact</legend>
+          <label for="customerName">Name <span aria-hidden="true">(required)</span></label>
+          <input id="customerName" name="name" required autocomplete="name">
+          <label for="customerEmail">Email <span aria-hidden="true">(required)</span></label>
+          <input id="customerEmail" name="email" type="email" required autocomplete="email">
+          <label for="customerPhone">Phone <span aria-hidden="true">(required)</span></label>
+          <input id="customerPhone" name="phone" required autocomplete="tel">
+        </fieldset>
+        <fieldset>
+          <legend>Pickup</legend>
+          <label for="guestCount">Guest count <span aria-hidden="true">(required)</span></label>
+          <input id="guestCount" name="guestCount" type="number" min="6" max="30" value="6" required aria-describedby="guestHelp">
+          <p id="guestHelp">Enter a number from 6 to 30.</p>
+          <label for="pickupTime">Pickup time <span aria-hidden="true">(required)</span></label>
+          <select id="pickupTime" name="pickupTime" required>
+            <option value="">Select a time</option>
+            <option>10:00 AM</option>
+            <option>11:30 AM</option>
+            <option>1:00 PM</option>
+            <option>3:30 PM</option>
+            <option>5:00 PM</option>
+          </select>
+          <label for="instructions">Special instructions</label>
+          <textarea id="instructions" name="instructions" rows="4" placeholder="Allergies, packaging notes, curbside pickup details"></textarea>
+        </fieldset>
+        <fieldset>
+          <legend>Payment</legend>
+          <label for="paymentMethod">Payment method <span aria-hidden="true">(required)</span></label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="">Select a method</option>
+            <option>Pay at pickup</option>
+            <option>Card on file later</option>
+            <option>Venmo request</option>
+          </select>
+          <label for="paymentNote">Payment note</label>
+          <input id="paymentNote" name="paymentNote" placeholder="No real payment is processed">
+        </fieldset>
+        <button class="primary-button" type="submit">Place order</button>
+      </form>
+    </section>
+
+    <section class="invoice-section" id="invoiceSection" hidden aria-labelledby="invoiceTitle" tabindex="-1">
+      <div class="section-heading">
+        <p class="eyebrow">Order placed</p>
+        <h2 id="invoiceTitle">Invoice</h2>
+      </div>
+      <div id="invoiceOutput" class="invoice" aria-live="polite"></div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="aboutTitle">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 id="aboutTitle">Homemade meals for gatherings that need care.</h2>
+      </div>
+      <p>Gather & Ladle is a neighborhood catering kitchen focused on comforting food, clear pickup windows, and generous portions. Our dummy story for now: founder Maya cooks rotating menus inspired by weeknight family dinners, market produce, and dishes that travel beautifully.</p>
+      <p>Orders are prepared in small batches and packed by pickup time. Content, policies, and menu names are placeholders so you can replace them with the real business details later.</p>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contactTitle">Talk With The Kitchen</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Owner</h3>
+          <p>Maya Chen</p>
+          <p><a href="tel:+15550143027">Call Gather & Ladle at (555) 014-3027</a></p>
+          <p><a href="mailto:hello@gatherladle.example">Email hello@gatherladle.example</a></p>
+          <p><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Gather & Ladle Instagram</a> | <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Gather & Ladle Facebook</a></p>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <label for="contactName">Name <span aria-hidden="true">(required)</span></label>
+          <input id="contactName" name="contactName" required autocomplete="name">
+          <label for="contactEmail">Email <span aria-hidden="true">(required)</span></label>
+          <input id="contactEmail" name="contactEmail" type="email" required autocomplete="email">
+          <label for="contactMessage">Message <span aria-hidden="true">(required)</span></label>
+          <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+          <button class="secondary-button" type="submit">Send message</button>
+          <p id="contactStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-labelledby="footerTitle">
+    <h2 id="footerTitle">More Ways To Navigate</h2>
+    <nav aria-label="Footer">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#checkout">Checkout</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p id="pageLocation" aria-live="polite">Current section: Home</p>
+  </footer>
+
+  <dialog id="itemDialog" class="item-dialog" aria-label="Food item details">
+    <button class="icon-button dialog-close" id="dialogClose" type="button" aria-label="Close item details">Close</button>
+    <div id="itemDetails"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
