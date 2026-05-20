@@ -88,5 +88,196 @@ styles.css
 app.js
 
 
+Make the website WCAG 2.2 accessible by following Success Criteria 1.1.1 Non-text Content. https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html
+6:26 AM
+
+
+Worked for 44s
+I’ll use the WCAG page you linked as the source of truth, then inspect the site for images/icons/media that need text alternatives or hiding from assistive tech.
+
+
+Ran 2 commands, searched web 1 time
+The first search found a compact static site: index.html, styles.css, and app.js. My pattern tripped over PowerShell quoting, so I’m reading the relevant files directly and then I’ll patch the actual markup.
+
+
+Ran 3 commands
+The only meaningful 1.1.1 issue I found is in the generated food illustrations: they’re decorative, but the inline SVGs are exposed as images with an empty label before being nested in an aria-hidden wrapper. I’m tightening that markup so assistive tech can ignore the artwork cleanly while the actual menu item names and descriptions remain the text alternative.
+
+Edited 1 file
+I’ve made the SVG change. Now I’m doing a quick pass over the markup for remaining non-text content patterns: images, SVGs, media, canvases, image inputs, and ARIA labels.
+
+
+Ran 3 commands
+Updated app.js (line 153) for WCAG 2.2 SC 1.1.1.
+
+The generated food SVGs are decorative because the menu item name, description, ingredients, and nutrition are already available as text. I changed the SVG from an exposed empty role="img" to aria-hidden="true" focusable="false", matching the WCAG guidance that decorative non-text content should be ignored by assistive technology.
+
+Verified there are no <img>, media, canvas, iframe, or image input elements needing text alternatives. Source used: W3C Understanding SC 1.1.1 Non-text Content: https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html
+
+
+Edited app.js
++1
+-1
+Undo
+Review
+
+
+Now make it accessible following Success Criteria 1.3.1 Info and Relationships. https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html
+6:28 AM
+
+
+Worked for 55s
+I’ll use the W3C understanding doc you linked, then audit the existing structure for relationships that are currently only visual: grouped controls, generated cards, tables, headings, and form associations.
+
+Searched web 1 time
+The W3C guidance here is about preserving visual structure in code: headings, labels, groups, tables, lists, regions, and control relationships. I’m going to patch the generated UI where visual grouping currently isn’t as explicit programmatically.
+
+
+Ran 2 commands
+I found three worthwhile upgrades: make each generated menu card name its article from its heading, encode price/category as a description list instead of loose spans, and expose the cart quantity controls as a named group. I’m also tightening the invoice table so each order row has a row header.
+
+Edited 1 file
+The semantic markup is patched; I’m updating the CSS so the description list keeps the same compact visual layout without relying on non-semantic spans.
+
+Edited 1 file
+One CSS detail is worth correcting for accessibility robustness: display: contents can be spotty in accessibility trees, so I’m switching that wrapper styling to a normal flex layout.
+
+Edited 1 file
+Now I’m checking the resulting diff and scanning the page for the main 1.3.1 structures again: labels, fieldsets, headings, tables, and grouped controls.
+
+
+Ran 2 commands
+The diff is tidy and focused. I’m doing a quick JavaScript syntax check now, since these changes touch template literals in generated markup.
+
+Ran node --check app.js
+Implemented WCAG 2.2 SC 1.3.1 improvements.
+
+Changed:
+
+Menu cards now use aria-labelledby tied to each card heading.
+Price/category metadata is now a semantic <dl> instead of loose visual spans.
+Cart portion controls are exposed as a named role="group".
+Invoice order rows now use row headers with scope="row".
+Verified with node --check app.js.
+
+Source used: W3C Understanding SC 1.3.1 Info and Relationships: https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html
+
+
+Edited 2 files
++33
+-8
+Undo
+Review
+app.js
+styles.css
+
+Now make it accessible following Success Criteria 1.4.10 Reflow. https://www.w3.org/WAI/WCAG22/Understanding/reflow.html
+6:29 AM
+
+
+Worked for 1m 18s
+I’ll treat the W3C reflow page as the benchmark, then audit the layout for anything likely to force two-dimensional scrolling at narrow widths or 400% zoom equivalents.
+
+
+Ran 2 commands, searched web 1 time
+The main reflow risks are the data tables and a few flex/grid children that can resist shrinking when text gets long. I’m going to isolate tables in their own scroll containers, let text wrap more aggressively, and add small-screen safeguards so the page itself doesn’t require horizontal scrolling.
+
+
+Edited 2 files
+The reflow patch is in place. I’m checking syntax and the final diff now; if there’s a local browser test harness available I’ll use it, otherwise I’ll verify the responsive rules statically.
+
+
+Ran 3 commands
+There isn’t a Playwright CLI installed in this workspace, so I’ll avoid pulling in new tooling. I’m doing one more static pass for fixed-size pieces that could still exceed a 320px viewport.
+
+
+Ran 3 commands
+Implemented WCAG 2.2 SC 1.4.10 Reflow updates in styles.css (line 17) and app.js (line 257).
+
+Key changes:
+
+Wrapped nutrition and invoice tables in their own scrollable regions so table overflow stays local instead of forcing page-level two-dimensional scrolling.
+Added responsive wrapping safeguards for long text, labels, buttons, table cells, and links.
+Added min-width: 0 protections for flex/grid children that can otherwise resist shrinking.
+Kept dialogs and narrow layouts constrained to the viewport.
+Verified:
+
+node --check app.js
+git diff --check
+I couldn’t run a browser reflow test because Playwright isn’t installed in this workspace. Source used: https://www.w3.org/WAI/WCAG22/Understanding/reflow.html
+
+
+Edited 2 files
++63
+-18
+Undo
+Review
+app.js
+styles.css
+
+
+
+
+6:31 AM
+Now make it accessible following Success Criteria 4.1.2 Name, Role, Value. https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html
+
+Worked for 1m 13s
+I’ll use the W3C Name, Role, Value doc as the benchmark, then check the custom interactive pieces: cart drawer, nav toggle, cart count, generated buttons, dialogs, and scroll regions.
+
+Searched web 1 time
+The strongest 4.1.2 gap I see is the custom cart drawer/button pairing: the drawer dialog needs its own programmatic name, and the cart button should expose its dynamic “open cart / item count” state directly on the control. I’m patching that now.
+
+
+Edited 1 file, ran 2 commands
+The static markup now names the drawer dialog and cart button correctly. I’m updating the cart render code so the cart button’s accessible name changes whenever its value changes.
+
+Edited 1 file
+I’m also making the repeated generated controls more explicit: “Details,” “Add to cart,” and “Remove” all have names today, but adding item-specific accessible names makes the scripted controls clearer to assistive tech.
+
+Edited 1 file
+One last state detail: since the cart button controls a drawer, I’m exposing the open/closed state with aria-expanded and updating it when the drawer opens or closes.
+
+
+Edited 2 files
+The 4.1.2 changes are in. I’m running syntax and diff checks, plus a scan of ARIA-bearing elements to catch any obvious name/role/state mistakes.
+
+
+Ran 4 commands
+Implemented WCAG 2.2 SC 4.1.2 Name, Role, Value updates.
+
+Changed:
+
+Cart drawer dialog now has its own aria-labelledby name.
+Cart open button now exposes aria-controls, aria-expanded, and a dynamic aria-label with item/portion counts.
+Generated menu buttons now have item-specific accessible names like “View details for…” and “Add … to cart.”
+Cart remove buttons now identify the item being removed.
+Cart open/closed state is updated when the drawer opens and closes.
+Verified:
+
+node --check app.js
+git diff --check
+Source used: https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html
+
+
+Golden Hearth Catering
+Website
+Open
+
+Edited 2 files
++14
+-9
+Undo
+Review
+index.html
+app.js
+
+
+
+
+
+
+
+
+
 
 
