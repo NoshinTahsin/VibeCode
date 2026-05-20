@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Juniper Table Catering</title>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#menu" aria-label="Juniper Table home">
+        <span class="brand-mark">JT</span>
+        <span>
+          <strong>Juniper Table</strong>
+          <small>Homemade catering pickup</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="cart-link" href="#cart">Cart <span id="cartCount">0</span></a>
+      </nav>
+    </header>
+
+    <main id="app"></main>
+
+    <template id="menuTemplate">
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Prepared in small batches for scheduled pickup</p>
+          <h1>Homemade catering for the day your table needs it.</h1>
+          <p>Choose a pickup date, browse that day's menu, and build an order for 6 to 30 guests.</p>
+        </div>
+      </section>
+      <section class="planner">
+        <div>
+          <label for="cateringDate">Catering date</label>
+          <input id="cateringDate" type="date">
+          <p id="dateHelp" class="field-note"></p>
+        </div>
+        <div>
+          <label for="guestCount">Portions</label>
+          <input id="guestCount" type="number" min="6" max="30" value="6">
+          <p class="field-note">Minimum 6, maximum 30 people.</p>
+        </div>
+      </section>
+      <section class="menu-shell">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow" id="menuDay">Menu</p>
+            <h2>Available dishes</h2>
+          </div>
+          <button id="clearCartForDate" class="ghost-button" type="button">Clear cart</button>
+        </div>
+        <div id="menuGrid"></div>
+      </section>
+    </template>
+
+    <template id="cartTemplate">
+      <section class="page-head">
+        <p class="eyebrow">Review</p>
+        <h1>Your cart</h1>
+      </section>
+      <section id="cartView" class="cart-layout"></section>
+    </template>
+
+    <template id="checkoutTemplate">
+      <section class="page-head">
+        <p class="eyebrow">Pickup order</p>
+        <h1>Checkout</h1>
+      </section>
+      <form id="checkoutForm" class="checkout-grid">
+        <section class="form-panel">
+          <h2>Contact</h2>
+          <div class="two-col">
+            <label>Name<input name="name" required autocomplete="name"></label>
+            <label>Phone<input name="phone" required autocomplete="tel"></label>
+          </div>
+          <label>Email<input name="email" type="email" required autocomplete="email"></label>
+          <label>Special instructions<textarea name="instructions" rows="4" placeholder="Allergies, preferred handoff notes, timing details"></textarea></label>
+        </section>
+        <section class="form-panel">
+          <h2>Pickup</h2>
+          <div class="two-col">
+            <label>Pickup time
+              <select name="pickupTime" required>
+                <option value="">Select time</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+              </select>
+            </label>
+            <label>Payment method
+              <select name="paymentMethod" required>
+                <option value="">Select method</option>
+                <option>Pay at pickup</option>
+                <option>Card on pickup</option>
+                <option>Venmo on pickup</option>
+              </select>
+            </label>
+          </div>
+          <label>Payment note<input name="paymentNote" placeholder="Last four digits, Venmo handle, or other note"></label>
+          <p class="field-note">This demo records the selected method only. No payment is processed.</p>
+        </section>
+        <aside id="checkoutSummary" class="summary-panel"></aside>
+      </form>
+    </template>
+
+    <template id="aboutTemplate">
+      <section class="about-hero">
+        <div>
+          <p class="eyebrow">About Juniper Table</p>
+          <h1>Comfort food made by hand, scaled for the people around your table.</h1>
+          <p>Juniper Table is a small neighborhood catering kitchen focused on generous pickup meals, seasonal produce, slow-cooked proteins, and simple ordering.</p>
+        </div>
+      </section>
+      <section class="story-grid">
+        <article>
+          <h2>How we cook</h2>
+          <p>Every menu is built around a daily rhythm: five hearty proteins, three vegetarian mains, and two sides that travel well and reheat beautifully.</p>
+        </article>
+        <article>
+          <h2>How pickup works</h2>
+          <p>Orders are scheduled 2 to 14 days ahead, packed warm or chilled by request, and labeled with serving guidance for your group size.</p>
+        </article>
+        <article>
+          <h2>Our promise</h2>
+          <p>Clear menus, dependable pickup windows, and food that feels personal even when you are feeding a room.</p>
+        </article>
+      </section>
+    </template>
+
+    <template id="contactTemplate">
+      <section class="page-head">
+        <p class="eyebrow">Contact</p>
+        <h1>Talk with the kitchen</h1>
+      </section>
+      <section class="contact-grid">
+        <div class="contact-card">
+          <h2>Reach us</h2>
+          <p><strong>Phone:</strong> (555) 014-7821</p>
+          <p><strong>Email:</strong> hello@junipertable.example</p>
+          <p><strong>Instagram:</strong> @junipertable</p>
+          <p><strong>Facebook:</strong> Juniper Table Catering</p>
+        </div>
+        <form id="contactForm" class="contact-card">
+          <h2>Send a message</h2>
+          <label>Name<input name="name" required></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Message<textarea name="message" rows="5" required></textarea></label>
+          <button class="primary-button" type="submit">Send message</button>
+          <p id="contactStatus" class="field-note" role="status"></p>
+        </form>
+      </section>
+    </template>
+
+    <dialog id="itemDialog" class="item-dialog">
+      <div id="itemDetail"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
