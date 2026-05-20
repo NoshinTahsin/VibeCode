@@ -2,7 +2,6 @@
 
 Open any deployed website directly:
 
-- [All branch previews](https://noshintahsin.github.io/VibeCode/)
 - [Version 1](https://noshintahsin.github.io/VibeCode/version-1/)
 - [Version 2](https://noshintahsin.github.io/VibeCode/version-2/)
 - [Version 3](https://noshintahsin.github.io/VibeCode/version-3/)
