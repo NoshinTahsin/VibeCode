@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Golden Hearth Catering</title>
+    <meta name="description" content="Homemade catering menu, pickup ordering, invoices, and contact information for Golden Hearth Catering.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#menu" aria-label="Golden Hearth Catering home">
+          <span class="brand-mark" aria-hidden="true">GH</span>
+          <span>
+            <strong>Golden Hearth</strong>
+            <span>Catering pickup kitchen</span>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          <span aria-hidden="true"></span>
+          Menu
+        </button>
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+          <a href="#menu" data-route="menu">Menu</a>
+          <a href="#about" data-route="about">About</a>
+          <a href="#contact" data-route="contact">Contact</a>
+          <button class="cart-link" type="button" data-open-cart>
+            Cart <span id="cart-count" aria-label="0 items in cart">0</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section id="menu-page" class="page active" aria-labelledby="menu-heading">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Homemade meals for planned gatherings</p>
+            <h1 id="menu-heading">Order a pickup catering menu by date.</h1>
+            <p>Choose a pickup date, browse that day's handmade menu, and build an order for 6 to 30 people.</p>
+          </div>
+        </div>
+
+        <section class="order-toolbar" aria-labelledby="date-heading">
+          <div>
+            <h2 id="date-heading">Choose your catering date</h2>
+            <p id="date-help">Orders open 2 days ahead and close 14 days ahead. Each weekday has its own menu.</p>
+          </div>
+          <label class="date-field">
+            <span>Pickup date</span>
+            <input id="menu-date" type="date" aria-describedby="date-help date-error">
+          </label>
+          <p id="date-error" class="field-error" role="status"></p>
+        </section>
+
+        <div class="menu-summary" role="status" aria-live="polite">
+          <span id="selected-date-label"></span>
+          <span id="menu-count-label"></span>
+        </div>
+
+        <section class="category-section" aria-labelledby="protein-heading">
+          <h2 id="protein-heading">Protein</h2>
+          <div id="protein-list" class="menu-grid"></div>
+        </section>
+
+        <section class="category-section" aria-labelledby="vegetarian-heading">
+          <h2 id="vegetarian-heading">Vegetarian</h2>
+          <div id="vegetarian-list" class="menu-grid"></div>
+        </section>
+
+        <section class="category-section" aria-labelledby="sides-heading">
+          <h2 id="sides-heading">Sides</h2>
+          <div id="sides-list" class="menu-grid"></div>
+        </section>
+      </section>
+
+      <section id="about-page" class="page" aria-labelledby="about-heading">
+        <div class="content-band">
+          <p class="eyebrow">About the kitchen</p>
+          <h1 id="about-heading">Small-batch catering with pickup-ready comfort.</h1>
+          <p>Golden Hearth Catering is a family-run pickup kitchen making generous homemade meals for birthdays, office lunches, memorials, holidays, and weekly gatherings. Menus change by weekday so the kitchen can prep fresh ingredients without overextending a small team.</p>
+          <div class="about-grid">
+            <article>
+              <h2>How we cook</h2>
+              <p>Every tray is prepared in small batches with clear ingredient notes, practical reheating guidance, and careful labeling for common allergens.</p>
+            </article>
+            <article>
+              <h2>Pickup rhythm</h2>
+              <p>Orders are scheduled ahead so your food is packed, labeled, and ready during your selected pickup window.</p>
+            </article>
+            <article>
+              <h2>Community first</h2>
+              <p>Dummy content for now: local produce partners, neighborhood donation days, and family recipes will be added here later.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-page" class="page" aria-labelledby="contact-heading">
+        <div class="content-band contact-layout">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h1 id="contact-heading">Ask about dates, allergies, or custom pickup notes.</h1>
+            <address class="contact-list">
+              <a href="tel:+15550144288">Call (555) 014-4288</a>
+              <a href="mailto:hello@goldenhearth.example">hello@goldenhearth.example</a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
+            </address>
+          </div>
+          <form id="contact-form" class="form-panel" novalidate>
+            <h2>Send a message</h2>
+            <label>
+              <span>Name</span>
+              <input name="contactName" autocomplete="name" required>
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="contactEmail" type="email" autocomplete="email" required>
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="contactMessage" rows="5" required></textarea>
+            </label>
+            <button type="submit">Send message</button>
+            <p id="contact-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <aside id="cart-drawer" class="cart-drawer" aria-labelledby="cart-heading" aria-hidden="true">
+      <div class="cart-panel" role="dialog" aria-modal="true" aria-describedby="cart-help">
+        <div class="panel-header">
+          <div>
+            <h2 id="cart-heading">Your cart</h2>
+            <p id="cart-help">Set portions between 6 and 30 people before checkout.</p>
+          </div>
+          <button class="icon-button" type="button" data-close-cart aria-label="Close cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cart-total">$0.00</strong>
+        </div>
+        <button id="checkout-start" type="button">Checkout</button>
+      </div>
+    </aside>
+
+    <dialog id="item-dialog" aria-labelledby="item-title">
+      <div class="dialog-header">
+        <h2 id="item-title"></h2>
+        <button class="icon-button" type="button" data-close-dialog aria-label="Close details">&times;</button>
+      </div>
+      <div id="item-detail"></div>
+    </dialog>
+
+    <dialog id="checkout-dialog" aria-labelledby="checkout-heading">
+      <div class="dialog-header">
+        <h2 id="checkout-heading">Checkout</h2>
+        <button class="icon-button" type="button" data-close-checkout aria-label="Close checkout">&times;</button>
+      </div>
+      <form id="checkout-form" novalidate>
+        <fieldset>
+          <legend>Pickup information</legend>
+          <label>
+            <span>Pickup window</span>
+            <select name="pickupWindow" required>
+              <option value="">Select a time</option>
+              <option>10:00 AM - 11:00 AM</option>
+              <option>12:00 PM - 1:00 PM</option>
+              <option>4:00 PM - 5:00 PM</option>
+            </select>
+          </label>
+          <label>
+            <span>Special instructions</span>
+            <textarea name="instructions" rows="3" placeholder="Allergies, packaging requests, pickup notes"></textarea>
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Contact information</legend>
+          <label>
+            <span>Full name</span>
+            <input name="fullName" autocomplete="name" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            <span>Phone</span>
+            <input name="phone" type="tel" autocomplete="tel" required>
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Payment method</legend>
+          <p class="form-note">No real payment is processed. The method is saved on the invoice for the owner to follow up.</p>
+          <label class="radio-row">
+            <input type="radio" name="paymentMethod" value="Pay at pickup" required>
+            <span>Pay at pickup</span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="paymentMethod" value="Phone payment">
+            <span>Phone payment</span>
+          </label>
+          <label>
+            <span>Payment note</span>
+            <input name="paymentNote" placeholder="Last four digits, cash note, or invoice request">
+          </label>
+        </fieldset>
+        <p id="checkout-error" class="field-error" role="alert"></p>
+        <button type="submit">Place order</button>
+      </form>
+    </dialog>
+
+    <dialog id="invoice-dialog" aria-labelledby="invoice-heading">
+      <div class="dialog-header">
+        <h2 id="invoice-heading">Order invoice</h2>
+        <button class="icon-button" type="button" data-close-invoice aria-label="Close invoice">&times;</button>
+      </div>
+      <div id="invoice-output"></div>
+      <button type="button" data-close-invoice>Done</button>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
