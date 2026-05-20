@@ -150,7 +150,7 @@ function foodArt(food) {
   ];
   const colors = palettes[food.seed % palettes.length];
   return `
-    <svg role="img" aria-label="" viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
       <rect width="420" height="220" fill="${colors[1]}"></rect>
       <ellipse cx="210" cy="120" rx="150" ry="70" fill="#fffaf2"></ellipse>
       <ellipse cx="${145 + food.seed * 4}" cy="115" rx="78" ry="42" fill="${colors[0]}"></ellipse>
