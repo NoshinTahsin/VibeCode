@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gather & Garnish Catering</title>
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#menu" aria-label="Gather and Garnish home">
+        <span class="brand-mark" aria-hidden="true">G&G</span>
+        <span>
+          <strong>Gather & Garnish</strong>
+          <small>Homemade pickup catering</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button class="cart-link" type="button" data-open-cart aria-controls="cart-drawer" aria-expanded="false" aria-label="Cart, 0 items">
+          Cart <span id="cart-count" aria-live="polite">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Small-batch catering for family tables, office lunches, and community gatherings</p>
+          <h1 id="hero-title">Gather & Garnish</h1>
+          <p>
+            Order from a rotating weekday menu, choose a pickup date, and receive a ready-to-serve homemade spread
+            portioned for 6 to 30 guests.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#menu">Choose a pickup date</a>
+            <a class="button secondary" href="#about">Meet the kitchen</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section" id="menu" aria-labelledby="menu-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Order window: 2 to 14 days ahead</p>
+            <h2 id="menu-title">Daily Menu</h2>
+          </div>
+          <label class="date-control">
+            Pickup date
+            <input id="pickup-date" type="date" />
+          </label>
+        </div>
+
+        <div class="menu-status" id="menu-status" role="status"></div>
+        <div class="category-tabs" role="tablist" aria-label="Menu categories">
+          <button class="active" id="tab-all" type="button" role="tab" aria-selected="true" aria-controls="menu-panel" tabindex="0" data-category="all">All</button>
+          <button id="tab-protein" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" tabindex="-1" data-category="protein">Protein</button>
+          <button id="tab-vegetarian" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" tabindex="-1" data-category="vegetarian">Vegetarian</button>
+          <button id="tab-sides" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" tabindex="-1" data-category="sides">Sides</button>
+        </div>
+        <div id="menu-panel" role="tabpanel" aria-labelledby="tab-all">
+          <ul class="menu-grid" id="menu-grid"></ul>
+        </div>
+      </section>
+
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <img
+          class="about-image"
+          src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80"
+          alt="Prepared catering dishes arranged on a kitchen table"
+        />
+        <div class="about-copy">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">A neighborhood kitchen with a weeknight-friendly rhythm.</h2>
+          <p>
+            Gather & Garnish is a dummy small catering concept built around seasonal home cooking, tidy pickup windows,
+            and clear portions for groups. The menu changes by weekday so regular customers can plan around familiar
+            favorites while still getting variety.
+          </p>
+          <p>
+            Every order is packed with reheating notes, serving labels, and a simple invoice for your records. We will
+            swap in real story, policies, and kitchen photos when your content is ready.
+          </p>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">Ask about pickup, allergies, or custom trays.</h2>
+          </div>
+          <ul class="contact-methods" aria-label="Owner contact methods">
+            <li><a href="tel:+15550142684">(555) 014-2684</a></li>
+            <li><a href="mailto:hello@gathergarnish.example">hello@gathergarnish.example</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></li>
+          </ul>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <fieldset>
+            <legend>Contact form</legend>
+            <label>
+              Name
+              <input name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+          </fieldset>
+          <button class="button primary" type="submit">Send message</button>
+          <p class="form-note" id="contact-note" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cart-title">
+      <div class="cart-panel">
+        <div class="cart-header">
+          <div>
+            <p class="eyebrow">Your order</p>
+            <h2 id="cart-title">Cart</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-cart aria-label="Close cart">x</button>
+        </div>
+        <ul id="cart-items" class="cart-items" aria-label="Cart items"></ul>
+        <dl class="cart-summary" id="cart-summary" aria-label="Cart totals"></dl>
+        <form class="checkout-form" id="checkout-form">
+          <h3>Checkout</h3>
+          <fieldset class="form-grid">
+            <legend>Pickup and customer information</legend>
+            <label>
+              Pickup time
+              <select name="pickupTime" required>
+                <option value="">Select time</option>
+                <option>10:00 AM</option>
+                <option>11:30 AM</option>
+                <option>1:00 PM</option>
+                <option>4:30 PM</option>
+                <option>6:00 PM</option>
+              </select>
+            </label>
+            <label>
+              Name
+              <input name="customerName" autocomplete="name" required />
+            </label>
+            <label>
+              Phone
+              <input name="phone" type="tel" autocomplete="tel" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              Payment method
+              <select name="paymentMethod" required>
+                <option value="">Select method</option>
+                <option>Pay at pickup</option>
+                <option>Card on file placeholder</option>
+                <option>Invoice me placeholder</option>
+              </select>
+            </label>
+            <label>
+              Payment note
+              <input name="paymentInfo" placeholder="No real payment is processed" />
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Order notes</legend>
+            <label>
+              Special instructions
+              <textarea name="instructions" rows="3" placeholder="Allergies, pickup notes, packaging preferences"></textarea>
+            </label>
+          </fieldset>
+          <button class="button primary full" type="submit">Place order</button>
+          <p class="form-note" id="checkout-note" role="status"></p>
+        </form>
+      </div>
+    </aside>
+
+    <dialog id="item-dialog" aria-labelledby="item-detail-title">
+      <div class="dialog-body" id="item-detail"></div>
+    </dialog>
+
+    <dialog id="invoice-dialog" aria-labelledby="invoice-title">
+      <div class="dialog-body invoice" id="invoice-detail"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
