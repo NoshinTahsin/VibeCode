@@ -17,6 +17,12 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -76,6 +82,23 @@ a {
   font-weight: 700;
 }
 
+p,
+h1,
+h2,
+h3,
+li,
+td,
+th,
+dd,
+legend,
+button,
+input,
+select,
+textarea,
+address a {
+  overflow-wrap: anywhere;
+}
+
 :focus-visible {
   outline: 4px solid var(--blue);
   outline-offset: 3px;
@@ -116,12 +139,22 @@ a {
   gap: 1rem;
 }
 
+.header-inner > *,
+.food-card,
+.cart-item,
+.cart-panel,
+.content-band > *,
+.detail-hero > * {
+  min-width: 0;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   color: var(--ink);
   text-decoration: none;
+  min-width: 0;
 }
 
 .brand span {
@@ -131,6 +164,7 @@ a {
 .brand strong {
   display: block;
   font-size: 1.08rem;
+  overflow-wrap: anywhere;
 }
 
 .brand-mark {
@@ -380,8 +414,26 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  margin: 0;
   color: var(--muted);
   font-weight: 700;
+}
+
+.food-meta div {
+  display: inline-flex;
+}
+
+.food-meta dt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.food-meta dd {
+  margin: 0;
 }
 
 .food-actions {
@@ -544,6 +596,7 @@ textarea {
 dialog {
   width: min(720px, calc(100% - 1rem));
   max-height: calc(100vh - 2rem);
+  overflow-x: hidden;
   border: 0;
   border-radius: 8px;
   color: var(--ink);
@@ -585,6 +638,12 @@ dialog::backdrop {
 table {
   width: 100%;
   border-collapse: collapse;
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 caption {

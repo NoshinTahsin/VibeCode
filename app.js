@@ -3,6 +3,7 @@ const dateError = document.querySelector("#date-error");
 const selectedDateLabel = document.querySelector("#selected-date-label");
 const menuCountLabel = document.querySelector("#menu-count-label");
 const cartCount = document.querySelector("#cart-count");
+const cartButtons = document.querySelectorAll("[data-open-cart]");
 const cartDrawer = document.querySelector("#cart-drawer");
 const cartItems = document.querySelector("#cart-items");
 const cartTotal = document.querySelector("#cart-total");
@@ -124,17 +125,24 @@ function renderMenu() {
 function createFoodCard(food) {
   const card = document.createElement("article");
   card.className = "food-card";
+  card.setAttribute("aria-labelledby", `${food.id}-title`);
   card.innerHTML = `
     <div class="food-image" aria-hidden="true">${foodArt(food)}</div>
     <div class="food-body">
-      <h3>${food.name}</h3>
-      <div class="food-meta">
-        <span>${money.format(food.price)} per ${food.unit}</span>
-        <span>${food.category}</span>
-      </div>
+      <h3 id="${food.id}-title">${food.name}</h3>
+      <dl class="food-meta">
+        <div>
+          <dt>Price</dt>
+          <dd>${money.format(food.price)} per ${food.unit}</dd>
+        </div>
+        <div>
+          <dt>Category</dt>
+          <dd>${food.category}</dd>
+        </div>
+      </dl>
       <div class="food-actions">
-        <button type="button" class="secondary-button" data-details="${food.id}">Details</button>
-        <button type="button" data-add="${food.id}">Add to cart</button>
+        <button type="button" class="secondary-button" data-details="${food.id}" aria-label="View details for ${food.name}">Details</button>
+        <button type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add to cart</button>
       </div>
     </div>
   `;
@@ -217,20 +225,22 @@ function renderCart() {
           <h3>${food.name}</h3>
           <p>${formatDate(entry.date)} &middot; ${money.format(food.price)} per person</p>
         </div>
-        <div class="quantity-row" aria-label="Portions for ${food.name}">
+        <div class="quantity-row" role="group" aria-label="Portions for ${food.name}">
           <button type="button" data-decrease="${index}" aria-label="Decrease ${food.name} portions">-</button>
           <span>${entry.portions} people</span>
           <button type="button" data-increase="${index}" aria-label="Increase ${food.name} portions">+</button>
         </div>
         <p><strong>${money.format(food.price * entry.portions)}</strong></p>
-        <button type="button" class="secondary-button" data-remove="${index}">Remove</button>
+        <button type="button" class="secondary-button" data-remove="${index}" aria-label="Remove ${food.name} from cart">Remove</button>
       `;
       cartItems.appendChild(row);
     });
   }
   const count = cart.reduce((total, entry) => total + entry.portions, 0);
   cartCount.textContent = String(cart.length);
-  cartCount.setAttribute("aria-label", `${cart.length} cart items, ${count} total portions`);
+  cartButtons.forEach((button) => {
+    button.setAttribute("aria-label", `Open cart, ${cart.length} item${cart.length === 1 ? "" : "s"}, ${count} total portion${count === 1 ? "" : "s"}`);
+  });
   cartTotal.textContent = money.format(cart.reduce((total, entry) => total + findFood(entry.id).price * entry.portions, 0));
 }
 
@@ -243,22 +253,24 @@ function openItemDetails(id) {
       <div>
         <p><strong>${money.format(food.price)} per ${food.unit}</strong></p>
         <p>${food.description}</p>
-        <button type="button" data-add="${food.id}">Add to cart</button>
+        <button type="button" data-add="${food.id}" aria-label="Add ${food.name} to cart">Add to cart</button>
       </div>
     </div>
     <section aria-labelledby="ingredients-heading">
       <h3 id="ingredients-heading">Ingredients</h3>
       <ul class="ingredient-list">${food.ingredients.map((ingredient) => `<li>${ingredient}</li>`).join("")}</ul>
     </section>
-    <table>
-      <caption>Nutrition facts per serving</caption>
-      <tbody>
-        <tr><th scope="row">Calories</th><td>${food.nutrition[0]}</td></tr>
-        <tr><th scope="row">Protein</th><td>${food.nutrition[1]}</td></tr>
-        <tr><th scope="row">Carbohydrates</th><td>${food.nutrition[2]}</td></tr>
-        <tr><th scope="row">Sodium</th><td>${food.nutrition[3]}</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll" role="region" aria-label="Nutrition facts for ${food.name}" tabindex="0">
+      <table>
+        <caption>Nutrition facts per serving</caption>
+        <tbody>
+          <tr><th scope="row">Calories</th><td>${food.nutrition[0]}</td></tr>
+          <tr><th scope="row">Protein</th><td>${food.nutrition[1]}</td></tr>
+          <tr><th scope="row">Carbohydrates</th><td>${food.nutrition[2]}</td></tr>
+          <tr><th scope="row">Sodium</th><td>${food.nutrition[3]}</td></tr>
+        </tbody>
+      </table>
+    </div>
   `;
   lastFocusedElement = document.activeElement;
   itemDialog.showModal();
@@ -267,12 +279,14 @@ function openItemDetails(id) {
 function openCart() {
   lastFocusedElement = document.activeElement;
   cartDrawer.setAttribute("aria-hidden", "false");
+  cartButtons.forEach((button) => button.setAttribute("aria-expanded", "true"));
   document.body.classList.add("drawer-open");
   document.querySelector("[data-close-cart]").focus();
 }
 
 function closeCart() {
   cartDrawer.setAttribute("aria-hidden", "true");
+  cartButtons.forEach((button) => button.setAttribute("aria-expanded", "false"));
   document.body.classList.remove("drawer-open");
   if (lastFocusedElement) lastFocusedElement.focus();
 }
@@ -314,15 +328,17 @@ function showInvoice(invoice) {
       <p><strong>Pickup:</strong> ${invoice.pickupWindow}</p>
       <p><strong>Customer:</strong> ${invoice.customer.name}, ${invoice.customer.email}, ${invoice.customer.phone}</p>
       <p><strong>Payment:</strong> ${invoice.payment.method}${invoice.payment.note ? `, ${invoice.payment.note}` : ""}</p>
-      <table>
-        <caption>Order items</caption>
-        <thead>
-          <tr><th scope="col">Item</th><th scope="col">Date</th><th scope="col">People</th><th scope="col">Line total</th></tr>
-        </thead>
-        <tbody>
-          ${invoice.items.map((entry) => `<tr><td>${entry.name}</td><td>${formatDate(entry.date)}</td><td>${entry.portions}</td><td>${money.format(entry.price * entry.portions)}</td></tr>`).join("")}
-        </tbody>
-      </table>
+      <div class="table-scroll" role="region" aria-label="Order items for invoice ${invoice.id}" tabindex="0">
+        <table>
+          <caption>Order items</caption>
+          <thead>
+            <tr><th scope="col">Item</th><th scope="col">Date</th><th scope="col">People</th><th scope="col">Line total</th></tr>
+          </thead>
+          <tbody>
+            ${invoice.items.map((entry) => `<tr><th scope="row">${entry.name}</th><td>${formatDate(entry.date)}</td><td>${entry.portions}</td><td>${money.format(entry.price * entry.portions)}</td></tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
       <p><strong>Total:</strong> ${money.format(invoice.total)}</p>
       <p><strong>Special instructions:</strong> ${invoice.instructions || "None"}</p>
       <p>This invoice was saved in this browser under local storage key <code>ghc_invoices</code>.</p>

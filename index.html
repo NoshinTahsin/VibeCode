@@ -26,8 +26,8 @@
           <a href="#menu" data-route="menu">Menu</a>
           <a href="#about" data-route="about">About</a>
           <a href="#contact" data-route="contact">Contact</a>
-          <button class="cart-link" type="button" data-open-cart>
-            Cart <span id="cart-count" aria-label="0 items in cart">0</span>
+          <button class="cart-link" type="button" data-open-cart aria-controls="cart-drawer" aria-expanded="false" aria-label="Open cart, 0 items">
+            Cart <span id="cart-count" aria-hidden="true">0</span>
           </button>
         </nav>
       </div>
@@ -132,7 +132,7 @@
     </main>
 
     <aside id="cart-drawer" class="cart-drawer" aria-labelledby="cart-heading" aria-hidden="true">
-      <div class="cart-panel" role="dialog" aria-modal="true" aria-describedby="cart-help">
+      <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-heading" aria-describedby="cart-help">
         <div class="panel-header">
           <div>
             <h2 id="cart-heading">Your cart</h2>
