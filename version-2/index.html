@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harvest Table Catering</title>
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="styles.css?v=wcag-20260507" />
+  </head>
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
+    <header class="site-header">
+      <a class="brand" href="#menu" aria-label="Harvest Table Catering home">
+        <span class="brand-mark">HT</span>
+        <span>
+          <strong>Harvest Table</strong>
+          <small>Homemade catering pickup</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#menu">Menu</a>
+        <a href="#cart">Cart <span id="cartCount" class="count-pill">0</span></a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="mainContent" tabindex="-1">
+      <section class="hero" aria-labelledby="heroTitle">
+        <img src="assets/catering-hero.png" alt="Prepared catering trays arranged in a bright kitchen" />
+        <div class="hero-copy">
+          <p class="eyebrow">Small-batch meals, ready for pickup</p>
+          <h1 id="heroTitle">Harvest Table Catering</h1>
+          <p>Choose a pickup date, browse that day's homemade menu, and build a catering order for 6 to 30 people.</p>
+          <a class="button primary" href="#menu">Start an Order</a>
+        </div>
+      </section>
+
+      <section id="menu" class="section menu-section" aria-labelledby="menuTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Daily rotating menu</p>
+            <h2 id="menuTitle">Order Menu</h2>
+          </div>
+          <div class="date-card">
+            <label for="cateringDate">Pickup date</label>
+            <input id="cateringDate" type="date" aria-describedby="dateHelp" required />
+            <span id="dateHelp"></span>
+          </div>
+        </div>
+
+        <div class="order-rules" role="note">
+          <span>Order window: 2 to 14 days ahead</span>
+          <span>Portions: minimum 6, maximum 30</span>
+          <span>Each menu: 5 proteins, 3 vegetarian, 2 sides</span>
+        </div>
+
+        <div id="menuGrid" class="menu-grid" aria-live="polite" aria-busy="false"></div>
+      </section>
+
+      <section id="cart" class="section cart-section" aria-labelledby="cartTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Review and adjust</p>
+            <h2 id="cartTitle">Cart</h2>
+          </div>
+          <button id="clearCartBtn" class="button ghost" type="button" aria-describedby="cartTitle">Clear Cart</button>
+        </div>
+        <div class="cart-layout">
+          <div id="cartItems" class="cart-items" aria-live="polite"></div>
+          <aside class="checkout-panel" aria-labelledby="checkoutTitle">
+            <h3 id="checkoutTitle">Checkout</h3>
+            <div class="totals" aria-live="polite">
+              <div><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
+              <div><span>Service fee</span><strong id="serviceFee">$0.00</strong></div>
+              <div><span>Total</span><strong id="grandTotal">$0.00</strong></div>
+            </div>
+            <form id="checkoutForm">
+              <p id="checkoutStatus" class="form-status" aria-live="assertive"></p>
+              <fieldset class="field-row">
+                <legend>Pickup details</legend>
+                <label>
+                  Pickup time (required)
+                  <input name="pickupTime" type="time" min="09:00" max="18:00" required />
+                </label>
+                <label>
+                  Portions (required)
+                  <input name="portionSize" type="number" min="6" max="30" value="6" aria-describedby="portionHelp" required />
+                </label>
+                <span id="portionHelp" class="field-help">Enter a number from 6 to 30.</span>
+              </fieldset>
+              <label>
+                Full name (required)
+                <input name="customerName" autocomplete="name" required />
+              </label>
+              <label>
+                Phone (required)
+                <input name="phone" type="tel" autocomplete="tel" required />
+              </label>
+              <label>
+                Email (required)
+                <input name="email" type="email" autocomplete="email" required />
+              </label>
+              <label>
+                Payment method (required)
+                <select name="paymentMethod" required>
+                  <option value="">Select method</option>
+                  <option>Pay at pickup</option>
+                  <option>Card on pickup</option>
+                  <option>Venmo placeholder</option>
+                </select>
+              </label>
+              <label>
+                Payment notes
+                <span class="field-help">Last 4, Venmo handle, or pay-on-pickup note.</span>
+                <input name="paymentInfo" />
+              </label>
+              <label>
+                Special instructions
+                <span class="field-help">Allergies, timing notes, or packaging requests.</span>
+                <textarea name="instructions" rows="4"></textarea>
+              </label>
+              <button class="button primary full" type="submit">Place Order</button>
+            </form>
+          </aside>
+        </div>
+      </section>
+
+      <section id="invoiceSection" class="section invoice-section" aria-labelledby="invoiceTitle" tabindex="-1" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Order placed</p>
+            <h2 id="invoiceTitle">Invoice</h2>
+          </div>
+          <button id="printInvoiceBtn" class="button ghost" type="button">Print Invoice</button>
+        </div>
+        <div id="invoiceOutput" class="invoice" aria-live="polite"></div>
+      </section>
+
+      <section class="section archive-section" aria-labelledby="archiveTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Local records</p>
+            <h2 id="archiveTitle">Saved Invoices</h2>
+          </div>
+        </div>
+        <div id="invoiceArchive" class="archive-list" aria-live="polite"></div>
+      </section>
+
+      <section id="about" class="section about-section" aria-labelledby="aboutTitle">
+        <div class="about-copy">
+          <p class="eyebrow">About the kitchen</p>
+          <h2 id="aboutTitle">Homemade food for gatherings that should feel cared for.</h2>
+          <p>
+            Harvest Table is a family-run pickup catering service focused on generous portions, seasonal produce,
+            and comforting meals prepared in small batches. Every menu rotates by weekday so regular customers
+            always have something new to plan around.
+          </p>
+          <p>
+            Dummy content for now: we will replace this with your real story, kitchen details, service area,
+            and pickup policies when you are ready.
+          </p>
+        </div>
+        <div class="about-stats" aria-label="Business highlights">
+          <div><strong>7</strong><span>weekday menus</span></div>
+          <div><strong>10</strong><span>items daily</span></div>
+          <div><strong>6-30</strong><span>portion range</span></div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section" aria-labelledby="contactTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Questions and custom notes</p>
+            <h2 id="contactTitle">Contact</h2>
+          </div>
+        </div>
+        <div class="contact-layout">
+          <address class="contact-list">
+            <a href="tel:+15550193742">Phone: (555) 019-3742</a>
+            <a href="mailto:hello@harvesttable.example">hello@harvesttable.example</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram <span class="sr-only">(opens in a new tab)</span></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook <span class="sr-only">(opens in a new tab)</span></a>
+          </address>
+          <form id="contactForm" class="contact-form">
+            <label>
+              Name (required)
+              <input name="name" required />
+            </label>
+            <label>
+              Email (required)
+              <input name="email" type="email" required />
+            </label>
+            <label>
+              Message (required)
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+            <button class="button primary" type="submit">Send Message</button>
+            <p id="contactStatus" class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="itemDialog" class="item-dialog" aria-label="Food item details">
+      <button id="closeDialogBtn" class="icon-close" type="button">Close</button>
+      <div id="itemDetail"></div>
+    </dialog>
+
+    <footer class="site-footer">
+      <span>Harvest Table Catering</span>
+      <span>Invoices are saved locally in this browser for later owner review.</span>
+    </footer>
+
+    <script src="app.js?v=wcag-20260507"></script>
+  </body>
+</html>
