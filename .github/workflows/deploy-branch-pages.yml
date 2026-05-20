@@ -1,0 +1,39 @@
+name: Deploy branch to GitHub Pages
+
+on:
+  push:
+    branches:
+      - version-*
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          cp index.html styles.css app.js _site/
+          find . -maxdepth 1 -type d \( -name assets -o -name images -o -name img \) -exec cp -R {} _site/ \;
+          touch _site/.nojekyll
+
+      - name: Deploy to branch folder
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: _site
+          destination_dir: ${{ github.ref_name }}
+          keep_files: true
+          enable_jekyll: false
