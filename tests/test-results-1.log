@@ -1,0 +1,122 @@
+===== Playwright Test Run: 2026-05-20T14:59:23.434Z =====
+
+[PASS] Version 1 | page loads without errors
+[PASS] Version 1 | has a visible heading
+[PASS] Version 1 | has navigation links
+[PASS] Version 1 | navigation links are clickable
+[PASS] Version 1 | has a menu section
+[PASS] Version 1 | images have valid src
+[PASS] Version 1 | has a contact section or form
+[PASS] Version 1 | no broken internal links (404s)
+[PASS] Version 1 | usable on mobile (375px)
+[PASS] Version 1 | html has lang attribute (WCAG)
+[PASS] Version 1 | images have alt attributes (WCAG)
+
+[PASS] Version 2 | page loads without errors
+[PASS] Version 2 | has a visible heading
+[PASS] Version 2 | has navigation links
+[PASS] Version 2 | navigation links are clickable
+[PASS] Version 2 | has a menu section
+[PASS] Version 2 | images have valid src
+[PASS] Version 2 | has a contact section or form
+[PASS] Version 2 | no broken internal links (404s)
+[PASS] Version 2 | usable on mobile (375px)
+[PASS] Version 2 | html has lang attribute (WCAG)
+[PASS] Version 2 | images have alt attributes (WCAG)
+
+[PASS] Version 3 | page loads without errors
+[PASS] Version 3 | has a visible heading
+[PASS] Version 3 | has navigation links
+[PASS] Version 3 | navigation links are clickable
+[PASS] Version 3 | has a menu section
+[PASS] Version 3 | images have valid src
+[PASS] Version 3 | has a contact section or form
+[PASS] Version 3 | no broken internal links (404s)
+[PASS] Version 3 | usable on mobile (375px)
+[PASS] Version 3 | html has lang attribute (WCAG)
+[PASS] Version 3 | images have alt attributes (WCAG)
+
+[PASS] Version 4a | page loads without errors
+[PASS] Version 4a | has a visible heading
+[PASS] Version 4a | has navigation links
+[PASS] Version 4a | navigation links are clickable
+[PASS] Version 4a | has a menu section
+[PASS] Version 4a | images have valid src
+[PASS] Version 4a | has a contact section or form
+[PASS] Version 4a | no broken internal links (404s)
+[PASS] Version 4a | usable on mobile (375px)
+[PASS] Version 4a | html has lang attribute (WCAG)
+[PASS] Version 4a | images have alt attributes (WCAG)
+
+[PASS] Version 5 | page loads without errors
+[PASS] Version 5 | has a visible heading
+[PASS] Version 5 | has navigation links
+[PASS] Version 5 | navigation links are clickable
+[PASS] Version 5 | has a menu section
+[PASS] Version 5 | images have valid src
+[PASS] Version 5 | has a contact section or form
+[PASS] Version 5 | no broken internal links (404s)
+[PASS] Version 5 | usable on mobile (375px)
+[PASS] Version 5 | html has lang attribute (WCAG)
+[PASS] Version 5 | images have alt attributes (WCAG)
+
+[PASS] Version 6 | page loads without errors
+[PASS] Version 6 | has a visible heading
+[PASS] Version 6 | has navigation links
+[PASS] Version 6 | navigation links are clickable
+[PASS] Version 6 | has a menu section
+[PASS] Version 6 | images have valid src
+[PASS] Version 6 | has a contact section or form
+[PASS] Version 6 | no broken internal links (404s)
+[PASS] Version 6 | usable on mobile (375px)
+[PASS] Version 6 | html has lang attribute (WCAG)
+[PASS] Version 6 | images have alt attributes (WCAG)
+
+[PASS] Version 7 | page loads without errors
+[PASS] Version 7 | has a visible heading
+[PASS] Version 7 | has navigation links
+[PASS] Version 7 | navigation links are clickable
+[PASS] Version 7 | has a menu section
+[PASS] Version 7 | images have valid src
+[PASS] Version 7 | has a contact section or form
+[PASS] Version 7 | no broken internal links (404s)
+[PASS] Version 7 | usable on mobile (375px)
+[PASS] Version 7 | html has lang attribute (WCAG)
+[PASS] Version 7 | images have alt attributes (WCAG)
+
+[PASS] Version 8 | page loads without errors
+[PASS] Version 8 | has a visible heading
+[PASS] Version 8 | has navigation links
+[PASS] Version 8 | navigation links are clickable
+[PASS] Version 8 | has a menu section
+[PASS] Version 8 | images have valid src
+[PASS] Version 8 | has a contact section or form
+[PASS] Version 8 | no broken internal links (404s)
+[PASS] Version 8 | usable on mobile (375px)
+[PASS] Version 8 | html has lang attribute (WCAG)
+[PASS] Version 8 | images have alt attributes (WCAG)
+
+[PASS] Version 9 | page loads without errors
+[PASS] Version 9 | has a visible heading
+[PASS] Version 9 | has navigation links
+[PASS] Version 9 | navigation links are clickable
+[PASS] Version 9 | has a menu section
+[PASS] Version 9 | images have valid src
+[PASS] Version 9 | has a contact section or form
+[PASS] Version 9 | no broken internal links (404s)
+[PASS] Version 9 | usable on mobile (375px)
+[PASS] Version 9 | html has lang attribute (WCAG)
+[PASS] Version 9 | images have alt attributes (WCAG)
+
+[PASS] Version 10 | page loads without errors
+[PASS] Version 10 | has a visible heading
+[PASS] Version 10 | has navigation links
+[PASS] Version 10 | navigation links are clickable
+[PASS] Version 10 | has a menu section
+[PASS] Version 10 | images have valid src
+[PASS] Version 10 | has a contact section or form
+[PASS] Version 10 | no broken internal links (404s)
+[PASS] Version 10 | usable on mobile (375px)
+[PASS] Version 10 | html has lang attribute (WCAG)
+[PASS] Version 10 | images have alt attributes (WCAG)
+

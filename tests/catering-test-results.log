@@ -1,0 +1,228 @@
+===== Catering Test Suite Run: 2026-05-21T02:44:35.301Z =====
+
+[FAIL] Version 1 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 1 | MB-02 | Switching days changes menu items
+[PASS] Version 1 | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 1 | MB-04 | Food item cards have name, price, quantity, and image
+[FAIL] Version 1 | MB-05 | Item detail view has description and ingredients | No item cards found to click
+[PASS] Version 1 | C-01 | Added item appears in cart
+[FAIL] Version 1 | C-02 | Item quantity updates in cart | No quantity input in cart
+[FAIL] Version 1 | C-03 | Item can be removed from cart | No remove button found in cart
+[FAIL] Version 1 | C-04 | Cart total is displayed | No total amount found in cart
+[PASS] Version 1 | CH-01 | Cannot checkout with fewer than 6 portions
+[PASS] Version 1 | CH-02 | Cannot checkout with more than 30 portions
+[FAIL] Version 1 | CH-03 | Checkout blocked when contact fields are blank | No checkout section found
+[FAIL] Version 1 | CH-04 | Checkout blocked when payment not selected | No payment selector found
+[FAIL] Version 1 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 1 | CH-06 | Pickup section exists in checkout | No pickup section found in checkout
+[FAIL] Version 1 | OI-01 | Invoice or confirmation element exists in DOM | No invoice or confirmation element found
+[FAIL] Version 1 | OI-02 | Invoice storage mechanism exists | No invoice storage (localStorage) or invoice list UI found
+[FAIL] Version 1 | OI-03 | Invoice element has content/template slots | No invoice element found
+[PASS] Version 1 | AC-01 | About section has visible business content
+[FAIL] Version 1 | AC-02 | Contact form accepts valid input without JS errors | No name field in contact form
+[FAIL] Version 1 | AC-03 | Contact form blocked when fields are blank | No send button in contact form
+[FAIL] Version 1 | AC-04 | Phone and social media links have valid hrefs | No phone or social media links found
+[FAIL] Version 2 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 2 | MB-02 | Switching days changes menu items
+[PASS] Version 2 | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 2 | MB-04 | Food item cards have name, price, quantity, and image
+[FAIL] Version 2 | MB-05 | Item detail view has description and ingredients | No item cards found to click
+[PASS] Version 2 | C-01 | Added item appears in cart
+[PASS] Version 2 | C-02 | Item quantity updates in cart
+[PASS] Version 2 | C-03 | Item can be removed from cart
+[PASS] Version 2 | C-04 | Cart total is displayed
+[PASS] Version 2 | CH-01 | Cannot checkout with fewer than 6 portions
+[PASS] Version 2 | CH-02 | Cannot checkout with more than 30 portions
+[FAIL] Version 2 | CH-03 | Checkout blocked when contact fields are blank | No submit button in checkout
+[PASS] Version 2 | CH-04 | Checkout blocked when payment not selected
+[FAIL] Version 2 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 2 | CH-06 | Pickup section exists in checkout | No pickup section found in checkout
+[PASS] Version 2 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 2 | OI-02 | Invoice storage mechanism exists
+[PASS] Version 2 | OI-03 | Invoice element has content/template slots
+[PASS] Version 2 | AC-01 | About section has visible business content
+[PASS] Version 2 | AC-02 | Contact form accepts valid input without JS errors
+[PASS] Version 2 | AC-03 | Contact form blocked when fields are blank
+[PASS] Version 2 | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 3 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[FAIL] Version 3 | MB-02 | Switching days changes menu items | Menu did not change when switching dates
+[PASS] Version 3 | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 3 | MB-04 | Food item cards have name, price, quantity, and image
+[FAIL] Version 3 | MB-05 | Item detail view has description and ingredients | No "ingredients" text found after clicking item
+[PASS] Version 3 | C-01 | Added item appears in cart
+[PASS] Version 3 | C-02 | Item quantity updates in cart
+[FAIL] Version 3 | C-03 | Item can be removed from cart | No remove button found in cart
+[FAIL] Version 3 | C-04 | Cart total is displayed | No total amount found in cart
+[PASS] Version 3 | CH-01 | Cannot checkout with fewer than 6 portions
+[PASS] Version 3 | CH-02 | Cannot checkout with more than 30 portions
+[FAIL] Version 3 | CH-03 | Checkout blocked when contact fields are blank | locator.fill: Timeout 7000ms exceeded.
+[FAIL] Version 3 | CH-04 | Checkout blocked when payment not selected | locator.click: Timeout 7000ms exceeded.
+[FAIL] Version 3 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 3 | CH-06 | Pickup section exists in checkout | Pickup section exists but is not visible
+[PASS] Version 3 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 3 | OI-02 | Invoice storage mechanism exists
+[PASS] Version 3 | OI-03 | Invoice element has content/template slots
+[PASS] Version 3 | AC-01 | About section has visible business content
+[FAIL] Version 3 | AC-02 | Contact form accepts valid input without JS errors | locator.fill: Timeout 7000ms exceeded.
+[PASS] Version 3 | AC-03 | Contact form blocked when fields are blank
+[PASS] Version 3 | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 4a | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 4a | MB-02 | Switching days changes menu items
+[PASS] Version 4a | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 4a | MB-04 | Food item cards have name, price, quantity, and image
+[FAIL] Version 4a | MB-05 | Item detail view has description and ingredients | No "ingredients" text found after clicking item
+[PASS] Version 4a | C-01 | Added item appears in cart
+[FAIL] Version 4a | C-02 | Item quantity updates in cart | locator.fill: Timeout 7000ms exceeded.
+[FAIL] Version 4a | C-03 | Item can be removed from cart | No remove button found in cart
+[FAIL] Version 4a | C-04 | Cart total is displayed | No total amount found in cart
+[FAIL] Version 4a | CH-01 | Cannot checkout with fewer than 6 portions | No portions input found
+[FAIL] Version 4a | CH-02 | Cannot checkout with more than 30 portions | No portions input found
+[FAIL] Version 4a | CH-03 | Checkout blocked when contact fields are blank | No submit button in checkout
+[PASS] Version 4a | CH-04 | Checkout blocked when payment not selected
+[FAIL] Version 4a | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 4a | CH-06 | Pickup section exists in checkout | Pickup section exists but is not visible
+[PASS] Version 4a | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 4a | OI-02 | Invoice storage mechanism exists
+[PASS] Version 4a | OI-03 | Invoice element has content/template slots
+[PASS] Version 4a | AC-01 | About section has visible business content
+[FAIL] Version 4a | AC-02 | Contact form accepts valid input without JS errors | locator.click: Timeout 7000ms exceeded.
+[PASS] Version 4a | AC-03 | Contact form blocked when fields are blank
+[PASS] Version 4a | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 5 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 5 | MB-02 | Switching days changes menu items
+[PASS] Version 5 | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 5 | MB-04 | Food item cards have name, price, quantity, and image
+[PASS] Version 5 | MB-05 | Item detail view has description and ingredients
+[PASS] Version 5 | C-01 | Added item appears in cart
+[PASS] Version 5 | C-02 | Item quantity updates in cart
+[FAIL] Version 5 | C-03 | Item can be removed from cart | locator.click: Timeout 7000ms exceeded.
+[FAIL] Version 5 | C-04 | Cart total is displayed | No total amount found in cart
+[FAIL] Version 5 | CH-01 | Cannot checkout with fewer than 6 portions | No portions input found
+[FAIL] Version 5 | CH-02 | Cannot checkout with more than 30 portions | No portions input found
+[FAIL] Version 5 | CH-03 | Checkout blocked when contact fields are blank | No submit button in checkout
+[FAIL] Version 5 | CH-04 | Checkout blocked when payment not selected | No payment selector found
+[FAIL] Version 5 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 5 | CH-06 | Pickup section exists in checkout | Pickup section exists but is not visible
+[PASS] Version 5 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 5 | OI-02 | Invoice storage mechanism exists
+[PASS] Version 5 | OI-03 | Invoice element has content/template slots
+[PASS] Version 5 | AC-01 | About section has visible business content
+[FAIL] Version 5 | AC-02 | Contact form accepts valid input without JS errors | locator.click: Timeout 7000ms exceeded.
+[PASS] Version 5 | AC-03 | Contact form blocked when fields are blank
+[PASS] Version 5 | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 6 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 6 | MB-02 | Switching days changes menu items
+[PASS] Version 6 | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 6 | MB-04 | Food item cards have name, price, quantity, and image
+[PASS] Version 6 | MB-05 | Item detail view has description and ingredients
+[PASS] Version 6 | C-01 | Added item appears in cart
+[PASS] Version 6 | C-02 | Item quantity updates in cart
+[FAIL] Version 6 | C-03 | Item can be removed from cart | locator.click: Timeout 7000ms exceeded.
+[FAIL] Version 6 | C-04 | Cart total is displayed | No total amount found in cart
+[FAIL] Version 6 | CH-01 | Cannot checkout with fewer than 6 portions | No portions input found
+[FAIL] Version 6 | CH-02 | Cannot checkout with more than 30 portions | No portions input found
+[FAIL] Version 6 | CH-03 | Checkout blocked when contact fields are blank | No submit button in checkout
+[FAIL] Version 6 | CH-04 | Checkout blocked when payment not selected | No payment selector found
+[FAIL] Version 6 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 6 | CH-06 | Pickup section exists in checkout | Pickup section exists but is not visible
+[PASS] Version 6 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 6 | OI-02 | Invoice storage mechanism exists
+[PASS] Version 6 | OI-03 | Invoice element has content/template slots
+[PASS] Version 6 | AC-01 | About section has visible business content
+[FAIL] Version 6 | AC-02 | Contact form accepts valid input without JS errors | locator.click: Timeout 7000ms exceeded.
+[PASS] Version 6 | AC-03 | Contact form blocked when fields are blank
+[PASS] Version 6 | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 7 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 7 | MB-02 | Switching days changes menu items
+[PASS] Version 7 | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 7 | MB-04 | Food item cards have name, price, quantity, and image
+[PASS] Version 7 | MB-05 | Item detail view has description and ingredients
+[PASS] Version 7 | C-01 | Added item appears in cart
+[PASS] Version 7 | C-02 | Item quantity updates in cart
+[FAIL] Version 7 | C-03 | Item can be removed from cart | locator.click: Timeout 7000ms exceeded.
+[FAIL] Version 7 | C-04 | Cart total is displayed | No total amount found in cart
+[FAIL] Version 7 | CH-01 | Cannot checkout with fewer than 6 portions | No portions input found
+[FAIL] Version 7 | CH-02 | Cannot checkout with more than 30 portions | No portions input found
+[FAIL] Version 7 | CH-03 | Checkout blocked when contact fields are blank | No submit button in checkout
+[FAIL] Version 7 | CH-04 | Checkout blocked when payment not selected | No payment selector found
+[FAIL] Version 7 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 7 | CH-06 | Pickup section exists in checkout | Pickup section exists but is not visible
+[PASS] Version 7 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 7 | OI-02 | Invoice storage mechanism exists
+[PASS] Version 7 | OI-03 | Invoice element has content/template slots
+[PASS] Version 7 | AC-01 | About section has visible business content
+[FAIL] Version 7 | AC-02 | Contact form accepts valid input without JS errors | locator.click: Timeout 7000ms exceeded.
+[PASS] Version 7 | AC-03 | Contact form blocked when fields are blank
+[PASS] Version 7 | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 8 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 8 | MB-02 | Switching days changes menu items
+[PASS] Version 8 | MB-03 | Menu has protein, vegetarian, and sides categories
+[FAIL] Version 8 | MB-04 | Food item cards have name, price, quantity, and image | No images found on menu item cards
+[FAIL] Version 8 | MB-05 | Item detail view has description and ingredients | No "ingredients" text found after clicking item
+[PASS] Version 8 | C-01 | Added item appears in cart
+[FAIL] Version 8 | C-02 | Item quantity updates in cart | No quantity input in cart
+[FAIL] Version 8 | C-03 | Item can be removed from cart | locator.click: Timeout 7000ms exceeded.
+[FAIL] Version 8 | C-04 | Cart total is displayed | No total amount found in cart
+[FAIL] Version 8 | CH-01 | Cannot checkout with fewer than 6 portions | No portions input found
+[FAIL] Version 8 | CH-02 | Cannot checkout with more than 30 portions | No portions input found
+[FAIL] Version 8 | CH-03 | Checkout blocked when contact fields are blank | No checkout section found
+[FAIL] Version 8 | CH-04 | Checkout blocked when payment not selected | No payment selector found
+[FAIL] Version 8 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 8 | CH-06 | Pickup section exists in checkout | Pickup section exists but is not visible
+[PASS] Version 8 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 8 | OI-02 | Invoice storage mechanism exists
+[PASS] Version 8 | OI-03 | Invoice element has content/template slots
+[PASS] Version 8 | AC-01 | About section has visible business content
+[FAIL] Version 8 | AC-02 | Contact form accepts valid input without JS errors | locator.fill: Timeout 7000ms exceeded.
+[FAIL] Version 8 | AC-03 | Contact form blocked when fields are blank | locator.fill: Timeout 7000ms exceeded.
+[PASS] Version 8 | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 9 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 9 | MB-02 | Switching days changes menu items
+[PASS] Version 9 | MB-03 | Menu has protein, vegetarian, and sides categories
+[FAIL] Version 9 | MB-04 | Food item cards have name, price, quantity, and image | No images found on menu item cards
+[FAIL] Version 9 | MB-05 | Item detail view has description and ingredients | No "ingredients" text found after clicking item
+[PASS] Version 9 | C-01 | Added item appears in cart
+[FAIL] Version 9 | C-02 | Item quantity updates in cart | No quantity input in cart
+[FAIL] Version 9 | C-03 | Item can be removed from cart | locator.click: Timeout 7000ms exceeded.
+[FAIL] Version 9 | C-04 | Cart total is displayed | No total amount found in cart
+[FAIL] Version 9 | CH-01 | Cannot checkout with fewer than 6 portions | No portions input found
+[FAIL] Version 9 | CH-02 | Cannot checkout with more than 30 portions | No portions input found
+[FAIL] Version 9 | CH-03 | Checkout blocked when contact fields are blank | No checkout section found
+[FAIL] Version 9 | CH-04 | Checkout blocked when payment not selected | No payment selector found
+[FAIL] Version 9 | CH-05 | Special instructions field is optional | No special instructions field found
+[FAIL] Version 9 | CH-06 | Pickup section exists in checkout | Pickup section exists but is not visible
+[PASS] Version 9 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 9 | OI-02 | Invoice storage mechanism exists
+[PASS] Version 9 | OI-03 | Invoice element has content/template slots
+[PASS] Version 9 | AC-01 | About section has visible business content
+[FAIL] Version 9 | AC-02 | Contact form accepts valid input without JS errors | locator.fill: Timeout 7000ms exceeded.
+[FAIL] Version 9 | AC-03 | Contact form blocked when fields are blank | locator.fill: Timeout 7000ms exceeded.
+[PASS] Version 9 | AC-04 | Phone and social media links have valid hrefs
+[FAIL] Version 10 | MB-01 | Date selector shows valid range | Max date 2026-06-03 should allow day+14 (2026-06-04)
+[PASS] Version 10 | MB-02 | Switching days changes menu items
+[PASS] Version 10 | MB-03 | Menu has protein, vegetarian, and sides categories
+[PASS] Version 10 | MB-04 | Food item cards have name, price, quantity, and image
+[FAIL] Version 10 | MB-05 | Item detail view has description and ingredients | No item cards found to click
+[PASS] Version 10 | C-01 | Added item appears in cart
+[PASS] Version 10 | C-02 | Item quantity updates in cart
+[PASS] Version 10 | C-03 | Item can be removed from cart
+[PASS] Version 10 | C-04 | Cart total is displayed
+[PASS] Version 10 | CH-01 | Cannot checkout with fewer than 6 portions
+[PASS] Version 10 | CH-02 | Cannot checkout with more than 30 portions
+[PASS] Version 10 | CH-03 | Checkout blocked when contact fields are blank
+[FAIL] Version 10 | CH-04 | Checkout blocked when payment not selected | No payment selector found
+[FAIL] Version 10 | CH-05 | Special instructions field is optional | No special instructions field found
+[PASS] Version 10 | CH-06 | Pickup section exists in checkout
+[PASS] Version 10 | OI-01 | Invoice or confirmation element exists in DOM
+[PASS] Version 10 | OI-02 | Invoice storage mechanism exists
+[FAIL] Version 10 | OI-03 | Invoice element has content/template slots | Invoice element appears empty
+[PASS] Version 10 | AC-01 | About section has visible business content
+[PASS] Version 10 | AC-02 | Contact form accepts valid input without JS errors
+[PASS] Version 10 | AC-03 | Contact form blocked when fields are blank
+[PASS] Version 10 | AC-04 | Phone and social media links have valid hrefs
+
+===== Summary =====
+PASS: 116
+FAIL: 104
+TOTAL: 220
+===== End of Catering Test Suite =====

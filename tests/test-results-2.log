@@ -1,0 +1,372 @@
+===== Playwright Test Run: 2026-05-20T16:11:35.168Z =====
+
+[PASS] Version 1 | [A1] page loads without errors
+[PASS] Version 1 | [A2] has a visible heading
+[PASS] Version 1 | [A3] has navigation links
+[PASS] Version 1 | [A4] navigation links are clickable
+[PASS] Version 1 | [A5] has a menu section
+[PASS] Version 1 | [A6] images have valid src
+[PASS] Version 1 | [A7] has a contact section or form
+[PASS] Version 1 | [A8] no broken internal links (404s)
+[PASS] Version 1 | [A9] usable on mobile (375px)
+[PASS] Version 1 | [A10] html has lang attribute (WCAG)
+[PASS] Version 1 | [A11] images have alt attributes (WCAG)
+[PASS] Version 1 | [B1] page loads within 5 seconds
+[PASS] Version 1 | [B2] nav links are not all dead (#)
+[FAIL] Version 1 | [B3] contact form has a submit button | No submit button found in contact form
+[FAIL] Version 1 | [B4] contact form has email field | No email input field found
+[FAIL] Version 1 | [B5] contact info (phone or email) visible on page | No phone number or email address found on page
+[PASS] Version 1 | [B6] menu section has content (not empty)
+[FAIL] Version 1 | [B7] no JavaScript console errors | Console errors: Failed to load resource: the server responded with a status of 404 ()
+[FAIL] Version 1 | [B8] favicon is present | No favicon link tag found in <head>
+[FAIL] Version 1 | [B9] meta description exists (SEO) | No meta description tag found
+[PASS] Version 1 | [B10] viewport meta tag exists
+[PASS] Version 1 | [B11] usable on tablet (768px)
+[PASS] Version 1 | [B12] no oversized images (>1MB)
+[FAIL] Version 1 | [B13] skip to main content link exists | No skip-to-main-content link found (important for keyboard navigation)
+[PASS] Version 1 | [C1] form inputs have associated labels (WCAG)
+[PASS] Version 1 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 1 | [C3] links have meaningful text (WCAG)
+[PASS] Version 1 | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 1 | [C5] only one h1 on page (WCAG)
+[FAIL] Version 1 | [C6] links are visually distinguishable | Links may not be distinguishable — no underline detected (color: rgb(35, 33, 30))
+[PASS] Version 1 | [C7] interactive elements are keyboard focusable
+[PASS] Version 1 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 1 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 1 | [C10] meaningful images have non-empty alt text (WCAG)
+[PASS] Version 1 | [C11] select dropdowns have labels (WCAG)
+[PASS] Version 1 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 2 | [A1] page loads without errors
+[PASS] Version 2 | [A2] has a visible heading
+[PASS] Version 2 | [A3] has navigation links
+[PASS] Version 2 | [A4] navigation links are clickable
+[PASS] Version 2 | [A5] has a menu section
+[PASS] Version 2 | [A6] images have valid src
+[PASS] Version 2 | [A7] has a contact section or form
+[PASS] Version 2 | [A8] no broken internal links (404s)
+[PASS] Version 2 | [A9] usable on mobile (375px)
+[PASS] Version 2 | [A10] html has lang attribute (WCAG)
+[PASS] Version 2 | [A11] images have alt attributes (WCAG)
+[PASS] Version 2 | [B1] page loads within 5 seconds
+[PASS] Version 2 | [B2] nav links are not all dead (#)
+[PASS] Version 2 | [B3] contact form has a submit button
+[PASS] Version 2 | [B4] contact form has email field
+[PASS] Version 2 | [B5] contact info (phone or email) visible on page
+[PASS] Version 2 | [B6] menu section has content (not empty)
+[PASS] Version 2 | [B7] no JavaScript console errors
+[FAIL] Version 2 | [B8] favicon is present | No favicon link tag found in <head>
+[FAIL] Version 2 | [B9] meta description exists (SEO) | No meta description tag found
+[PASS] Version 2 | [B10] viewport meta tag exists
+[PASS] Version 2 | [B11] usable on tablet (768px)
+[FAIL] Version 2 | [B12] no oversized images (>1MB) | Oversized images: https://noshintahsin.github.io/VibeCode/version-2/assets/catering-hero.png (2.0MB)
+[PASS] Version 2 | [B13] skip to main content link exists
+[FAIL] Version 2 | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[1] (id: none), input[2] (id: none), input[3] (id: none), input[4] (id: none), input[5] (id: none), input[6] (id: none), input[7] (id: none), input[8] (id: none), input[9] (id: none), input[10] (id: none), input[11] (id: none)
+[PASS] Version 2 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 2 | [C3] links have meaningful text (WCAG)
+[PASS] Version 2 | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 2 | [C5] only one h1 on page (WCAG)
+[FAIL] Version 2 | [C6] links are visually distinguishable | Links may not be distinguishable — no underline detected (color: rgb(255, 255, 255))
+[PASS] Version 2 | [C7] interactive elements are keyboard focusable
+[PASS] Version 2 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 2 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 2 | [C10] meaningful images have non-empty alt text (WCAG)
+[FAIL] Version 2 | [C11] select dropdowns have labels (WCAG) | Select dropdowns without labels: select[0] (id: none)
+[PASS] Version 2 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 3 | [A1] page loads without errors
+[PASS] Version 3 | [A2] has a visible heading
+[PASS] Version 3 | [A3] has navigation links
+[PASS] Version 3 | [A4] navigation links are clickable
+[PASS] Version 3 | [A5] has a menu section
+[PASS] Version 3 | [A6] images have valid src
+[PASS] Version 3 | [A7] has a contact section or form
+[PASS] Version 3 | [A8] no broken internal links (404s)
+[PASS] Version 3 | [A9] usable on mobile (375px)
+[PASS] Version 3 | [A10] html has lang attribute (WCAG)
+[PASS] Version 3 | [A11] images have alt attributes (WCAG)
+[PASS] Version 3 | [B1] page loads within 5 seconds
+[PASS] Version 3 | [B2] nav links are not all dead (#)
+[PASS] Version 3 | [B3] contact form has a submit button
+[PASS] Version 3 | [B4] contact form has email field
+[PASS] Version 3 | [B5] contact info (phone or email) visible on page
+[PASS] Version 3 | [B6] menu section has content (not empty)
+[FAIL] Version 3 | [B7] no JavaScript console errors | Console errors: Failed to load resource: the server responded with a status of 404 () | Failed to load resource: the server responded with a status of 404 ()
+[FAIL] Version 3 | [B8] favicon is present | No favicon link tag found in <head>
+[FAIL] Version 3 | [B9] meta description exists (SEO) | No meta description tag found
+[PASS] Version 3 | [B10] viewport meta tag exists
+[PASS] Version 3 | [B11] usable on tablet (768px)
+[PASS] Version 3 | [B12] no oversized images (>1MB)
+[PASS] Version 3 | [B13] skip to main content link exists
+[PASS] Version 3 | [C1] form inputs have associated labels (WCAG)
+[PASS] Version 3 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 3 | [C3] links have meaningful text (WCAG)
+[PASS] Version 3 | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 3 | [C5] only one h1 on page (WCAG)
+[PASS] Version 3 | [C6] links are visually distinguishable
+[PASS] Version 3 | [C7] interactive elements are keyboard focusable
+[PASS] Version 3 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 3 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 3 | [C10] meaningful images have non-empty alt text (WCAG)
+[PASS] Version 3 | [C11] select dropdowns have labels (WCAG)
+[PASS] Version 3 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 4a | [A1] page loads without errors
+[PASS] Version 4a | [A2] has a visible heading
+[PASS] Version 4a | [A3] has navigation links
+[PASS] Version 4a | [A4] navigation links are clickable
+[PASS] Version 4a | [A5] has a menu section
+[PASS] Version 4a | [A6] images have valid src
+[PASS] Version 4a | [A7] has a contact section or form
+[PASS] Version 4a | [A8] no broken internal links (404s)
+[PASS] Version 4a | [A9] usable on mobile (375px)
+[PASS] Version 4a | [A10] html has lang attribute (WCAG)
+[PASS] Version 4a | [A11] images have alt attributes (WCAG)
+[PASS] Version 4a | [B1] page loads within 5 seconds
+[PASS] Version 4a | [B2] nav links are not all dead (#)
+[PASS] Version 4a | [B3] contact form has a submit button
+[PASS] Version 4a | [B4] contact form has email field
+[PASS] Version 4a | [B5] contact info (phone or email) visible on page
+[PASS] Version 4a | [B6] menu section has content (not empty)
+[PASS] Version 4a | [B7] no JavaScript console errors
+[FAIL] Version 4a | [B8] favicon is present | No favicon link tag found in <head>
+[FAIL] Version 4a | [B9] meta description exists (SEO) | No meta description tag found
+[PASS] Version 4a | [B10] viewport meta tag exists
+[PASS] Version 4a | [B11] usable on tablet (768px)
+[PASS] Version 4a | [B12] no oversized images (>1MB)
+[FAIL] Version 4a | [B13] skip to main content link exists | No skip-to-main-content link found (important for keyboard navigation)
+[FAIL] Version 4a | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[0] (id: pickup-date), input[1] (id: none), input[2] (id: none), input[3] (id: none), input[4] (id: none), input[5] (id: none), input[6] (id: none), input[7] (id: none), input[8] (id: none)
+[PASS] Version 4a | [C2] buttons have accessible names (WCAG)
+[PASS] Version 4a | [C3] links have meaningful text (WCAG)
+[PASS] Version 4a | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 4a | [C5] only one h1 on page (WCAG)
+[FAIL] Version 4a | [C6] links are visually distinguishable | Links may not be distinguishable — no underline detected (color: rgb(37, 33, 28))
+[PASS] Version 4a | [C7] interactive elements are keyboard focusable
+[PASS] Version 4a | [C8] no positive tabindex values (WCAG)
+[PASS] Version 4a | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 4a | [C10] meaningful images have non-empty alt text (WCAG)
+[FAIL] Version 4a | [C11] select dropdowns have labels (WCAG) | Select dropdowns without labels: select[0] (id: none), select[1] (id: none)
+[PASS] Version 4a | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 5 | [A1] page loads without errors
+[PASS] Version 5 | [A2] has a visible heading
+[PASS] Version 5 | [A3] has navigation links
+[PASS] Version 5 | [A4] navigation links are clickable
+[PASS] Version 5 | [A5] has a menu section
+[PASS] Version 5 | [A6] images have valid src
+[PASS] Version 5 | [A7] has a contact section or form
+[PASS] Version 5 | [A8] no broken internal links (404s)
+[PASS] Version 5 | [A9] usable on mobile (375px)
+[PASS] Version 5 | [A10] html has lang attribute (WCAG)
+[PASS] Version 5 | [A11] images have alt attributes (WCAG)
+[PASS] Version 5 | [B1] page loads within 5 seconds
+[PASS] Version 5 | [B2] nav links are not all dead (#)
+[PASS] Version 5 | [B3] contact form has a submit button
+[PASS] Version 5 | [B4] contact form has email field
+[PASS] Version 5 | [B5] contact info (phone or email) visible on page
+[PASS] Version 5 | [B6] menu section has content (not empty)
+[PASS] Version 5 | [B7] no JavaScript console errors
+[FAIL] Version 5 | [B8] favicon is present | No favicon link tag found in <head>
+[FAIL] Version 5 | [B9] meta description exists (SEO) | No meta description tag found
+[PASS] Version 5 | [B10] viewport meta tag exists
+[PASS] Version 5 | [B11] usable on tablet (768px)
+[PASS] Version 5 | [B12] no oversized images (>1MB)
+[PASS] Version 5 | [B13] skip to main content link exists
+[FAIL] Version 5 | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[0] (id: dateInput), input[1] (id: none), input[2] (id: none), input[3] (id: none), input[4] (id: none), input[5] (id: none), input[6] (id: none), input[7] (id: none), input[8] (id: none), input[9] (id: none), input[10] (id: none)
+[PASS] Version 5 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 5 | [C3] links have meaningful text (WCAG)
+[PASS] Version 5 | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 5 | [C5] only one h1 on page (WCAG)
+[PASS] Version 5 | [C6] links are visually distinguishable
+[PASS] Version 5 | [C7] interactive elements are keyboard focusable
+[PASS] Version 5 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 5 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 5 | [C10] meaningful images have non-empty alt text (WCAG)
+[FAIL] Version 5 | [C11] select dropdowns have labels (WCAG) | Select dropdowns without labels: select[0] (id: none)
+[PASS] Version 5 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 6 | [A1] page loads without errors
+[PASS] Version 6 | [A2] has a visible heading
+[PASS] Version 6 | [A3] has navigation links
+[PASS] Version 6 | [A4] navigation links are clickable
+[PASS] Version 6 | [A5] has a menu section
+[PASS] Version 6 | [A6] images have valid src
+[PASS] Version 6 | [A7] has a contact section or form
+[PASS] Version 6 | [A8] no broken internal links (404s)
+[PASS] Version 6 | [A9] usable on mobile (375px)
+[PASS] Version 6 | [A10] html has lang attribute (WCAG)
+[PASS] Version 6 | [A11] images have alt attributes (WCAG)
+[PASS] Version 6 | [B1] page loads within 5 seconds
+[PASS] Version 6 | [B2] nav links are not all dead (#)
+[PASS] Version 6 | [B3] contact form has a submit button
+[PASS] Version 6 | [B4] contact form has email field
+[PASS] Version 6 | [B5] contact info (phone or email) visible on page
+[PASS] Version 6 | [B6] menu section has content (not empty)
+[PASS] Version 6 | [B7] no JavaScript console errors
+[FAIL] Version 6 | [B8] favicon is present | No favicon link tag found in <head>
+[FAIL] Version 6 | [B9] meta description exists (SEO) | No meta description tag found
+[PASS] Version 6 | [B10] viewport meta tag exists
+[PASS] Version 6 | [B11] usable on tablet (768px)
+[PASS] Version 6 | [B12] no oversized images (>1MB)
+[PASS] Version 6 | [B13] skip to main content link exists
+[FAIL] Version 6 | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[0] (id: dateInput), input[1] (id: none), input[2] (id: none), input[3] (id: none), input[4] (id: none), input[5] (id: none), input[6] (id: none), input[7] (id: none), input[8] (id: none), input[9] (id: none), input[10] (id: none)
+[PASS] Version 6 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 6 | [C3] links have meaningful text (WCAG)
+[PASS] Version 6 | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 6 | [C5] only one h1 on page (WCAG)
+[FAIL] Version 6 | [C6] links are visually distinguishable | Links may not be distinguishable — no underline detected (color: rgb(255, 255, 255))
+[PASS] Version 6 | [C7] interactive elements are keyboard focusable
+[PASS] Version 6 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 6 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 6 | [C10] meaningful images have non-empty alt text (WCAG)
+[FAIL] Version 6 | [C11] select dropdowns have labels (WCAG) | Select dropdowns without labels: select[0] (id: none)
+[PASS] Version 6 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 7 | [A1] page loads without errors
+[PASS] Version 7 | [A2] has a visible heading
+[PASS] Version 7 | [A3] has navigation links
+[PASS] Version 7 | [A4] navigation links are clickable
+[PASS] Version 7 | [A5] has a menu section
+[PASS] Version 7 | [A6] images have valid src
+[PASS] Version 7 | [A7] has a contact section or form
+[PASS] Version 7 | [A8] no broken internal links (404s)
+[PASS] Version 7 | [A9] usable on mobile (375px)
+[PASS] Version 7 | [A10] html has lang attribute (WCAG)
+[PASS] Version 7 | [A11] images have alt attributes (WCAG)
+[PASS] Version 7 | [B1] page loads within 5 seconds
+[PASS] Version 7 | [B2] nav links are not all dead (#)
+[PASS] Version 7 | [B3] contact form has a submit button
+[PASS] Version 7 | [B4] contact form has email field
+[PASS] Version 7 | [B5] contact info (phone or email) visible on page
+[PASS] Version 7 | [B6] menu section has content (not empty)
+[PASS] Version 7 | [B7] no JavaScript console errors
+[FAIL] Version 7 | [B8] favicon is present | No favicon link tag found in <head>
+[FAIL] Version 7 | [B9] meta description exists (SEO) | No meta description tag found
+[PASS] Version 7 | [B10] viewport meta tag exists
+[PASS] Version 7 | [B11] usable on tablet (768px)
+[PASS] Version 7 | [B12] no oversized images (>1MB)
+[PASS] Version 7 | [B13] skip to main content link exists
+[FAIL] Version 7 | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[0] (id: dateInput), input[1] (id: none), input[2] (id: none), input[3] (id: none), input[4] (id: none), input[5] (id: none), input[6] (id: none), input[7] (id: none), input[8] (id: none), input[9] (id: none), input[10] (id: none)
+[PASS] Version 7 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 7 | [C3] links have meaningful text (WCAG)
+[PASS] Version 7 | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 7 | [C5] only one h1 on page (WCAG)
+[PASS] Version 7 | [C6] links are visually distinguishable
+[PASS] Version 7 | [C7] interactive elements are keyboard focusable
+[PASS] Version 7 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 7 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 7 | [C10] meaningful images have non-empty alt text (WCAG)
+[FAIL] Version 7 | [C11] select dropdowns have labels (WCAG) | Select dropdowns without labels: select[0] (id: none)
+[PASS] Version 7 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 8 | [A1] page loads without errors
+[PASS] Version 8 | [A2] has a visible heading
+[PASS] Version 8 | [A3] has navigation links
+[PASS] Version 8 | [A4] navigation links are clickable
+[PASS] Version 8 | [A5] has a menu section
+[PASS] Version 8 | [A6] images have valid src
+[PASS] Version 8 | [A7] has a contact section or form
+[PASS] Version 8 | [A8] no broken internal links (404s)
+[PASS] Version 8 | [A9] usable on mobile (375px)
+[PASS] Version 8 | [A10] html has lang attribute (WCAG)
+[PASS] Version 8 | [A11] images have alt attributes (WCAG)
+[PASS] Version 8 | [B1] page loads within 5 seconds
+[PASS] Version 8 | [B2] nav links are not all dead (#)
+[PASS] Version 8 | [B3] contact form has a submit button
+[PASS] Version 8 | [B4] contact form has email field
+[FAIL] Version 8 | [B5] contact info (phone or email) visible on page | No phone number or email address found on page
+[PASS] Version 8 | [B6] menu section has content (not empty)
+[PASS] Version 8 | [B7] no JavaScript console errors
+[FAIL] Version 8 | [B8] favicon is present | No favicon link tag found in <head>
+[PASS] Version 8 | [B9] meta description exists (SEO)
+[PASS] Version 8 | [B10] viewport meta tag exists
+[PASS] Version 8 | [B11] usable on tablet (768px)
+[PASS] Version 8 | [B12] no oversized images (>1MB)
+[PASS] Version 8 | [B13] skip to main content link exists
+[FAIL] Version 8 | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[0] (id: menu-date), input[1] (id: none), input[2] (id: none), input[3] (id: none), input[4] (id: none), input[6] (id: none), input[7] (id: none), input[8] (id: none), input[9] (id: none), input[10] (id: none)
+[PASS] Version 8 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 8 | [C3] links have meaningful text (WCAG)
+[PASS] Version 8 | [C4] heading hierarchy is logical (WCAG)
+[FAIL] Version 8 | [C5] only one h1 on page (WCAG) | Multiple h1 tags found (3) — should be only one
+[PASS] Version 8 | [C6] links are visually distinguishable
+[PASS] Version 8 | [C7] interactive elements are keyboard focusable
+[PASS] Version 8 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 8 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 8 | [C10] meaningful images have non-empty alt text (WCAG)
+[FAIL] Version 8 | [C11] select dropdowns have labels (WCAG) | Select dropdowns without labels: select[0] (id: none)
+[PASS] Version 8 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 9 | [A1] page loads without errors
+[PASS] Version 9 | [A2] has a visible heading
+[PASS] Version 9 | [A3] has navigation links
+[PASS] Version 9 | [A4] navigation links are clickable
+[PASS] Version 9 | [A5] has a menu section
+[PASS] Version 9 | [A6] images have valid src
+[PASS] Version 9 | [A7] has a contact section or form
+[PASS] Version 9 | [A8] no broken internal links (404s)
+[PASS] Version 9 | [A9] usable on mobile (375px)
+[PASS] Version 9 | [A10] html has lang attribute (WCAG)
+[PASS] Version 9 | [A11] images have alt attributes (WCAG)
+[PASS] Version 9 | [B1] page loads within 5 seconds
+[PASS] Version 9 | [B2] nav links are not all dead (#)
+[PASS] Version 9 | [B3] contact form has a submit button
+[PASS] Version 9 | [B4] contact form has email field
+[FAIL] Version 9 | [B5] contact info (phone or email) visible on page | No phone number or email address found on page
+[PASS] Version 9 | [B6] menu section has content (not empty)
+[PASS] Version 9 | [B7] no JavaScript console errors
+[FAIL] Version 9 | [B8] favicon is present | No favicon link tag found in <head>
+[PASS] Version 9 | [B9] meta description exists (SEO)
+[PASS] Version 9 | [B10] viewport meta tag exists
+[PASS] Version 9 | [B11] usable on tablet (768px)
+[PASS] Version 9 | [B12] no oversized images (>1MB)
+[PASS] Version 9 | [B13] skip to main content link exists
+[FAIL] Version 9 | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[0] (id: menu-date), input[1] (id: none), input[2] (id: none), input[3] (id: none), input[4] (id: none), input[6] (id: none), input[7] (id: none), input[8] (id: none), input[9] (id: none), input[10] (id: none)
+[PASS] Version 9 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 9 | [C3] links have meaningful text (WCAG)
+[PASS] Version 9 | [C4] heading hierarchy is logical (WCAG)
+[FAIL] Version 9 | [C5] only one h1 on page (WCAG) | Multiple h1 tags found (3) — should be only one
+[PASS] Version 9 | [C6] links are visually distinguishable
+[PASS] Version 9 | [C7] interactive elements are keyboard focusable
+[PASS] Version 9 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 9 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 9 | [C10] meaningful images have non-empty alt text (WCAG)
+[FAIL] Version 9 | [C11] select dropdowns have labels (WCAG) | Select dropdowns without labels: select[0] (id: none)
+[PASS] Version 9 | [C12] page title is descriptive (WCAG)
+
+[PASS] Version 10 | [A1] page loads without errors
+[PASS] Version 10 | [A2] has a visible heading
+[PASS] Version 10 | [A3] has navigation links
+[PASS] Version 10 | [A4] navigation links are clickable
+[PASS] Version 10 | [A5] has a menu section
+[PASS] Version 10 | [A6] images have valid src
+[PASS] Version 10 | [A7] has a contact section or form
+[PASS] Version 10 | [A8] no broken internal links (404s)
+[PASS] Version 10 | [A9] usable on mobile (375px)
+[PASS] Version 10 | [A10] html has lang attribute (WCAG)
+[PASS] Version 10 | [A11] images have alt attributes (WCAG)
+[PASS] Version 10 | [B1] page loads within 5 seconds
+[PASS] Version 10 | [B2] nav links are not all dead (#)
+[PASS] Version 10 | [B3] contact form has a submit button
+[PASS] Version 10 | [B4] contact form has email field
+[PASS] Version 10 | [B5] contact info (phone or email) visible on page
+[FAIL] Version 10 | [B6] menu section has content (not empty) | Menu section appears empty or has very little content (0 chars)
+[PASS] Version 10 | [B7] no JavaScript console errors
+[FAIL] Version 10 | [B8] favicon is present | No favicon link tag found in <head>
+[PASS] Version 10 | [B9] meta description exists (SEO)
+[PASS] Version 10 | [B10] viewport meta tag exists
+[PASS] Version 10 | [B11] usable on tablet (768px)
+[FAIL] Version 10 | [B12] no oversized images (>1MB) | Oversized images: https://noshintahsin.github.io/VibeCode/version-10/assets/catering-hero.png (2.4MB)
+[PASS] Version 10 | [B13] skip to main content link exists
+[FAIL] Version 10 | [C1] form inputs have associated labels (WCAG) | Inputs without labels: input[15] (id: none), input[16] (id: none), input[17] (id: none)
+[PASS] Version 10 | [C2] buttons have accessible names (WCAG)
+[PASS] Version 10 | [C3] links have meaningful text (WCAG)
+[PASS] Version 10 | [C4] heading hierarchy is logical (WCAG)
+[PASS] Version 10 | [C5] only one h1 on page (WCAG)
+[PASS] Version 10 | [C6] links are visually distinguishable
+[PASS] Version 10 | [C7] interactive elements are keyboard focusable
+[PASS] Version 10 | [C8] no positive tabindex values (WCAG)
+[PASS] Version 10 | [C9] page has a <main> landmark (WCAG)
+[PASS] Version 10 | [C10] meaningful images have non-empty alt text (WCAG)
+[PASS] Version 10 | [C11] select dropdowns have labels (WCAG)
+[PASS] Version 10 | [C12] page title is descriptive (WCAG)
+
