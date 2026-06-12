@@ -9,10 +9,13 @@
     "undici-types": "^7.24.6"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.1"
   },
-  "scripts": {},
+  "scripts": {
+    "test:catering": "node -e \"require('fs').rmSync('tests/new-catering-suite-results.log',{force:true})\" && playwright test tests/catering.spec.js --project=chromium"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NoshinTahsin/VibeCode.git"

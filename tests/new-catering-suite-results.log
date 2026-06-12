@@ -1,0 +1,232 @@
+===== Catering + axe run: 2026-06-11T22:05:49.991Z =====
+
+[PASS] Version 1 | MB-01 | Date selector shows valid range
+[PASS] Version 1 | MB-02 | Each day shows its unique menu
+[PASS] Version 1 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 1 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 1 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 1 | C-01 | Added item appears in cart with quantity
+[PASS] Version 1 | C-02 | Cart quantity updates and total changes
+[PASS] Version 1 | C-03 | One item can be removed while another remains
+[PASS] Version 1 | C-04 | Cart total reflects multiple items
+[PASS] Version 1 | CH-01 | Minimum portion size enforced
+[PASS] Version 1 | CH-02 | Maximum portion size enforced
+[PASS] Version 1 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 1 | CH-04 | Checkout is blocked without payment
+[PASS] Version 1 | CH-05 | Order succeeds without special instructions
+[PASS] Version 1 | CH-06 | Pickup date and time controls exist
+[PASS] Version 1 | OI-01 | Invoice appears after a successful order
+[PASS] Version 1 | OI-02 | Placed invoice is stored locally
+[PASS] Version 1 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 1 | AC-01 | About content is accessible
+[PASS] Version 1 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 1 | AC-03 | Blank contact form is blocked
+[FAIL] Version 1 | AC-04 | Phone and social links have valid destinations | expect(locator).toHaveAttribute(expected) failed
+[PASS] Version 1 | AXE-01 | axe-core WCAG scan
+[PASS] Version 2 | MB-01 | Date selector shows valid range
+[PASS] Version 2 | MB-02 | Each day shows its unique menu
+[PASS] Version 2 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 2 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 2 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 2 | C-01 | Added item appears in cart with quantity
+[PASS] Version 2 | C-02 | Cart quantity updates and total changes
+[PASS] Version 2 | C-03 | One item can be removed while another remains
+[PASS] Version 2 | C-04 | Cart total reflects multiple items
+[PASS] Version 2 | CH-01 | Minimum portion size enforced
+[PASS] Version 2 | CH-02 | Maximum portion size enforced
+[PASS] Version 2 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 2 | CH-04 | Checkout is blocked without payment
+[PASS] Version 2 | CH-05 | Order succeeds without special instructions
+[PASS] Version 2 | CH-06 | Pickup date and time controls exist
+[PASS] Version 2 | OI-01 | Invoice appears after a successful order
+[PASS] Version 2 | OI-02 | Placed invoice is stored locally
+[PASS] Version 2 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 2 | AC-01 | About content is accessible
+[PASS] Version 2 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 2 | AC-03 | Blank contact form is blocked
+[PASS] Version 2 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 2 | AXE-01 | axe-core WCAG scan
+[PASS] Version 3 | MB-01 | Date selector shows valid range
+[PASS] Version 3 | MB-02 | Each day shows its unique menu
+[PASS] Version 3 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 3 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 3 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 3 | C-01 | Added item appears in cart with quantity
+[PASS] Version 3 | C-02 | Cart quantity updates and total changes
+[PASS] Version 3 | C-03 | One item can be removed while another remains
+[PASS] Version 3 | C-04 | Cart total reflects multiple items
+[PASS] Version 3 | CH-01 | Minimum portion size enforced
+[PASS] Version 3 | CH-02 | Maximum portion size enforced
+[PASS] Version 3 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 3 | CH-04 | Checkout is blocked without payment
+[PASS] Version 3 | CH-05 | Order succeeds without special instructions
+[PASS] Version 3 | CH-06 | Pickup date and time controls exist
+[PASS] Version 3 | OI-01 | Invoice appears after a successful order
+[PASS] Version 3 | OI-02 | Placed invoice is stored locally
+[PASS] Version 3 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 3 | AC-01 | About content is accessible
+[PASS] Version 3 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 3 | AC-03 | Blank contact form is blocked
+[PASS] Version 3 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 3 | AXE-01 | axe-core WCAG scan
+[PASS] Version 4a | MB-01 | Date selector shows valid range
+[PASS] Version 4a | MB-02 | Each day shows its unique menu
+[PASS] Version 4a | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 4a | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 4a | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 4a | C-01 | Added item appears in cart with quantity
+[PASS] Version 4a | C-02 | Cart quantity updates and total changes
+[PASS] Version 4a | C-03 | One item can be removed while another remains
+[PASS] Version 4a | C-04 | Cart total reflects multiple items
+[PASS] Version 4a | CH-01 | Minimum portion size enforced
+[PASS] Version 4a | CH-02 | Maximum portion size enforced
+[PASS] Version 4a | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 4a | CH-04 | Checkout is blocked without payment
+[PASS] Version 4a | CH-05 | Order succeeds without special instructions
+[PASS] Version 4a | CH-06 | Pickup date and time controls exist
+[PASS] Version 4a | OI-01 | Invoice appears after a successful order
+[PASS] Version 4a | OI-02 | Placed invoice is stored locally
+[PASS] Version 4a | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 4a | AC-01 | About content is accessible
+[PASS] Version 4a | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 4a | AC-03 | Blank contact form is blocked
+[PASS] Version 4a | AC-04 | Phone and social links have valid destinations
+[PASS] Version 4a | AXE-01 | axe-core WCAG scan
+[PASS] Version 5 | MB-01 | Date selector shows valid range
+[PASS] Version 5 | MB-02 | Each day shows its unique menu
+[PASS] Version 5 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 5 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 5 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 5 | C-01 | Added item appears in cart with quantity
+[PASS] Version 5 | C-02 | Cart quantity updates and total changes
+[PASS] Version 5 | C-03 | One item can be removed while another remains
+[PASS] Version 5 | C-04 | Cart total reflects multiple items
+[PASS] Version 5 | CH-01 | Minimum portion size enforced
+[PASS] Version 5 | CH-02 | Maximum portion size enforced
+[PASS] Version 5 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 5 | CH-04 | Checkout is blocked without payment
+[PASS] Version 5 | CH-05 | Order succeeds without special instructions
+[PASS] Version 5 | CH-06 | Pickup date and time controls exist
+[PASS] Version 5 | OI-01 | Invoice appears after a successful order
+[PASS] Version 5 | OI-02 | Placed invoice is stored locally
+[PASS] Version 5 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 5 | AC-01 | About content is accessible
+[PASS] Version 5 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 5 | AC-03 | Blank contact form is blocked
+[PASS] Version 5 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 5 | AXE-01 | axe-core WCAG scan
+[PASS] Version 6 | MB-01 | Date selector shows valid range
+[PASS] Version 6 | MB-02 | Each day shows its unique menu
+[PASS] Version 6 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 6 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 6 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 6 | C-01 | Added item appears in cart with quantity
+[PASS] Version 6 | C-02 | Cart quantity updates and total changes
+[PASS] Version 6 | C-03 | One item can be removed while another remains
+[PASS] Version 6 | C-04 | Cart total reflects multiple items
+[PASS] Version 6 | CH-01 | Minimum portion size enforced
+[PASS] Version 6 | CH-02 | Maximum portion size enforced
+[PASS] Version 6 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 6 | CH-04 | Checkout is blocked without payment
+[PASS] Version 6 | CH-05 | Order succeeds without special instructions
+[PASS] Version 6 | CH-06 | Pickup date and time controls exist
+[PASS] Version 6 | OI-01 | Invoice appears after a successful order
+[PASS] Version 6 | OI-02 | Placed invoice is stored locally
+[PASS] Version 6 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 6 | AC-01 | About content is accessible
+[PASS] Version 6 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 6 | AC-03 | Blank contact form is blocked
+[PASS] Version 6 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 6 | AXE-01 | axe-core WCAG scan
+[PASS] Version 7 | MB-01 | Date selector shows valid range
+[PASS] Version 7 | MB-02 | Each day shows its unique menu
+[PASS] Version 7 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 7 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 7 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 7 | C-01 | Added item appears in cart with quantity
+[PASS] Version 7 | C-02 | Cart quantity updates and total changes
+[PASS] Version 7 | C-03 | One item can be removed while another remains
+[PASS] Version 7 | C-04 | Cart total reflects multiple items
+[PASS] Version 7 | CH-01 | Minimum portion size enforced
+[PASS] Version 7 | CH-02 | Maximum portion size enforced
+[PASS] Version 7 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 7 | CH-04 | Checkout is blocked without payment
+[PASS] Version 7 | CH-05 | Order succeeds without special instructions
+[PASS] Version 7 | CH-06 | Pickup date and time controls exist
+[PASS] Version 7 | OI-01 | Invoice appears after a successful order
+[PASS] Version 7 | OI-02 | Placed invoice is stored locally
+[PASS] Version 7 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 7 | AC-01 | About content is accessible
+[PASS] Version 7 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 7 | AC-03 | Blank contact form is blocked
+[PASS] Version 7 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 7 | AXE-01 | axe-core WCAG scan
+[PASS] Version 8 | MB-01 | Date selector shows valid range
+[PASS] Version 8 | MB-02 | Each day shows its unique menu
+[PASS] Version 8 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 8 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 8 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 8 | C-01 | Added item appears in cart with quantity
+[PASS] Version 8 | C-02 | Cart quantity updates and total changes
+[PASS] Version 8 | C-03 | One item can be removed while another remains
+[PASS] Version 8 | C-04 | Cart total reflects multiple items
+[PASS] Version 8 | CH-01 | Minimum portion size enforced
+[PASS] Version 8 | CH-02 | Maximum portion size enforced
+[PASS] Version 8 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 8 | CH-04 | Checkout is blocked without payment
+[PASS] Version 8 | CH-05 | Order succeeds without special instructions
+[PASS] Version 8 | CH-06 | Pickup date and time controls exist
+[PASS] Version 8 | OI-01 | Invoice appears after a successful order
+[PASS] Version 8 | OI-02 | Placed invoice is stored locally
+[PASS] Version 8 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 8 | AC-01 | About content is accessible
+[PASS] Version 8 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 8 | AC-03 | Blank contact form is blocked
+[PASS] Version 8 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 8 | AXE-01 | axe-core WCAG scan
+[PASS] Version 9 | MB-01 | Date selector shows valid range
+[PASS] Version 9 | MB-02 | Each day shows its unique menu
+[PASS] Version 9 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 9 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 9 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 9 | C-01 | Added item appears in cart with quantity
+[PASS] Version 9 | C-02 | Cart quantity updates and total changes
+[PASS] Version 9 | C-03 | One item can be removed while another remains
+[PASS] Version 9 | C-04 | Cart total reflects multiple items
+[PASS] Version 9 | CH-01 | Minimum portion size enforced
+[PASS] Version 9 | CH-02 | Maximum portion size enforced
+[PASS] Version 9 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 9 | CH-04 | Checkout is blocked without payment
+[PASS] Version 9 | CH-05 | Order succeeds without special instructions
+[PASS] Version 9 | CH-06 | Pickup date and time controls exist
+[PASS] Version 9 | OI-01 | Invoice appears after a successful order
+[PASS] Version 9 | OI-02 | Placed invoice is stored locally
+[PASS] Version 9 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 9 | AC-01 | About content is accessible
+[PASS] Version 9 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 9 | AC-03 | Blank contact form is blocked
+[PASS] Version 9 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 9 | AXE-01 | axe-core WCAG scan
+[PASS] Version 10 | MB-01 | Date selector shows valid range
+[PASS] Version 10 | MB-02 | Each day shows its unique menu
+[PASS] Version 10 | MB-03 | Menu contains 5 protein, 3 vegetarian, and 2 sides
+[PASS] Version 10 | MB-04 | Food card shows name, price, quantity, and image
+[PASS] Version 10 | MB-05 | Detail view has description, ingredients, and nutrition
+[PASS] Version 10 | C-01 | Added item appears in cart with quantity
+[PASS] Version 10 | C-02 | Cart quantity updates and total changes
+[PASS] Version 10 | C-03 | One item can be removed while another remains
+[PASS] Version 10 | C-04 | Cart total reflects multiple items
+[PASS] Version 10 | CH-01 | Minimum portion size enforced
+[PASS] Version 10 | CH-02 | Maximum portion size enforced
+[PASS] Version 10 | CH-03 | Blank checkout contact fields are blocked
+[PASS] Version 10 | CH-04 | Checkout is blocked without payment
+[PASS] Version 10 | CH-05 | Order succeeds without special instructions
+[PASS] Version 10 | CH-06 | Pickup date and time controls exist
+[PASS] Version 10 | OI-01 | Invoice appears after a successful order
+[PASS] Version 10 | OI-02 | Placed invoice is stored locally
+[PASS] Version 10 | OI-03 | Invoice preserves cart item and quantity
+[PASS] Version 10 | AC-01 | About content is accessible
+[PASS] Version 10 | AC-02 | Contact form submits without JavaScript errors
+[PASS] Version 10 | AC-03 | Blank contact form is blocked
+[PASS] Version 10 | AC-04 | Phone and social links have valid destinations
+[PASS] Version 10 | AXE-01 | axe-core WCAG scan
